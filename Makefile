@@ -1,5 +1,8 @@
 compile:
-	rebar compile
+	rebar3 release
+
+#run:
+#	erl -pa ./ebin -s cellphone start
 
 run:
-	erl -pa ./ebin -s cellphone start
+	rebar3 shell

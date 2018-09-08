@@ -23,6 +23,6 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    CP = ?CHILD(cellphone, worker),
+    CP = ?CHILD(net_server, worker),
     {ok, { {one_for_one, 5, 10}, [CP]} }.
 

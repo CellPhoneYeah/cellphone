@@ -7,6 +7,6 @@
 get_routes() ->
     [
      {'_', [
-            {"/", cowboy_handler, []}
+            {"/", request_handler, []}
            ]}
     ].
