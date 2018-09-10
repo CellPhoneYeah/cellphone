@@ -1,4 +1,4 @@
--module(cellphone_sup).
+-module(data_sup).
 
 -behaviour(supervisor).
 
@@ -23,8 +23,6 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    Data = ?CHILD(data_sup, supervisor),
-    Role = ?CHILD(role_sup, supervisor),
-    Net = ?CHILD(net_sup, supervisor),
-    {ok, { {one_for_one, 5, 10}, [Role, Net, Data]} }.
+    DataServer = ?CHILD(data_server, worker),
+    {ok, { {one_for_one, 5, 10}, [DataServer]} }.
 

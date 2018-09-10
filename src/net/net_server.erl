@@ -18,7 +18,7 @@
          handle_cast/2,
          handle_info/2,
          terminate/2,
-         change_code/3
+         code_change/3
         ]).
 
 -record(state, {}).
@@ -36,7 +36,7 @@ init([]) ->
     % application:start(cowboy),
     % Router = route_helper:get_routes(),
     Router = [
-              {'_', [{"/", request_handler, []}]}
+              {'_', [{'_', request_handler, []}]}
              ],
     Dispatch = cowboy_router:compile(Router),
     {ok, _} = cowboy:start_clear(cellphone_listener,
@@ -61,5 +61,5 @@ handle_info(_Request, State) ->
 terminate(_State, _Reason) ->
     ok.
 
-change_code(_OldVsn, State, _Extra) ->
+code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
