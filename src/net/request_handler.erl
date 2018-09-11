@@ -38,6 +38,8 @@ path(Req) ->
 
 gen_resource("/") ->
     get_web_files_path() ++ "index.html";
+gen_resource("/chat") ->
+    get_web_files_path() ++ "/chat";
 gen_resource(Path) ->
     get_web_files_path() ++ Path.
 

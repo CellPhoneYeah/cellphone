@@ -5,9 +5,12 @@
         <title>cellphone 605</title>
         <script type="text/javascript" src="/scripts/index.js"></script>
         <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel = "icon" href = "data::base64, = ">
     </head>
     <body>
         <h1 id = "welcome_content"> 欢迎来到我的页面 </h1>
+        <p>你的名字</p><input id = "input_role_name"/>
+        <button id = "button_role_name">加入</button>
         <form>
             <input type = "text" id = "sendcontent">
         </form>
@@ -15,10 +18,15 @@
     </body>
 </html>
 <script>
-    $(document).ready(ConnectServer);
-function ConnectServer()
+    $(document).ready(run);
+function run()
 {
-    console.log("connect server");
+    $("#button_role_name").click(function(){
+        var val = $("#input_role_name").val();
+        $("#input_role_name").val("");
+        send_json({'join':val});
+    });
 }
+ConnectServer();
 </script>
 

@@ -1,9 +1,9 @@
 var socket;
-function ConnectServer()
+function ConnectChatServer()
 {
     try 
     {
-        socket  = new WebSocket("ws://192.168.1.167:8080");
+        socket  = new WebSocket("ws://192.168.1.167:8080/chat");
     }
     catch(e)
     {

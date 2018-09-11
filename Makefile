@@ -1,8 +1,14 @@
 compile:
-	rebar3 release
+	rebar3 shell
 
 #run:
 #	erl -pa ./ebin -s cellphone start
 
 run:
-	rebar3 shell
+	erl \
+		-pa ./_build/default/lib/cellphone/ebin \
+		-pa ./_build/default/lib/cowboy/ebin \
+		-pa ./_build/default/lib/cowlib/ebin \
+		-pa ./_build/default/lib/ranch/ebin \
+		-I include \
+		-mnesia dir ../cellphone_data \
