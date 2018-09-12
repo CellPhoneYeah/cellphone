@@ -5,7 +5,7 @@
 -export([
          get_role_id_by_name/1,
          get_role_by_id/1,
-         insert_role/1
+         insert_role/2
         ]).
 
 %% 用户db操作
@@ -25,12 +25,11 @@ get_role_by_id(Id) ->
             Reason
     end.
 
-insert_role(Role) ->
-    #tab_role{name = Name} = Role,
+insert_role(Name, Password) ->
     NewId = ?DEFAULT_ROLE_ID + mneisa:dirty_update_counter(?TAB_UNIQUE, ?TAB_ROLE, 1),
     NewAccount = #tab_account{role_id = NewId, name = Name},
     mnesia:dirty_write(tab_account, NewAccount),
-    NewRole = #tab_role{id = NewId},
+    NewRole = #tab_role{id = NewId, name = Name, password = Password},
     mnesia:dirty_write(tab_role, NewRole).
 
 %% 聊天记录db

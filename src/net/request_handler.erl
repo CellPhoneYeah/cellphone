@@ -11,20 +11,34 @@
         ]).
 
 init(Req, State) ->
-    handle(Req, State),
+    {ok, Data, _} = cowboy_req:read_body(Req),
+    Data1 = binary_to_list(Data),
+    handle(Data1, Req, State),
     {ok, Req, State}.
 
-handle(Req, State) ->                                          
+handle("", Req, State) ->                                          
     Path = path(Req),
     Resource = gen_resource(Path),
-    io:format("resource ~p~n", [Resource]),
-    serve_file(Resource, Req, State).
+    io:format("get file ~p~n", [Resource]),
+    serve_file(Resource, Req, State);
+handle(["role_name=", Name, "&role_password=", Password], _Req, _State) ->
+    io:format("register name ~p~n", [binary_to_list(Name)]),
+    lib_role:role_register(Name, Password);
+handle(["name=", Name, "psw=", Password], _Req, _State) ->
+    io:format("login name ~p~n", [binary_to_list(Name)]),
+    lib_role:role_login(Name, Password);
+handle(["name=", Name, "msg=", Msg], _Req, _State) ->
+    io:format("send msg name ~p~n msg ~p~n", [binary_to_list(Name), binary_to_list(Msg)]),
+    lib_role:role_send_msg(Name, Msg);
+handle(Other, Req, _State) ->
+    io:format("other ~p~n", [Other]),
+    send_error(Req).
 
 serve_file(File, Req, State) ->                            
     Val = file:read_file(File),                              
     case Val of                                              
         {error, _} ->                                            
-            io:format("*** no page called ~s~n",[File]),         
+            %%io:format("*** no page called ~s~n",[File]),         
             send_error(Req);
         {ok, Bin} ->                                             
             Ext = filename:extension(File),
@@ -38,8 +52,8 @@ path(Req) ->
 
 gen_resource("/") ->
     get_web_files_path() ++ "index.html";
-gen_resource("/chat") ->
-    get_web_files_path() ++ "/chat";
+gen_resource("/getmsg") ->
+    get_web_files_path() ++ "/getmsg";
 gen_resource(Path) ->
     get_web_files_path() ++ Path.
 
@@ -49,7 +63,19 @@ send_page(MimeType, Data, Req) ->
                      Data, Req).                            
 
 send_error(Req) ->
-    Error = <<"<pre>bad request</pre>">>,
+    Error = <<"
+<html>
+    <head>
+        <meta http-equiv=\"content-type\" content=\"text/html; charset = utf-8\" />
+        <meta name author=\"yxf\" content=\"https://www.cellphone.com\" />
+        <title>cellphone 605</title>
+        <link rel = \"icon\" href = \"data::base64, = \">
+    </head>
+    <body>
+        <h1 id = \"welcome_content\"> 请求错误</h1>
+    </body>
+</html>
+">>,
     send_page(get_mime_type(error), Error, Req).
 
 get_web_files_path() ->
@@ -60,44 +86,7 @@ get_mime_type(".js") ->
    <<"application/x-javascript">>;
 get_mime_type(".html") ->
     <<"text/html">>;
+get_mime_type(".css") ->
+    <<"text/css">>;
 get_mime_type(_Other) ->
     <<"text/html">>.
-
-%% websocket handle
-%websocket_handle({text, Msg}, Req, Pid) ->               
-%    %% This is a Json message from the browser
-%    case catch decode(Msg) of
-%        {'EXIT', _Why} ->
-%            Pid ! {invalidMessageNotJSON, Msg};
-%        {struct, _} = Z ->
-%            X1 = atomize(Z),
-%            Pid ! {self(), X1};
-%        Other ->
-%            Pid ! {invalidMessageNotStruct, Other}
-%    end,
-%    {ok, Req, Pid}.
-%
-%websocket_info({send,Str}, Req, Pid) ->
-%    {reply, {text, Str}, Req, Pid, hibernate};
-%websocket_info([{cmd,_}|_]=L, Req, Pid) ->
-%    B = list_to_binary(encode([{struct,L}])),
-%    {reply, {text, B}, Req, Pid, hibernate};
-%websocket_info(Info, Req, Pid) ->
-%    io:format("Handle_info Info:~p Pid:~p~n",[Info,Pid]),
-%    {ok, Req, Pid, hibernate}.
-%
-%websocket_terminate(_Reason, _Req, Pid) ->
-%    io:format("websocket.erl terminate:~n"),
-%    exit(Pid, socketClosed),
-%    ok.                               
-%
-%binary_to_atom(B) ->
-%        list_to_atom(binary_to_list(B)).
-%
-%%tomize turns all the keys in a struct to atoms             
-%atomize({struct,L}) ->
-%    {struct, [{binary_to_atom(I), atomize(J)} || {I, J} <- L]};
-%atomize(L) when is_list(L) ->
-%    [atomize(I) || I <- L];
-%atomize(X) ->
-%    X.                       

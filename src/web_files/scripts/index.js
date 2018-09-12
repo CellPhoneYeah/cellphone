@@ -1,47 +1,33 @@
-var socket;
-function ConnectChatServer()
+// 启动时绑定函数
+//$(document).ready(getServerInfo);
+
+function getServerInfo()
 {
-    try 
+    http = getXMLHttpRequest();
+    var url = "getmsg?time=" + Math.random();
+    http.onreadystatechange = getInfoBack;
+    http.open("GET", url, true);
+    http.send(null);
+}
+
+function getInfoBack()
+{
+    if(http.readyState == 4 && http.status == 200)
     {
-        socket  = new WebSocket("ws://192.168.1.167:8080/chat");
+        var response = http.responseText;
+        oldVal = $("#chatbox").val();
+        $("#chatbox").val(oldVal + response + "\r\n");
+        setTimeout('getServerInfo()', 50000);
     }
-    catch(e)
-    {
-        alert("error" + e);
-        return;
-    }
-    socket.onopen = sOpen;
-    socket.onerror = sError;
-    socket.onmessage = sMessage;
-    socket.onclose = sClose;
 }
 
-function sOpen()
+function sendMsg()
 {
-    alert('connect success!');
-}
+    myform.submit();
 
-function sError(e)
-{
-    alert("error" + e);
-}
+    $("#msginput").val("");
 
-function sMessage(msg)
-{
-    alert("server says:" + msg);
+    var txt = $("#chatbox");
+    txt.scrollTop = txt.scrollHeight;
 }
-
-function sClose(e)
-{
-    alert("connect closed:" + e.code);
-}
-
-function Send()
-{
-    socket.send(document.getElementById("sendContent").value);
-}
-
-function Close()
-{
-    socket.close();
-}
+    

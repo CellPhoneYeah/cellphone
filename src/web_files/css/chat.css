@@ -1,0 +1,6 @@
+#chatbox{
+    rows = 10;
+    cols = 50;
+    disabled = disabled;
+    style = background-color: white;
+}
