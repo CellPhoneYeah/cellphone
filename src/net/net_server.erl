@@ -36,14 +36,17 @@ init([]) ->
     % application:start(cowboy),
     % Router = route_helper:get_routes(),
     Router = [
-              {'_', [{'_', request_handler, []}]}
+              {'_', [
+                     {"/websocket", websocket_handler, []},
+                     {"/[...]", request_handler, []}
+                    ]}
              ],
+
     Dispatch = cowboy_router:compile(Router),
     {ok, _} = cowboy:start_clear(cellphone_listener,
                                  [{port, 8080}],
                                 #{env => #{dispatch => Dispatch}}
                                 ),
-    io:format("cowboy started ~n"),
     {ok, #state{}}.
 
 %%% =====
