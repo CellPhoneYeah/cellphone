@@ -1,6 +1,7 @@
 -module(role_sup).
 
 -behaviour(supervisor).
+-include("role.hrl").
 
 %% API
 -export([start_link/0]).
@@ -18,11 +19,15 @@
 start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
+start_role(RoleId, Pid) ->
+    supervisor:start_child(?MODULE, [RoleId, Pid]).
+
 %% ===================================================================
 %% Supervisor callbacks
 %% ===================================================================
 
 init([]) ->
+    ?ETS_ONLINE_ROLE = ets:new(?ETS_ONLINE_ROLE, [set, protected, named_table, {keypos, #ets_online_role.role_name}]),
     RoleServer = ?CHILD(role_server, worker),
     {ok, { {simple_one_for_one, 5, 10}, [RoleServer]} }.
 

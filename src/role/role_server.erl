@@ -24,10 +24,9 @@
 %%% =====
 %%% API
 %%% =====
-start_link() ->
-    io:format("start role server~n"),
-    ?ETS_ONLINE_ROLE = ets:new(?ETS_ONLINE_ROLE, [set, protected, named_table, {keypos, #ets_online_role.role_name}]),
-    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+start_link(RoleId, NetPid) ->
+    io:format("start role RoleId ~p~n", [RoleId]),
+    gen_server:start_link({local, ?MODULE}, ?MODULE, [RoleId, NetPid], []).
 
 role_login(Role, NetPid) ->
     #tab_role{name = RoleName} = Role,
@@ -44,7 +43,7 @@ all_online_role() ->
 %%% =====
 %%% call back
 %%% =====
-init([]) ->
+init([RoleId, NetPid]) ->
     {ok, []}.
 
 handle_call(_Request, _From, State) ->

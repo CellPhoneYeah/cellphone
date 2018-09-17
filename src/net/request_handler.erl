@@ -12,6 +12,8 @@
 -define(PAGE_NOT_FOUND, 0).
 -define(BAD_REQUEST, 1).
 -define(ROLE_NAME_HAS_USED, 2).
+-define(ROLE_NOT_FOUND, 3).
+-define(ROLE_PSW_WRONG, 4).
 
 init(Req, _Opts) ->
     HasBody = cowboy_req:has_body(Req),
@@ -24,22 +26,40 @@ handle(false, Req) ->
     send_page(Path);
 
 handle(true, Req) ->
-    io:format("Req ~p~n", [Req]),
     {ok, KeyValues, _} = cowboy_req:read_urlencoded_body(Req),
     Path = cowboy_req:path(Req),
     KeyValues1 =  key_value_to_list(KeyValues),
-    io:format("KeyValues~p Path ~p~n", [KeyValues1, Path]),
-    do_handle(Path, KeyValues).
+    do_handle(Path, KeyValues1).
 
-do_handle(<<"register.html">>, KeyValues) ->
-    Name = lists:keyfind("role_name", 1, KeyValues),
-    Password = lists:keyfind("role_password", 1, KeyValues),
+do_handle(<<"/register.html">>, KeyValues) ->
+    Name = get_name(KeyValues),
+    Password = get_password(KeyValues),
     case lib_role:role_register(Name, Password) of
         ok ->
-            return_ok();
+            return_register_ok();
         has_used ->
             return_error(?ROLE_NAME_HAS_USED)
     end.
+
+do_handle(<<"/login.html">>, KeyValues) ->
+    Name = get_name(KeyValues),
+    Password = get_password(KeyValues),
+    case lib_role:login(Name, Password) of
+        ok ->
+            return_ok();
+        not_found ->
+            return_error(?ROLE_NOT_FOUND);
+        password_wrong ->
+            return_error(?ROLE_PSW_WRONG)
+    end.
+
+get_name(KeyValues) ->
+    {_, Name} = lists:keyfind("role_name", 1, KeyValues),
+    Name.
+
+get_password(KeyValues) ->
+    {_, Password} = lists:keyfind("role_password", 1, KeyValues),
+    Password.
 
 return_error(?BAD_REQUEST) ->
     {404, <<"text/plain">>, <<"bad request">>};
@@ -47,9 +67,25 @@ return_error(?PAGE_NOT_FOUND) ->
     {404, <<"text/plain">>, <<"page not found">>};
 return_error(?ROLE_NAME_HAS_USED) ->
     {404, <<"text/plain">>, <<"role name has been used">>};
+return_error(?ROLE_NOT_FOUND) ->
+    {404, <<"text/plain">>, <<"role name not found">>};
+return_error(?ROLE_PSW_WRONG) ->
+    {404, <<"text/plain">>, <<"role password wrong">>};
 return_error(_) ->
+    return_error().
+
+return_error() ->
     {404, <<"text/plain">>, <<"unknow error">>}.
 
+return_register_ok() ->
+    {200, <<"text/html">>, <<"
+        <html>
+        <head>
+        <meta http-equiv=\"content-type\" content=\"text/html; charset = utf-8\" />
+        </head>
+        <a href = \"login.html\">login</a>
+        </html>
+">>}.
 return_ok() ->
     {200, <<"text/plain">>, <<"ok">>}.
 

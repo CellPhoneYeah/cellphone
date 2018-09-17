@@ -10,11 +10,11 @@
 
 %% 用户db操作
 get_role_id_by_name(Name) ->
-    case catch mensia:dirty_read(tab_account, Name) of
+    case catch mnesia:dirty_read(tab_account, Name) of
         [#tab_account{name = Name, role_id = RoleId}] ->
             RoleId;
-        Reason ->
-            Reason
+        [] ->
+            not_exists
     end.
 
 get_role_by_id(Id) ->
@@ -26,7 +26,7 @@ get_role_by_id(Id) ->
     end.
 
 insert_role(Name, Password) ->
-    NewId = ?DEFAULT_ROLE_ID + mneisa:dirty_update_counter(?TAB_UNIQUE, ?TAB_ROLE, 1),
+    NewId = ?DEFAULT_ROLE_ID + mnesia:dirty_update_counter(?TAB_UNIQUE, ?TAB_ROLE, 1),
     NewAccount = #tab_account{role_id = NewId, name = Name},
     mnesia:dirty_write(tab_account, NewAccount),
     NewRole = #tab_role{id = NewId, name = Name, password = Password},

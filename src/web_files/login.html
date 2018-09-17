@@ -4,7 +4,7 @@
         <meta name author="yxf" content="https://www.cellphone.com" />
         <title>cellphone 605</title>
         <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/scripts/register.js"></script>
+        <script type="text/javascript" src="/scripts/login.js"></script>
         <link rel = "icon" href = "data::base64, = ">
     </head>
     <body>
@@ -12,10 +12,10 @@
 
         <br>
         <form id = "login_form" method = "post">
-            <input id = "role_name" type = "text"/>
+            <input id = "role_name" name = "role_name" type = "text"/>
             <br>
-            <input id = "role_password" type = "text"/>
-            <input type = "button" value = "发送"/>
+            <input id = "role_password" name = "role_password" type = "password"/>
+            <input type = "submit" value = "发送"/>
         </form>
         <br>
 

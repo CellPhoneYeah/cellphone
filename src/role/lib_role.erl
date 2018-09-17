@@ -10,9 +10,8 @@
 
 role_register(Name, Password) ->
     case lib_data:get_role_id_by_name(Name) of
-        not_found ->
-            NewRole = #tab_role{name = Name, password = Password}, % id由内部生成
-            lib_data:insert_role(NewRole),
+        not_exists ->
+            lib_data:insert_role(Name, Password),
             ok;
         _ ->
             has_used
@@ -20,13 +19,16 @@ role_register(Name, Password) ->
 
 role_login(Name, Password) ->
     case lib_data:get_role_id_by_name(Name) of
-        not_found ->
+        not_exists ->
             not_found;
         RoleId ->
-            Role = lib_data:get_role_by_id(RoleId),
-            NetPid = self(),
-            role_server:role_login(Role, NetPid),
-            ok
+            #tab_role{password = PSW} = lib_data:get_role_by_id(RoleId),
+            if PSW == Passwrod ->
+                   NetPid = self(),
+                   role_sup:start_child(RoleId, NetPid);
+               true ->
+                   password_wrong
+            end
     end.
 
 role_send_msg(Name, Msg) ->
