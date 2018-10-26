@@ -21,7 +21,7 @@ init(Req, _Opts) ->
     Req1 = cowboy_req:reply(HttpCode, #{<<"Content-Type">> => MimeType}, Reply, Req),
     {ok, Req1, _Opts}.
 
-handle(false, Req) ->                                          
+handle(false, Req) ->
     Path = path(Req),
     send_page(Path);
 
@@ -31,35 +31,30 @@ handle(true, Req) ->
     KeyValues1 =  key_value_to_list(KeyValues),
     do_handle(Path, KeyValues1).
 
-do_handle(<<"/register.html">>, KeyValues) ->
-    Name = get_name(KeyValues),
-    Password = get_password(KeyValues),
-    case lib_role:role_register(Name, Password) of
-        ok ->
-            return_register_ok();
-        has_used ->
-            return_error(?ROLE_NAME_HAS_USED)
-    end.
+do_handle(_Path, _KeyValue) ->
+    return_ok().
 
-do_handle(<<"/login.html">>, KeyValues) ->
-    Name = get_name(KeyValues),
-    Password = get_password(KeyValues),
-    case lib_role:login(Name, Password) of
-        ok ->
-            return_ok();
-        not_found ->
-            return_error(?ROLE_NOT_FOUND);
-        password_wrong ->
-            return_error(?ROLE_PSW_WRONG)
-    end.
+% do_handle(<<"/register.html">>, KeyValues) ->
+%     Name = get_name(KeyValues),
+%     Password = get_password(KeyValues),
+%     case lib_role:role_register(Name, Password) of
+%         ok ->
+%             return_register_ok();
+%         has_used ->
+%             return_error(?ROLE_NAME_HAS_USED)
+%     end;
 
-get_name(KeyValues) ->
-    {_, Name} = lists:keyfind("role_name", 1, KeyValues),
-    Name.
-
-get_password(KeyValues) ->
-    {_, Password} = lists:keyfind("role_password", 1, KeyValues),
-    Password.
+% do_handle(<<"/login.html">>, KeyValues) ->
+%     Name = get_name(KeyValues),
+%     Password = get_password(KeyValues),
+%     case lib_role:login(Name, Password) of
+%         ok ->
+%             return_ok();
+%         not_found ->
+%             return_error(?ROLE_NOT_FOUND);
+%         password_wrong ->
+%             return_error(?ROLE_PSW_WRONG)
+%     end.
 
 return_error(?BAD_REQUEST) ->
     {404, <<"text/plain">>, <<"bad request">>};
@@ -77,15 +72,6 @@ return_error(_) ->
 return_error() ->
     {404, <<"text/plain">>, <<"unknow error">>}.
 
-return_register_ok() ->
-    {200, <<"text/html">>, <<"
-        <html>
-        <head>
-        <meta http-equiv=\"content-type\" content=\"text/html; charset = utf-8\" />
-        </head>
-        <a href = \"login.html\">login</a>
-        </html>
-">>}.
 return_ok() ->
     {200, <<"text/plain">>, <<"ok">>}.
 

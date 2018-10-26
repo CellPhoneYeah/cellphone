@@ -1,7 +1,9 @@
 -module(lib_tool).
 
 -export([
-         parse_args/1
+         parse_args/1,
+         now/0,
+         get_record_name/1
         ]).
 
 parse_args(Bin) ->
@@ -19,3 +21,9 @@ parse_value(<<$&, Rest/bits>>, Key, Value, List) ->
     parse_key(Rest, <<>>, [List | {Key, Value}]);
 parse_value(<<B, Rest/bits>>, Key, Value, List) ->
     parse_value(Rest, Key, <<Value/binary, B>>, List).
+
+now() ->
+    erlang:system_time(second).
+
+get_record_name(Record) ->
+    erlang:element(1, Record).

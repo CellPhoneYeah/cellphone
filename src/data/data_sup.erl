@@ -25,4 +25,3 @@ start_link() ->
 init([]) ->
     DataServer = ?CHILD(data_server, worker),
     {ok, { {one_for_one, 5, 10}, [DataServer]} }.
-

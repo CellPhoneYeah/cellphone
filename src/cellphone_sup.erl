@@ -26,5 +26,5 @@ init([]) ->
     Data = ?CHILD(data_sup, supervisor),
     Role = ?CHILD(role_sup, supervisor),
     Net = ?CHILD(net_sup, supervisor),
-    {ok, { {one_for_one, 5, 10}, [Role, Net, Data]} }.
+    {ok, { {one_for_one, 5, 10}, [Data, Role, Net]} }.
 

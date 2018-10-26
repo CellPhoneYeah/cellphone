@@ -14,4 +14,5 @@ start_link() ->
 
 init([]) ->
     CowBoy = ?CHILD(net_server, worker),
-    {ok, { {one_for_one, 5, 10}, [CowBoy]}}.
+    IdServer = ?CHILD(id_server, worker),
+    {ok, { {one_for_one, 5, 10}, [CowBoy, IdServer]}}.

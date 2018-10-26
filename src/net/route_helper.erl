@@ -1,12 +1,10 @@
 -module(route_helper).
 
+-include("global.hrl").
+
 -export([
-         get_routes/0
+         route/1
         ]).
 
-get_routes() ->
-    [
-     {'_', [
-            {"/", request_handler, []}
-           ]}
-    ].
+route(login_tos) -> login;
+route(_) -> ?UNDEF.

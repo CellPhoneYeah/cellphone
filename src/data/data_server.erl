@@ -89,9 +89,9 @@ ensure_tables_created() ->
              {aborted, {already_exists, _}} ->
                  ok;
              Reason ->
-                 io:format("create table fail ~p~n", [Reason])
+                 ?THROW(Reason)
          end
-     end || {TabName, RecordName, Fields} <- get_all_tables()].
+     end || {TabName, _RecordName, Fields} <- get_all_tables()].
 
 wait_for_tables() ->
     mnesia:wait_for_tables(mnesia:system_info(local_tables), infinity).

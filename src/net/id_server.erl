@@ -1,10 +1,12 @@
 %%% =====
 %%% @author yxf
 %%% @doc
-%%% 网络层的监控进程, 保证cowboy正常运行
+%%% id 管理进程,负责所有id的生成
 %%% @end
 %%% =====
--module(net_server).
+-module(id_server).
+
+-include("global.hrl").
 
 -behaviour(gen_server).
 
@@ -22,8 +24,10 @@
         ]).
 
 -export([
-        get_role/1
+        get_max_id/1
         ]).
+
+-define(MAX_ID, max_id).
 
 -record(state, {}).
 
@@ -31,32 +35,21 @@
 %%% API
 %%% =====
 
-get_role(RoleId) ->
-    lib_data:dirty_read(RoleId).
-
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 init([]) ->
-    % do start cowboy
-    % application:start(cowlib),
-    % application:start(ranch),
-    % application:start(cowboy),
-    % Router = route_helper:get_routes(),
-    Router = [
-              {'_', [
-                     {"/websocket", websocket_handler, []},
-                     {"/[...]", request_handler, []}
-                    ]
-              }
-             ],
-
-    Dispatch = cowboy_router:compile(Router),
-    {ok, _} = cowboy:start_clear(cellphone_listener,
-                                 [{port, 8089}],
-                                #{env => #{dispatch => Dispatch}}
-                                ),
+    ?ETS_ID_MANAGE = ets:new(?ETS_ID_MANAGE, [set, named_table]),
+    init_role_id(),
     {ok, #state{}}.
+
+get_max_id(Type) ->
+    case ets:lookup(?ETS_ID_MANAGE, {Type, ?MAX_ID}) of
+        [] ->
+            ?UNDEF;
+        [MaxId] ->
+            MaxId
+    end.
 
 %%% =====
 %%% call back
@@ -75,3 +68,19 @@ terminate(_State, _Reason) ->
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
+
+%%% =====
+%%% internal 
+%%% =====
+set_max_id(Type, MaxId) ->
+    ets:insert(?ETS_ID_MANAGE, {{Type, ?MAX_ID}, MaxId}).
+
+init_role_id() ->
+    AllRoleIds = lib_data:dirty_all_keys(?TAB_ROLE),
+    case AllRoleIds of
+        [] ->
+            MaxId = ?DEFAULT_ROLE_ID;
+        _ ->
+            MaxId = lists:max(AllRoleIds)
+    end,
+    set_max_id(?TAB_ROLE, MaxId).

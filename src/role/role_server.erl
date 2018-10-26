@@ -2,8 +2,7 @@
 
 -behaviour(gen_server).
 
--include("role.hrl").
--include("data.hrl").
+-include("global.hrl").
 
 -export([
          init/1,
@@ -15,11 +14,13 @@
         ]).
 
 -export([
-         start_link/0,
+         start_link/2,
          role_login/2,
-         is_role_online/1,
-         all_online_role/0
+         all_online_role/0,
+         get_net_pid/0
         ]).
+
+-define(NET_PID, net_pid).
 
 %%% =====
 %%% API
@@ -29,21 +30,20 @@ start_link(RoleId, NetPid) ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [RoleId, NetPid], []).
 
 role_login(Role, NetPid) ->
-    #tab_role{name = RoleName} = Role,
-    OnlineRole = #ets_online_role{net_pid = NetPid, role_name = RoleName},
-    ets:insert(?ETS_ONLINE_ROLE, OnlineRole).
-
-is_role_online(Name) ->
-    ets:member(?ETS_ONLINE_ROLE, Name).
+    set_net_pid(NetPid),
+    ets:insert(?ETS_ROLE, Role).
 
 all_online_role() ->
-    First = ets:first(?ETS_ONLINE_ROLE),
+    First = ets:first(?ETS_ROLE),
     get_online_role(First, []).
+
+get_net_pid() ->
+    erlang:get(?NET_PID).
 
 %%% =====
 %%% call back
 %%% =====
-init([RoleId, NetPid]) ->
+init([_RoleId, _NetPid]) ->
     {ok, []}.
 
 handle_call(_Request, _From, State) ->
@@ -64,8 +64,11 @@ code_change(_OldVsn, State, _Extra) ->
 %%% =====
 %%% internal
 %%% =====
-get_online_role('$end_of_table', AllOnlineRole) ->
+get_online_role(?EOT, AllOnlineRole) ->
     AllOnlineRole;
 get_online_role(Key, AllOnlineRole) ->
-    [OnlineRole] = ets:lookup(?ETS_ONLINE_ROLE, Key),
-    get_online_role(ets:next(?ETS_ONLINE_ROLE, Key), [OnlineRole | AllOnlineRole]).
+    [OnlineRole] = ets:lookup(?ETS_ROLE, Key),
+    get_online_role(ets:next(?ETS_ROLE, Key), [OnlineRole | AllOnlineRole]).
+
+set_net_pid(NetPid) ->
+    erlang:put(?NET_PID, NetPid).
