@@ -41,7 +41,10 @@ login(#register_tos{role_name = RoleName, psd = Psd}, _NetPid) ->
         {error, Code} ->
             {fail, #register_toc{code = Code}}
     end;
-login(#login_tos{role_id = RoleId, psd = Psd}, NetPid) ->
+login(#login_tos{role_name = RoleName, psd = Psd}, NetPid) ->
+    RoleId = lib_role:get_id_by_name(RoleName),
+    if
+        RoleId =/= ?UNDEF ->
     case lib_role:is_online(RoleId) of
         true ->
             net_misc:stop_net_pid(RoleId);
@@ -54,6 +57,9 @@ login(#login_tos{role_id = RoleId, psd = Psd}, NetPid) ->
             {ok, #login_toc{code = ?E_OK, role = #s_role{role_id = RoleId, role_name = RoleName}}};
         {error, Code} ->
             {fail, #login_toc{code = Code}}
+    end;
+        true ->
+            {fail, #login_toc{code = ?E_LOGIN_ROLE_NAME_NOT_REGISTERED}}
     end.
 
 check_login(RoleId, Psd) ->

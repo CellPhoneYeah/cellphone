@@ -16,14 +16,30 @@
 
 -export([
         add_online_role/1,
-        del_online_role/1
+        del_online_role/1,
+        get_all/0,
+        get_id_by_name/1
         ]).
+
+-export([
+        send_proto/2,
+        get_role/1
+        ]).
+
+get_id_by_name(RoleName) ->
+    ets:lookup(?ETS_ROLE, RoleName).
+
+get_role(RoleId) ->
+    lib_data:dirty_read(RoleId).
 
 add_online_role(Role) ->
     ets:insert(?ETS_ROLE, Role).
 
 del_online_role(RoleId) ->
     ets:delete(?ETS_ROLE, RoleId).
+
+get_all() ->
+    ets:match(?ETS_ROLE, #tab_role{id = '$1', _ = '_'}).
 
 is_online(RoleId) ->
     RegisterName = register_name(RoleId),
@@ -64,9 +80,18 @@ role_send_msg(Name, Msg) ->
     [RolePid ! {get_msg, Name, Msg} || RolePid <- role_server:all_roles()].
 
 is_registered(RoleName) ->
-    case ets:lookup(?ETS_NAME_ROLE_ID, RoleName) of
+    case get_id_by_name(RoleName) of
         [] ->
             false;
         _ ->
             true
+    end.
+
+send_proto(RoleId, Proto) ->
+    case is_online(RoleId) of
+        true->
+            RolePid = whereis(register_name(RoleId)),
+            RolePid ! {binary, Proto};
+        false ->
+            ?UNDEF
     end.

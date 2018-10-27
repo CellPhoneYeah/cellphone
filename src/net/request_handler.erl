@@ -77,7 +77,6 @@ return_ok() ->
 
 send_page(Path) ->
     Resource = gen_resource(Path),
-    io:format("Resource~p ~n", [Resource]),
     case filelib:is_file(Resource) of
         true ->
             {ok, Val} = file:read_file(Resource),                              

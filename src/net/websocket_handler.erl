@@ -38,6 +38,13 @@ websocket_handle(Data, State) ->
     io:format("Data ~p~n", [Data]),
     {ok, State}.
 
+websocket_info({binary, Proto}, State) ->
+    case net_misc:msg_handle(Proto) of
+        {ok, Reply} ->
+            {reply, {binary, Reply}, State};
+        _ ->
+            {ok, State}
+    end;
 websocket_info(?PING_TIMER, State) ->
     Interval = lib_tool:now() - net_misc:get_last_ping_time(),
     MaxInterval = 5 * ?MIN_SECOND,

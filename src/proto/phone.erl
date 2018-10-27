@@ -162,13 +162,14 @@ encode_msg_login_tos(Msg, TrUserData) ->
     encode_msg_login_tos(Msg, <<>>, TrUserData).
 
 
-encode_msg_login_tos(#login_tos{role_id = F1, psd = F2},
+encode_msg_login_tos(#login_tos{role_name = F1,
+				psd = F2},
 		     Bin, TrUserData) ->
     B1 = if F1 == undefined -> Bin;
 	    true ->
 		begin
 		  TrF1 = id(F1, TrUserData),
-		  e_type_int32(TrF1, <<Bin/binary, 8>>, TrUserData)
+		  e_type_string(TrF1, <<Bin/binary, 10>>, TrUserData)
 		end
 	 end,
     if F2 == undefined -> B1;
@@ -824,17 +825,17 @@ decode_msg_login_tos(Bin, TrUserData) ->
 				 id(undefined, TrUserData),
 				 id(undefined, TrUserData), TrUserData).
 
-dfp_read_field_def_login_tos(<<8, Rest/binary>>, Z1, Z2,
-			     F@_1, F@_2, TrUserData) ->
-    d_field_login_tos_role_id(Rest, Z1, Z2, F@_1, F@_2,
-			      TrUserData);
+dfp_read_field_def_login_tos(<<10, Rest/binary>>, Z1,
+			     Z2, F@_1, F@_2, TrUserData) ->
+    d_field_login_tos_role_name(Rest, Z1, Z2, F@_1, F@_2,
+				TrUserData);
 dfp_read_field_def_login_tos(<<18, Rest/binary>>, Z1,
 			     Z2, F@_1, F@_2, TrUserData) ->
     d_field_login_tos_psd(Rest, Z1, Z2, F@_1, F@_2,
 			  TrUserData);
 dfp_read_field_def_login_tos(<<>>, 0, 0, F@_1, F@_2,
 			     _) ->
-    #login_tos{role_id = F@_1, psd = F@_2};
+    #login_tos{role_name = F@_1, psd = F@_2};
 dfp_read_field_def_login_tos(Other, Z1, Z2, F@_1, F@_2,
 			     TrUserData) ->
     dg_read_field_def_login_tos(Other, Z1, Z2, F@_1, F@_2,
@@ -849,9 +850,9 @@ dg_read_field_def_login_tos(<<0:1, X:7, Rest/binary>>,
 			    N, Acc, F@_1, F@_2, TrUserData) ->
     Key = X bsl N + Acc,
     case Key of
-      8 ->
-	  d_field_login_tos_role_id(Rest, 0, 0, F@_1, F@_2,
-				    TrUserData);
+      10 ->
+	  d_field_login_tos_role_name(Rest, 0, 0, F@_1, F@_2,
+				      TrUserData);
       18 ->
 	  d_field_login_tos_psd(Rest, 0, 0, F@_1, F@_2,
 				TrUserData);
@@ -874,21 +875,22 @@ dg_read_field_def_login_tos(<<0:1, X:7, Rest/binary>>,
     end;
 dg_read_field_def_login_tos(<<>>, 0, 0, F@_1, F@_2,
 			    _) ->
-    #login_tos{role_id = F@_1, psd = F@_2}.
+    #login_tos{role_name = F@_1, psd = F@_2}.
 
-d_field_login_tos_role_id(<<1:1, X:7, Rest/binary>>, N,
-			  Acc, F@_1, F@_2, TrUserData)
+d_field_login_tos_role_name(<<1:1, X:7, Rest/binary>>,
+			    N, Acc, F@_1, F@_2, TrUserData)
     when N < 57 ->
-    d_field_login_tos_role_id(Rest, N + 7, X bsl N + Acc,
-			      F@_1, F@_2, TrUserData);
-d_field_login_tos_role_id(<<0:1, X:7, Rest/binary>>, N,
-			  Acc, _, F@_2, TrUserData) ->
-    {NewFValue, RestF} = {begin
-			    <<Res:32/signed-native>> = <<(X bsl N +
-							    Acc):32/unsigned-native>>,
-			    id(Res, TrUserData)
-			  end,
-			  Rest},
+    d_field_login_tos_role_name(Rest, N + 7, X bsl N + Acc,
+				F@_1, F@_2, TrUserData);
+d_field_login_tos_role_name(<<0:1, X:7, Rest/binary>>,
+			    N, Acc, _, F@_2, TrUserData) ->
+    {NewFValue, RestF} = begin
+			   Len = X bsl N + Acc,
+			   <<Utf8:Len/binary, Rest2/binary>> = Rest,
+			   {id(unicode:characters_to_list(Utf8, unicode),
+			       TrUserData),
+			    Rest2}
+			 end,
     dfp_read_field_def_login_tos(RestF, 0, 0, NewFValue,
 				 F@_2, TrUserData).
 
@@ -1217,12 +1219,12 @@ merge_msg_register_toc(#register_toc{code = PFcode,
 		      end}.
 
 -compile({nowarn_unused_function,merge_msg_login_tos/3}).
-merge_msg_login_tos(#login_tos{role_id = PFrole_id,
+merge_msg_login_tos(#login_tos{role_name = PFrole_name,
 			       psd = PFpsd},
-		    #login_tos{role_id = NFrole_id, psd = NFpsd}, _) ->
-    #login_tos{role_id =
-		   if NFrole_id =:= undefined -> PFrole_id;
-		      true -> NFrole_id
+		    #login_tos{role_name = NFrole_name, psd = NFpsd}, _) ->
+    #login_tos{role_name =
+		   if NFrole_name =:= undefined -> PFrole_name;
+		      true -> NFrole_name
 		   end,
 	       psd =
 		   if NFpsd =:= undefined -> PFpsd;
@@ -1331,10 +1333,11 @@ v_msg_register_toc(X, Path, _TrUserData) ->
 
 -compile({nowarn_unused_function,v_msg_login_tos/3}).
 -dialyzer({nowarn_function,v_msg_login_tos/3}).
-v_msg_login_tos(#login_tos{role_id = F1, psd = F2},
+v_msg_login_tos(#login_tos{role_name = F1, psd = F2},
 		Path, TrUserData) ->
     if F1 == undefined -> ok;
-       true -> v_type_int32(F1, [role_id | Path], TrUserData)
+       true ->
+	   v_type_string(F1, [role_name | Path], TrUserData)
     end,
     if F2 == undefined -> ok;
        true -> v_type_string(F2, [psd | Path], TrUserData)
@@ -1445,8 +1448,8 @@ get_msg_defs() ->
 	      type = {msg, s_role}, occurrence = optional,
 	      opts = []}]},
      {{msg, login_tos},
-      [#field{name = role_id, fnum = 1, rnum = 2,
-	      type = int32, occurrence = optional, opts = []},
+      [#field{name = role_name, fnum = 1, rnum = 2,
+	      type = string, occurrence = optional, opts = []},
        #field{name = psd, fnum = 2, rnum = 3, type = string,
 	      occurrence = optional, opts = []}]},
      {{msg, login_toc},
@@ -1505,8 +1508,8 @@ find_msg_def(register_toc) ->
 	    type = {msg, s_role}, occurrence = optional,
 	    opts = []}];
 find_msg_def(login_tos) ->
-    [#field{name = role_id, fnum = 1, rnum = 2,
-	    type = int32, occurrence = optional, opts = []},
+    [#field{name = role_name, fnum = 1, rnum = 2,
+	    type = string, occurrence = optional, opts = []},
      #field{name = psd, fnum = 2, rnum = 3, type = string,
 	    occurrence = optional, opts = []}];
 find_msg_def(login_toc) ->

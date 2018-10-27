@@ -6,6 +6,8 @@
 %%% =====
 -module(net_server).
 
+-include("global.hrl").
+
 -behaviour(gen_server).
 
 -export([
@@ -22,7 +24,8 @@
         ]).
 
 -export([
-        get_role/1
+        add_role_netpid/2,
+        get_role_netpid/1
         ]).
 
 -record(state, {}).
@@ -31,22 +34,15 @@
 %%% API
 %%% =====
 
-get_role(RoleId) ->
-    lib_data:dirty_read(RoleId).
-
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 init([]) ->
-    % do start cowboy
-    % application:start(cowlib),
-    % application:start(ranch),
-    % application:start(cowboy),
-    % Router = route_helper:get_routes(),
+    ?ETS_NETPID = ets:new(?ETS_NETPID, [set, named_table, public, {keypos, #ets_netpid.role_id}]),
     Router = [
               {'_', [
-                     {"/websocket", websocket_handler, []},
-                     {"/[...]", request_handler, []}
+                     {"/websocket", websocket_handler, []}
+                     %% {"/[...]", request_handler, []}
                     ]
               }
              ],
@@ -57,6 +53,17 @@ init([]) ->
                                 #{env => #{dispatch => Dispatch}}
                                 ),
     {ok, #state{}}.
+
+add_role_netpid(RoleId, NetPid) ->
+    ets:insert(?ETS_NETPID, #ets_netpid{role_id = RoleId, netpid = NetPid}).
+
+get_role_netpid(RoleId) ->
+    case ets:lookup(?ETS_NETPID, RoleId) of
+        [] ->
+            ?UNDEF;
+        [#ets_netpid{netpid = NetPid}] ->
+            NetPid
+    end.
 
 %%% =====
 %%% call back

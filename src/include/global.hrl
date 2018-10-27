@@ -2,6 +2,7 @@
 -include("phone.hrl").
 -include("ets.hrl").
 -include("ecode.hrl").
+-include("log.hrl").
 
 -define(UNDEF, undefined).
 

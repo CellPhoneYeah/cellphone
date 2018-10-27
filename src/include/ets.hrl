@@ -1,4 +1,4 @@
-%% 在线玩家网关进程记录
+%% 在线玩家信息
 -define(ETS_ROLE, ets_role).
 
 %% 注册用户的名和id的映射
@@ -11,3 +11,9 @@
 -record(?ETS_ID_MANAGE, {
           key,
           value}).
+
+%% 在线玩家网关记录
+-define(ETS_NETPID, ets_netpid).
+-record(?ETS_NETPID, {
+           role_id,
+           netpid}).

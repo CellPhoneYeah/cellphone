@@ -41,7 +41,7 @@
 -ifndef('LOGIN_TOS_PB_H').
 -define('LOGIN_TOS_PB_H', true).
 -record(login_tos,
-        {role_id                :: integer() | undefined, % = 1, 32 bits
+        {role_name              :: iolist() | undefined, % = 1
          psd                    :: iolist() | undefined % = 2
         }).
 -endif.
