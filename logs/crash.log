@@ -1,0 +1,109 @@
+2018-10-30 10:44:54 =CRASH REPORT====
+  crasher:
+    initial call: supervisor:role_sup/1
+    pid: <0.530.0>
+    registered_name: []
+    exception exit: {{aborted,{no_exists,[tab_role]}},[{mnesia,abort,1,[{file,"mnesia.erl"},{line,351}]},{role_sup,init_name_role_id,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,39}]},{role_sup,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,34}]},{supervisor,init,1,[{file,"supervisor.erl"},{line,295}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [cellphone_sup,<0.520.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.521.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 277
+  neighbours:
+2018-10-30 10:44:54 =SUPERVISOR REPORT====
+     Supervisor: {local,cellphone_sup}
+     Context:    start_error
+     Reason:     {aborted,{no_exists,[tab_role]}}
+     Offender:   [{pid,undefined},{id,role_sup},{mfargs,{role_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+
+2018-10-30 10:45:19 =CRASH REPORT====
+  crasher:
+    initial call: supervisor:role_sup/1
+    pid: <0.530.0>
+    registered_name: []
+    exception exit: {{aborted,{no_exists,[tab_role]}},[{mnesia,abort,1,[{file,"mnesia.erl"},{line,351}]},{role_sup,init_name_role_id,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,39}]},{role_sup,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,34}]},{supervisor,init,1,[{file,"supervisor.erl"},{line,295}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [cellphone_sup,<0.520.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.521.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 277
+  neighbours:
+2018-10-30 10:45:19 =SUPERVISOR REPORT====
+     Supervisor: {local,cellphone_sup}
+     Context:    start_error
+     Reason:     {aborted,{no_exists,[tab_role]}}
+     Offender:   [{pid,undefined},{id,role_sup},{mfargs,{role_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+
+2018-10-30 10:45:19 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.519.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.518.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.520.0>,normal}]
+    links: [<0.518.0>,<0.42.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 214
+  neighbours:
+2018-10-30 11:01:15 =CRASH REPORT====
+  crasher:
+    initial call: data_server:init/1
+    pid: <0.540.0>
+    registered_name: []
+    exception error: {undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [data_sup,cellphone_sup,<0.537.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.539.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 1537
+  neighbours:
+2018-10-30 11:01:15 =SUPERVISOR REPORT====
+     Supervisor: {local,data_sup}
+     Context:    start_error
+     Reason:     {undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,undefined},{id,data_server},{mfargs,{data_server,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-10-30 11:01:15 =SUPERVISOR REPORT====
+     Supervisor: {local,cellphone_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}}
+     Offender:   [{pid,undefined},{id,data_sup},{mfargs,{data_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+
+2018-10-30 11:01:15 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.536.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,data_sup,{shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}}}},{cellphone_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.535.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.537.0>,normal}]
+    links: [<0.535.0>,<0.42.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 245
+  neighbours:

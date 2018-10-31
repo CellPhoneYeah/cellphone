@@ -1,0 +1,95 @@
+2018-10-29 20:01:00.722 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-29 20:01:00.725 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-29 20:01:00.728 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-29 20:01:00.733 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-29 20:01:00.736 [info] <0.505.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-29 20:01:00.736 [info] <0.506.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-29 20:01:01.085 [info] <0.42.0> Application mnesia started on node 'cellphone@127.0.0.1'
+2018-10-29 20:01:01.196 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.011 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.014 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.017 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.023 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.026 [info] <0.505.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.026 [info] <0.506.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.337 [info] <0.42.0> Application mnesia started on node 'cellphone@127.0.0.1'
+2018-10-29 20:21:05.393 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.007 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.010 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.012 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.018 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.020 [info] <0.505.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.020 [info] <0.506.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.354 [info] <0.42.0> Application mnesia started on node 'cellphone@127.0.0.1'
+2018-10-29 20:22:11.409 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:18.936 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:18.939 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:18.942 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:18.947 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:18.950 [info] <0.504.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-29 20:32:18.950 [info] <0.505.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-29 20:32:19.290 [info] <0.42.0> Application mnesia started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:19.346 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.533 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.536 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.539 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.545 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.547 [info] <0.493.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.547 [info] <0.494.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.882 [info] <0.42.0> Application mnesia started on node 'cellphone@127.0.0.1'
+2018-10-29 20:32:42.943 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.310 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.319 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.328 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.343 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.346 [info] <0.501.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.346 [info] <0.502.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.826 [info] <0.42.0> Application mnesia started on node 'cellphone@127.0.0.1'
+2018-10-30 10:15:17.923 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-10-30 10:44:54.697 [info] <0.42.0> Application lager started on node nonode@nohost
+2018-10-30 10:44:54.701 [info] <0.42.0> Application cowlib started on node nonode@nohost
+2018-10-30 10:44:54.703 [info] <0.42.0> Application ranch started on node nonode@nohost
+2018-10-30 10:44:54.709 [info] <0.42.0> Application cowboy started on node nonode@nohost
+2018-10-30 10:44:54.712 [info] <0.522.0> module:data_server line:24 node nonode@nohost
+2018-10-30 10:44:54.712 [info] <0.523.0> module:data_server line:54 node nonode@nohost
+2018-10-30 10:44:54.718 [error] <0.530.0> CRASH REPORT Process <0.530.0> with 0 neighbours exited with reason: {aborted,{no_exists,[tab_role]}} in mnesia:abort/1 line 351
+2018-10-30 10:44:54.718 [error] <0.521.0> Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at undefined exit with reason {aborted,{no_exists,[tab_role]}} in context start_error
+2018-10-30 10:44:54.719 [error] <0.519.0> CRASH REPORT Process <0.519.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}} in application_master:init/4 line 138
+2018-10-30 10:44:54.733 [info] <0.42.0> Application cellphone exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}}
+2018-10-30 10:44:54.733 [info] <0.42.0> Application cowboy exited with reason: stopped
+2018-10-30 10:44:54.734 [info] <0.42.0> Application ranch exited with reason: stopped
+2018-10-30 10:44:54.734 [info] <0.42.0> Application cowlib exited with reason: stopped
+2018-10-30 10:45:19.486 [info] <0.42.0> Application lager started on node nonode@nohost
+2018-10-30 10:45:19.489 [info] <0.42.0> Application cowlib started on node nonode@nohost
+2018-10-30 10:45:19.491 [info] <0.42.0> Application ranch started on node nonode@nohost
+2018-10-30 10:45:19.497 [info] <0.42.0> Application cowboy started on node nonode@nohost
+2018-10-30 10:45:19.500 [info] <0.522.0> module:data_server line:24 node nonode@nohost
+2018-10-30 10:45:19.500 [info] <0.523.0> module:data_server line:54 node nonode@nohost
+2018-10-30 10:45:19.508 [error] <0.530.0> CRASH REPORT Process <0.530.0> with 0 neighbours exited with reason: {aborted,{no_exists,[tab_role]}} in mnesia:abort/1 line 351
+2018-10-30 10:45:19.508 [error] <0.521.0> Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at undefined exit with reason {aborted,{no_exists,[tab_role]}} in context start_error
+2018-10-30 10:45:19.509 [error] <0.519.0> CRASH REPORT Process <0.519.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}} in application_master:init/4 line 138
+2018-10-30 10:45:19.525 [info] <0.42.0> Application cellphone exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}}
+2018-10-30 10:45:19.526 [info] <0.42.0> Application cowboy exited with reason: stopped
+2018-10-30 10:45:19.526 [info] <0.42.0> Application ranch exited with reason: stopped
+2018-10-30 10:45:19.526 [info] <0.42.0> Application cowlib exited with reason: stopped
+2018-10-30 11:01:15.158 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:15.162 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:15.164 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:15.171 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:15.174 [info] <0.539.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-30 11:01:15.174 [info] <0.540.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-30 11:01:15.205 [error] <0.540.0>@mneisa:system_info CRASH REPORT Process <0.540.0> with 0 neighbours crashed with reason: call to undefined function mneisa:system_info(extra_db_nodes)
+2018-10-30 11:01:15.205 [error] <0.539.0>@mneisa:system_info Supervisor data_sup had child data_server started with data_server:start_link() at undefined exit with reason call to undefined function mneisa:system_info(extra_db_nodes) in context start_error
+2018-10-30 11:01:15.208 [error] <0.538.0> Supervisor cellphone_sup had child data_sup started with data_sup:start_link() at undefined exit with reason {shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,...}]}]}}} in context start_error
+2018-10-30 11:01:15.210 [error] <0.536.0> CRASH REPORT Process <0.536.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,data_sup,{shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,...}]}}}}},...} in application_master:init/4 line 138
+2018-10-30 11:01:15.235 [info] <0.42.0> Application cellphone exited with reason: {{shutdown,{failed_to_start_child,data_sup,{shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,...}]}}}}},...}
+2018-10-30 11:01:15.237 [info] <0.42.0> Application cowboy exited with reason: stopped
+2018-10-30 11:01:15.237 [info] <0.42.0> Application ranch exited with reason: stopped
+2018-10-30 11:01:15.238 [info] <0.42.0> Application cowlib exited with reason: stopped
+2018-10-30 11:01:45.147 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:45.150 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:45.153 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:45.159 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-10-30 11:01:45.162 [info] <0.540.0> module:data_server line:24 node 'cellphone@127.0.0.1'
+2018-10-30 11:01:45.162 [info] <0.541.0> module:data_server line:54 node 'cellphone@127.0.0.1'
+2018-10-30 11:01:45.193 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
