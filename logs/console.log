@@ -816,3 +816,8 @@
 2018-11-01 18:11:33.824 [info] <0.655.0> module:role_server line:72 RoleId 10000
 2018-11-01 18:11:38.924 [info] <0.656.0> module:websocket_handler line:26 receive proto {ping_tos,1541067098}
 2018-11-01 18:15:03.888 [info] <0.649.0> module:websocket_handler line:57  check ping
+2018-11-01 18:15:38.924 [info] <0.656.0> module:websocket_handler line:57  check ping
+2018-11-01 18:21:55.200 [info] <0.649.0> module:websocket_handler line:84 terminate 10001
+2018-11-01 18:21:55.200 [error] <0.655.0> module:role_server line:135 normal
+2018-11-01 18:21:57.038 [info] <0.656.0> module:websocket_handler line:84 terminate 10000
+2018-11-01 18:21:57.038 [error] <0.658.0> module:role_server line:135 normal
