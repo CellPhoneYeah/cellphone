@@ -68,4 +68,29 @@
         }).
 -endif.
 
+-ifndef('S_CHAT_PB_H').
+-define('S_CHAT_PB_H', true).
+-record(s_chat,
+        {role_id                :: integer() | undefined, % = 1, 32 bits
+         role_name              :: iolist() | undefined, % = 2
+         content                :: iolist() | undefined % = 3
+        }).
+-endif.
+
+-ifndef('CHAT_TOS_PB_H').
+-define('CHAT_TOS_PB_H', true).
+-record(chat_tos,
+        {channel                :: integer() | undefined, % = 1, 32 bits
+         target_id              :: integer() | undefined, % = 2, 32 bits
+         chat                   :: phone:s_chat() | undefined % = 3
+        }).
+-endif.
+
+-ifndef('CHAT_TOC_PB_H').
+-define('CHAT_TOC_PB_H', true).
+-record(chat_toc,
+        {code                   :: integer() | undefined % = 1, 32 bits
+        }).
+-endif.
+
 -endif.

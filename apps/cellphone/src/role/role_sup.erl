@@ -15,7 +15,7 @@
 -export([init/1]).
 
 %% Helper macro for declaring children of supervisor
--define(CHILD(I, Type), {I, {I, start_link, []}, permanent, 5000, Type, [I]}).
+-define(CHILD(I, Type), {I, {I, start_link, []}, temporary, 5000, Type, [I]}).
 
 %% ===================================================================
 %% API functions
@@ -36,8 +36,8 @@ stop_role(RoleId) ->
 %% ===================================================================
 
 init([]) ->
-    ?ETS_ROLE = ets:new(?ETS_ROLE, [set, protected, named_table, {keypos, #tab_role.id}]), % 在线玩家列表
-    ?ETS_NAME_ROLE_ID = ets:new(?ETS_NAME_ROLE_ID, [set, protected, named_table, {keypos, #ets_name_role_id.role_name}]), % 名和id映射
+    ?ETS_ROLE = ets:new(?ETS_ROLE, [set, public, named_table, {keypos, #tab_role.id}]), % 在线玩家列表
+    ?ETS_NAME_ROLE_ID = ets:new(?ETS_NAME_ROLE_ID, [set, public, named_table, {keypos, #ets_name_role_id.role_name}]), % 名和id映射
     init_name_role_id(),
     RoleServer = ?CHILD(role_server, worker),
     {ok, { {simple_one_for_one, 5, 10}, [RoleServer]} }.
@@ -54,5 +54,5 @@ init_name_role_id(Key) ->
        id = RoleId,
        name = RoleName
       } = Role,
-    ets:insert(?ETS_NAME_ROLE_ID, #ets_name_role_id{role_name = RoleName, role_id = RoleId}),
+    role_server:add_name_role_id(RoleName, RoleId),
     init_name_role_id(lib_data:dirty_next(?TAB_ROLE, Key)).

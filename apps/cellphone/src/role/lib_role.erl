@@ -37,7 +37,7 @@ get_role(RoleId) ->
     lib_data:dirty_read(?TAB_ROLE, RoleId).
 
 get_all() ->
-    ets:match(?ETS_ROLE, #tab_role{id = '$1', _ = '_'}).
+    ets:match(?ETS_ROLE, {'$1', '_'}).
 
 is_online(RoleId) when is_integer(RoleId) ->
     RegisterName = register_name(RoleId),
@@ -81,7 +81,7 @@ role_send_msg(Name, Msg) ->
 
 is_registered(RoleName) ->
     case role_server:get_role_id_by_name(RoleName) of
-        [] ->
+        ?UNDEF ->
             false;
         _ ->
             true

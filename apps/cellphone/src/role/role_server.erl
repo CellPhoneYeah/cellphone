@@ -15,15 +15,17 @@
 
 -export([
          start_link/2,
-         role_login/2,
          all_online_role/0,
          get_net_pid/0,
          add_online_role/1,
          del_online_role/1,
          get_role_id_by_name/1,
-         add_name_role_id/2,
-         get_role/0,
-         set_role/1
+         add_name_role_id/2
+        ]).
+
+-export([
+         unicast/2,
+         cast_all/1
         ]).
 
 -define(NET_PID, net_pid).
@@ -52,11 +54,7 @@ get_role_id_by_name(RoleName) ->
 
 start_link(Role, NetPid) ->
     ?LOG_INFO("start role RoleId ~p~n", [Role]),
-    gen_server:start_link({local, ?MODULE}, ?MODULE, [Role, NetPid], []).
-
-role_login(Role, NetPid) ->
-    set_net_pid(NetPid),
-    ets:insert(?ETS_ROLE, Role).
+    gen_server:start_link(?MODULE, [Role, NetPid], []).
 
 all_online_role() ->
     First = ets:first(?ETS_ROLE),
@@ -65,31 +63,63 @@ all_online_role() ->
 get_net_pid() ->
     erlang:get(?NET_PID).
 
-set_role(Role) ->
-    erlang:put({?MODULE, role}, Role).
+cast_all(Msg) ->
+    First = ets:first(?ETS_ROLE),
+    cast_all(First, Msg).
+cast_all(?EOT, _Msg) ->
+    ok;
+cast_all(RoleId, Msg) ->
+    ?LOG_INFO("RoleId ~p", [RoleId]),
+    unicast(RoleId, Msg),
+    cast_all(ets:next(?ETS_ROLE, RoleId), Msg).
 
-get_role() ->
-    erlang:get({?MODULE, role}).
+unicast(NetPid, Msg) when is_pid(NetPid) -> % 发到网关进程
+    NetPid ! {toc, Msg};
+unicast(RoleId, Msg) when is_integer(RoleId)->
+    NetPid = net_server:get_role_netpid(RoleId),
+    NetPid ! {toc, Msg}.
 
 %%% =====
 %%% call back
 %%% =====
-init([Role, NetPid]) ->
+init([#tab_role{id = RoleId} = Role, NetPid]) ->
+    erlang:monitor(process, NetPid), % 监控网关进程，网关进程死了，玩家进程也死掉{'DOWN', _, _, _, Reason}
     set_net_pid(NetPid),
-    set_role(Role),
+    RegisterName = lib_role:register_name(RoleId),
+    % erlang:unregister(RegisterName),
+    erlang:register(RegisterName, self()),
+    mod_role:set_role(Role),
     {ok, []}.
 
-handle_call(_Request, _From, State) ->
-    {reply, ok, State}.
+handle_call(Request, _From, State) ->
+    Reply1 = case catch do_handle_call(Request) of
+        {ok, Reply} ->
+            Reply;
+        {error, Error} ->
+            ?LOG_ERROR("~p", [Error]),
+            ?UNDEF
+    end,
+    {noreply, Reply1, State}.
 
-handle_cast(_Request, State) ->
+handle_cast(Request, State) ->
+    case catch do_handle_cast(Request) of
+        ok ->
+            ok;
+        {error, Error} ->
+            ?LOG_ERROR("~p", [Error])
+    end,
     {noreply, State}.
 
-handle_info({c2s, RoleId, NetPid, Mod, Proto}, State) ->
-    Mod:handle_tos(RoleId, NetPid, Proto),
-    {noreply, State};
-handle_info(_Request, State) ->
-    {noreply, State}.
+handle_info(Request, State) ->
+    case catch do_handle_info(Request) of
+        ok ->
+            {noreply, State};
+        stop ->
+            {stop, normal, State};
+        {error, Error} ->
+            ?LOG_ERROR("~p", [Error]),
+            {noreply, State}
+    end.
 
 terminate(_State, _Reason) ->
     ok.
@@ -100,6 +130,25 @@ code_change(_OldVsn, State, _Extra) ->
 %%% =====
 %%% internal
 %%% =====
+%% 网关停止引起用户进程停止
+do_handle_info({'DOWN', _, _, _, Reason}) ->
+    ?LOG_ERROR("~p", [Reason]),
+    stop;
+do_handle_info({c2s, RoleId, NetPid, Mod, Proto}) ->
+    Mod:handle_c2s(RoleId, NetPid, Proto),
+    ok;
+do_handle_info({s2s, {Mod, Proto}}) ->
+    Mod:handle_s2s(Proto),
+    ok;
+do_handle_info(Other) ->
+    ?LOG_ERROR("unknown request ~p", [Other]).
+
+do_handle_cast(Other) ->
+    ?LOG_ERROR("unknown request ~p", [Other]).
+
+do_handle_call(Other) ->
+    ?LOG_ERROR("unknown request ~p", [Other]).
+
 get_online_role(?EOT, AllOnlineRole) ->
     AllOnlineRole;
 get_online_role(Key, AllOnlineRole) ->

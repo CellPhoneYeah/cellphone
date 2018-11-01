@@ -7,6 +7,8 @@
 
 -behaviour(application).
 
+-include("robot.hrl").
+
 %% Application callbacks
 -export([start/0, start/2, stop/1]).
 
@@ -18,7 +20,7 @@ start() ->
         ok ->
             cp_robot_sup:start_robot(1);
         Error ->
-            io:format("start fail ~p~n", [Error])
+            ?PRINT("start fail ~p~n", [Error])
     end.
 
 start(_StartType, _StartArgs) ->

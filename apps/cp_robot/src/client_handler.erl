@@ -55,6 +55,9 @@ do_handle_toc(State, #register_toc{code = Code}) ->
                        State
                end,
     {ok, NewState};
+do_handle_toc(State, #s_chat{role_id = SenderId, role_name = SenderName, content = Content}) ->
+    ?PRINT("~p ~p:~p", [SenderId, SenderName, Content]),
+    {ok, State};
 do_handle_toc(State, _Toc) ->
     {ok, State}.
 

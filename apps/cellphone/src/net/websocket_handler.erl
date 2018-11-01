@@ -42,6 +42,7 @@ websocket_handle(Data, State) ->
     {ok, State}.
 
 websocket_info(stop, State) ->
+    ?LOG_ERROR("stop gateway"),
     {stop, State};
 websocket_info({binary, Proto}, State) ->
     ?LOG_INFO("binary", [Proto]),
@@ -63,8 +64,12 @@ websocket_info(?PING_TIMER, State) ->
             {ok, State}
     end;
 websocket_info({toc, Msg}, State) ->
-    ?LOG_INFO("Msg ~p~n", [Msg]),
-    {ok, State};
+    case net_misc:encode_msg(Msg) of
+        {ok, Bin} ->
+            {reply, {binary, Bin}, State};
+        _ ->
+            {ok, State}
+    end;
 websocket_info({'EXIT', _, _}, State) ->
     ?LOG_INFO("EXIT"),
     {stop, State};
@@ -73,7 +78,11 @@ websocket_info(Info, State) ->
     {ok, State}.
 
 terminate(_, _, _) ->
+    RoleId = net_login:get_role_id(),
+    net_server:del_role_netpid(RoleId),
+    role_server:del_online_role(RoleId),
+    ?LOG_INFO("terminate ~p", [RoleId]),
     ok.
 
 start_ping_timer() ->
-    erlang:send_after(?MIN_SECOND * 1000, self(), ?PING_TIMER).
+    erlang:send_after(5 * ?MIN_SECOND * 1000, self(), ?PING_TIMER).

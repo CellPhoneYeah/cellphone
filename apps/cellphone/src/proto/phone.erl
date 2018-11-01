@@ -46,20 +46,26 @@
 
 -type login_toc() :: #login_toc{}.
 
--export_type(['msg'/0, 'ping_tos'/0, 'pong_toc'/0, 's_role'/0, 'register_tos'/0, 'register_toc'/0, 'login_tos'/0, 'login_toc'/0]).
+-type s_chat() :: #s_chat{}.
 
--spec encode_msg(#msg{} | #ping_tos{} | #pong_toc{} | #s_role{} | #register_tos{} | #register_toc{} | #login_tos{} | #login_toc{}) -> binary().
+-type chat_tos() :: #chat_tos{}.
+
+-type chat_toc() :: #chat_toc{}.
+
+-export_type(['msg'/0, 'ping_tos'/0, 'pong_toc'/0, 's_role'/0, 'register_tos'/0, 'register_toc'/0, 'login_tos'/0, 'login_toc'/0, 's_chat'/0, 'chat_tos'/0, 'chat_toc'/0]).
+
+-spec encode_msg(#msg{} | #ping_tos{} | #pong_toc{} | #s_role{} | #register_tos{} | #register_toc{} | #login_tos{} | #login_toc{} | #s_chat{} | #chat_tos{} | #chat_toc{}) -> binary().
 encode_msg(Msg) when tuple_size(Msg) >= 1 ->
     encode_msg(Msg, element(1, Msg), []).
 
--spec encode_msg(#msg{} | #ping_tos{} | #pong_toc{} | #s_role{} | #register_tos{} | #register_toc{} | #login_tos{} | #login_toc{}, atom() | list()) -> binary().
+-spec encode_msg(#msg{} | #ping_tos{} | #pong_toc{} | #s_role{} | #register_tos{} | #register_toc{} | #login_tos{} | #login_toc{} | #s_chat{} | #chat_tos{} | #chat_toc{}, atom() | list()) -> binary().
 encode_msg(Msg, MsgName) when is_atom(MsgName) ->
     encode_msg(Msg, MsgName, []);
 encode_msg(Msg, Opts)
     when tuple_size(Msg) >= 1, is_list(Opts) ->
     encode_msg(Msg, element(1, Msg), Opts).
 
--spec encode_msg(#msg{} | #ping_tos{} | #pong_toc{} | #s_role{} | #register_tos{} | #register_toc{} | #login_tos{} | #login_toc{}, atom(), list()) -> binary().
+-spec encode_msg(#msg{} | #ping_tos{} | #pong_toc{} | #s_role{} | #register_tos{} | #register_toc{} | #login_tos{} | #login_toc{} | #s_chat{} | #chat_tos{} | #chat_toc{}, atom(), list()) -> binary().
 encode_msg(Msg, MsgName, Opts) ->
     case proplists:get_bool(verify, Opts) of
       true -> verify_msg(Msg, MsgName, Opts);
@@ -83,7 +89,13 @@ encode_msg(Msg, MsgName, Opts) ->
       login_tos ->
 	  encode_msg_login_tos(id(Msg, TrUserData), TrUserData);
       login_toc ->
-	  encode_msg_login_toc(id(Msg, TrUserData), TrUserData)
+	  encode_msg_login_toc(id(Msg, TrUserData), TrUserData);
+      s_chat ->
+	  encode_msg_s_chat(id(Msg, TrUserData), TrUserData);
+      chat_tos ->
+	  encode_msg_chat_tos(id(Msg, TrUserData), TrUserData);
+      chat_toc ->
+	  encode_msg_chat_toc(id(Msg, TrUserData), TrUserData)
     end.
 
 
@@ -226,6 +238,79 @@ encode_msg_login_toc(#login_toc{code = F1, role = F2},
 	   end
     end.
 
+encode_msg_s_chat(Msg, TrUserData) ->
+    encode_msg_s_chat(Msg, <<>>, TrUserData).
+
+
+encode_msg_s_chat(#s_chat{role_id = F1, role_name = F2,
+			  content = F3},
+		  Bin, TrUserData) ->
+    B1 = if F1 == undefined -> Bin;
+	    true ->
+		begin
+		  TrF1 = id(F1, TrUserData),
+		  e_type_int32(TrF1, <<Bin/binary, 8>>, TrUserData)
+		end
+	 end,
+    B2 = if F2 == undefined -> B1;
+	    true ->
+		begin
+		  TrF2 = id(F2, TrUserData),
+		  e_type_string(TrF2, <<B1/binary, 18>>, TrUserData)
+		end
+	 end,
+    if F3 == undefined -> B2;
+       true ->
+	   begin
+	     TrF3 = id(F3, TrUserData),
+	     e_type_string(TrF3, <<B2/binary, 26>>, TrUserData)
+	   end
+    end.
+
+encode_msg_chat_tos(Msg, TrUserData) ->
+    encode_msg_chat_tos(Msg, <<>>, TrUserData).
+
+
+encode_msg_chat_tos(#chat_tos{channel = F1,
+			      target_id = F2, chat = F3},
+		    Bin, TrUserData) ->
+    B1 = if F1 == undefined -> Bin;
+	    true ->
+		begin
+		  TrF1 = id(F1, TrUserData),
+		  e_type_int32(TrF1, <<Bin/binary, 8>>, TrUserData)
+		end
+	 end,
+    B2 = if F2 == undefined -> B1;
+	    true ->
+		begin
+		  TrF2 = id(F2, TrUserData),
+		  e_type_int32(TrF2, <<B1/binary, 16>>, TrUserData)
+		end
+	 end,
+    if F3 == undefined -> B2;
+       true ->
+	   begin
+	     TrF3 = id(F3, TrUserData),
+	     e_mfield_chat_tos_chat(TrF3, <<B2/binary, 26>>,
+				    TrUserData)
+	   end
+    end.
+
+encode_msg_chat_toc(Msg, TrUserData) ->
+    encode_msg_chat_toc(Msg, <<>>, TrUserData).
+
+
+encode_msg_chat_toc(#chat_toc{code = F1}, Bin,
+		    TrUserData) ->
+    if F1 == undefined -> Bin;
+       true ->
+	   begin
+	     TrF1 = id(F1, TrUserData),
+	     e_type_int32(TrF1, <<Bin/binary, 8>>, TrUserData)
+	   end
+    end.
+
 e_mfield_register_toc_role(Msg, Bin, TrUserData) ->
     SubBin = encode_msg_s_role(Msg, <<>>, TrUserData),
     Bin2 = e_varint(byte_size(SubBin), Bin),
@@ -233,6 +318,11 @@ e_mfield_register_toc_role(Msg, Bin, TrUserData) ->
 
 e_mfield_login_toc_role(Msg, Bin, TrUserData) ->
     SubBin = encode_msg_s_role(Msg, <<>>, TrUserData),
+    Bin2 = e_varint(byte_size(SubBin), Bin),
+    <<Bin2/binary, SubBin/binary>>.
+
+e_mfield_chat_tos_chat(Msg, Bin, TrUserData) ->
+    SubBin = encode_msg_s_chat(Msg, <<>>, TrUserData),
     Bin2 = e_varint(byte_size(SubBin), Bin),
     <<Bin2/binary, SubBin/binary>>.
 
@@ -367,7 +457,13 @@ decode_msg_2_doit(register_toc, Bin, TrUserData) ->
 decode_msg_2_doit(login_tos, Bin, TrUserData) ->
     id(decode_msg_login_tos(Bin, TrUserData), TrUserData);
 decode_msg_2_doit(login_toc, Bin, TrUserData) ->
-    id(decode_msg_login_toc(Bin, TrUserData), TrUserData).
+    id(decode_msg_login_toc(Bin, TrUserData), TrUserData);
+decode_msg_2_doit(s_chat, Bin, TrUserData) ->
+    id(decode_msg_s_chat(Bin, TrUserData), TrUserData);
+decode_msg_2_doit(chat_tos, Bin, TrUserData) ->
+    id(decode_msg_chat_tos(Bin, TrUserData), TrUserData);
+decode_msg_2_doit(chat_toc, Bin, TrUserData) ->
+    id(decode_msg_chat_toc(Bin, TrUserData), TrUserData).
 
 
 
@@ -1266,6 +1362,416 @@ skip_64_login_toc(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
     dfp_read_field_def_login_toc(Rest, Z1, Z2, F@_1, F@_2,
 				 TrUserData).
 
+decode_msg_s_chat(Bin, TrUserData) ->
+    dfp_read_field_def_s_chat(Bin, 0, 0,
+			      id(undefined, TrUserData),
+			      id(undefined, TrUserData),
+			      id(undefined, TrUserData), TrUserData).
+
+dfp_read_field_def_s_chat(<<8, Rest/binary>>, Z1, Z2,
+			  F@_1, F@_2, F@_3, TrUserData) ->
+    d_field_s_chat_role_id(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			   TrUserData);
+dfp_read_field_def_s_chat(<<18, Rest/binary>>, Z1, Z2,
+			  F@_1, F@_2, F@_3, TrUserData) ->
+    d_field_s_chat_role_name(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			     TrUserData);
+dfp_read_field_def_s_chat(<<26, Rest/binary>>, Z1, Z2,
+			  F@_1, F@_2, F@_3, TrUserData) ->
+    d_field_s_chat_content(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			   TrUserData);
+dfp_read_field_def_s_chat(<<>>, 0, 0, F@_1, F@_2, F@_3,
+			  _) ->
+    #s_chat{role_id = F@_1, role_name = F@_2,
+	    content = F@_3};
+dfp_read_field_def_s_chat(Other, Z1, Z2, F@_1, F@_2,
+			  F@_3, TrUserData) ->
+    dg_read_field_def_s_chat(Other, Z1, Z2, F@_1, F@_2,
+			     F@_3, TrUserData).
+
+dg_read_field_def_s_chat(<<1:1, X:7, Rest/binary>>, N,
+			 Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 32 - 7 ->
+    dg_read_field_def_s_chat(Rest, N + 7, X bsl N + Acc,
+			     F@_1, F@_2, F@_3, TrUserData);
+dg_read_field_def_s_chat(<<0:1, X:7, Rest/binary>>, N,
+			 Acc, F@_1, F@_2, F@_3, TrUserData) ->
+    Key = X bsl N + Acc,
+    case Key of
+      8 ->
+	  d_field_s_chat_role_id(Rest, 0, 0, F@_1, F@_2, F@_3,
+				 TrUserData);
+      18 ->
+	  d_field_s_chat_role_name(Rest, 0, 0, F@_1, F@_2, F@_3,
+				   TrUserData);
+      26 ->
+	  d_field_s_chat_content(Rest, 0, 0, F@_1, F@_2, F@_3,
+				 TrUserData);
+      _ ->
+	  case Key band 7 of
+	    0 ->
+		skip_varint_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3,
+				   TrUserData);
+	    1 ->
+		skip_64_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3,
+			       TrUserData);
+	    2 ->
+		skip_length_delimited_s_chat(Rest, 0, 0, F@_1, F@_2,
+					     F@_3, TrUserData);
+	    3 ->
+		skip_group_s_chat(Rest, Key bsr 3, 0, F@_1, F@_2, F@_3,
+				  TrUserData);
+	    5 ->
+		skip_32_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3, TrUserData)
+	  end
+    end;
+dg_read_field_def_s_chat(<<>>, 0, 0, F@_1, F@_2, F@_3,
+			 _) ->
+    #s_chat{role_id = F@_1, role_name = F@_2,
+	    content = F@_3}.
+
+d_field_s_chat_role_id(<<1:1, X:7, Rest/binary>>, N,
+		       Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    d_field_s_chat_role_id(Rest, N + 7, X bsl N + Acc, F@_1,
+			   F@_2, F@_3, TrUserData);
+d_field_s_chat_role_id(<<0:1, X:7, Rest/binary>>, N,
+		       Acc, _, F@_2, F@_3, TrUserData) ->
+    {NewFValue, RestF} = {begin
+			    <<Res:32/signed-native>> = <<(X bsl N +
+							    Acc):32/unsigned-native>>,
+			    id(Res, TrUserData)
+			  end,
+			  Rest},
+    dfp_read_field_def_s_chat(RestF, 0, 0, NewFValue, F@_2,
+			      F@_3, TrUserData).
+
+d_field_s_chat_role_name(<<1:1, X:7, Rest/binary>>, N,
+			 Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    d_field_s_chat_role_name(Rest, N + 7, X bsl N + Acc,
+			     F@_1, F@_2, F@_3, TrUserData);
+d_field_s_chat_role_name(<<0:1, X:7, Rest/binary>>, N,
+			 Acc, F@_1, _, F@_3, TrUserData) ->
+    {NewFValue, RestF} = begin
+			   Len = X bsl N + Acc,
+			   <<Utf8:Len/binary, Rest2/binary>> = Rest,
+			   {id(unicode:characters_to_list(Utf8, unicode),
+			       TrUserData),
+			    Rest2}
+			 end,
+    dfp_read_field_def_s_chat(RestF, 0, 0, F@_1, NewFValue,
+			      F@_3, TrUserData).
+
+d_field_s_chat_content(<<1:1, X:7, Rest/binary>>, N,
+		       Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    d_field_s_chat_content(Rest, N + 7, X bsl N + Acc, F@_1,
+			   F@_2, F@_3, TrUserData);
+d_field_s_chat_content(<<0:1, X:7, Rest/binary>>, N,
+		       Acc, F@_1, F@_2, _, TrUserData) ->
+    {NewFValue, RestF} = begin
+			   Len = X bsl N + Acc,
+			   <<Utf8:Len/binary, Rest2/binary>> = Rest,
+			   {id(unicode:characters_to_list(Utf8, unicode),
+			       TrUserData),
+			    Rest2}
+			 end,
+    dfp_read_field_def_s_chat(RestF, 0, 0, F@_1, F@_2,
+			      NewFValue, TrUserData).
+
+skip_varint_s_chat(<<1:1, _:7, Rest/binary>>, Z1, Z2,
+		   F@_1, F@_2, F@_3, TrUserData) ->
+    skip_varint_s_chat(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+		       TrUserData);
+skip_varint_s_chat(<<0:1, _:7, Rest/binary>>, Z1, Z2,
+		   F@_1, F@_2, F@_3, TrUserData) ->
+    dfp_read_field_def_s_chat(Rest, Z1, Z2, F@_1, F@_2,
+			      F@_3, TrUserData).
+
+skip_length_delimited_s_chat(<<1:1, X:7, Rest/binary>>,
+			     N, Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    skip_length_delimited_s_chat(Rest, N + 7, X bsl N + Acc,
+				 F@_1, F@_2, F@_3, TrUserData);
+skip_length_delimited_s_chat(<<0:1, X:7, Rest/binary>>,
+			     N, Acc, F@_1, F@_2, F@_3, TrUserData) ->
+    Length = X bsl N + Acc,
+    <<_:Length/binary, Rest2/binary>> = Rest,
+    dfp_read_field_def_s_chat(Rest2, 0, 0, F@_1, F@_2, F@_3,
+			      TrUserData).
+
+skip_group_s_chat(Bin, FNum, Z2, F@_1, F@_2, F@_3,
+		  TrUserData) ->
+    {_, Rest} = read_group(Bin, FNum),
+    dfp_read_field_def_s_chat(Rest, 0, Z2, F@_1, F@_2, F@_3,
+			      TrUserData).
+
+skip_32_s_chat(<<_:32, Rest/binary>>, Z1, Z2, F@_1,
+	       F@_2, F@_3, TrUserData) ->
+    dfp_read_field_def_s_chat(Rest, Z1, Z2, F@_1, F@_2,
+			      F@_3, TrUserData).
+
+skip_64_s_chat(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
+	       F@_2, F@_3, TrUserData) ->
+    dfp_read_field_def_s_chat(Rest, Z1, Z2, F@_1, F@_2,
+			      F@_3, TrUserData).
+
+decode_msg_chat_tos(Bin, TrUserData) ->
+    dfp_read_field_def_chat_tos(Bin, 0, 0,
+				id(undefined, TrUserData),
+				id(undefined, TrUserData),
+				id(undefined, TrUserData), TrUserData).
+
+dfp_read_field_def_chat_tos(<<8, Rest/binary>>, Z1, Z2,
+			    F@_1, F@_2, F@_3, TrUserData) ->
+    d_field_chat_tos_channel(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			     TrUserData);
+dfp_read_field_def_chat_tos(<<16, Rest/binary>>, Z1, Z2,
+			    F@_1, F@_2, F@_3, TrUserData) ->
+    d_field_chat_tos_target_id(Rest, Z1, Z2, F@_1, F@_2,
+			       F@_3, TrUserData);
+dfp_read_field_def_chat_tos(<<26, Rest/binary>>, Z1, Z2,
+			    F@_1, F@_2, F@_3, TrUserData) ->
+    d_field_chat_tos_chat(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			  TrUserData);
+dfp_read_field_def_chat_tos(<<>>, 0, 0, F@_1, F@_2,
+			    F@_3, _) ->
+    #chat_tos{channel = F@_1, target_id = F@_2,
+	      chat = F@_3};
+dfp_read_field_def_chat_tos(Other, Z1, Z2, F@_1, F@_2,
+			    F@_3, TrUserData) ->
+    dg_read_field_def_chat_tos(Other, Z1, Z2, F@_1, F@_2,
+			       F@_3, TrUserData).
+
+dg_read_field_def_chat_tos(<<1:1, X:7, Rest/binary>>, N,
+			   Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 32 - 7 ->
+    dg_read_field_def_chat_tos(Rest, N + 7, X bsl N + Acc,
+			       F@_1, F@_2, F@_3, TrUserData);
+dg_read_field_def_chat_tos(<<0:1, X:7, Rest/binary>>, N,
+			   Acc, F@_1, F@_2, F@_3, TrUserData) ->
+    Key = X bsl N + Acc,
+    case Key of
+      8 ->
+	  d_field_chat_tos_channel(Rest, 0, 0, F@_1, F@_2, F@_3,
+				   TrUserData);
+      16 ->
+	  d_field_chat_tos_target_id(Rest, 0, 0, F@_1, F@_2, F@_3,
+				     TrUserData);
+      26 ->
+	  d_field_chat_tos_chat(Rest, 0, 0, F@_1, F@_2, F@_3,
+				TrUserData);
+      _ ->
+	  case Key band 7 of
+	    0 ->
+		skip_varint_chat_tos(Rest, 0, 0, F@_1, F@_2, F@_3,
+				     TrUserData);
+	    1 ->
+		skip_64_chat_tos(Rest, 0, 0, F@_1, F@_2, F@_3,
+				 TrUserData);
+	    2 ->
+		skip_length_delimited_chat_tos(Rest, 0, 0, F@_1, F@_2,
+					       F@_3, TrUserData);
+	    3 ->
+		skip_group_chat_tos(Rest, Key bsr 3, 0, F@_1, F@_2,
+				    F@_3, TrUserData);
+	    5 ->
+		skip_32_chat_tos(Rest, 0, 0, F@_1, F@_2, F@_3,
+				 TrUserData)
+	  end
+    end;
+dg_read_field_def_chat_tos(<<>>, 0, 0, F@_1, F@_2, F@_3,
+			   _) ->
+    #chat_tos{channel = F@_1, target_id = F@_2,
+	      chat = F@_3}.
+
+d_field_chat_tos_channel(<<1:1, X:7, Rest/binary>>, N,
+			 Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    d_field_chat_tos_channel(Rest, N + 7, X bsl N + Acc,
+			     F@_1, F@_2, F@_3, TrUserData);
+d_field_chat_tos_channel(<<0:1, X:7, Rest/binary>>, N,
+			 Acc, _, F@_2, F@_3, TrUserData) ->
+    {NewFValue, RestF} = {begin
+			    <<Res:32/signed-native>> = <<(X bsl N +
+							    Acc):32/unsigned-native>>,
+			    id(Res, TrUserData)
+			  end,
+			  Rest},
+    dfp_read_field_def_chat_tos(RestF, 0, 0, NewFValue,
+				F@_2, F@_3, TrUserData).
+
+d_field_chat_tos_target_id(<<1:1, X:7, Rest/binary>>, N,
+			   Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    d_field_chat_tos_target_id(Rest, N + 7, X bsl N + Acc,
+			       F@_1, F@_2, F@_3, TrUserData);
+d_field_chat_tos_target_id(<<0:1, X:7, Rest/binary>>, N,
+			   Acc, F@_1, _, F@_3, TrUserData) ->
+    {NewFValue, RestF} = {begin
+			    <<Res:32/signed-native>> = <<(X bsl N +
+							    Acc):32/unsigned-native>>,
+			    id(Res, TrUserData)
+			  end,
+			  Rest},
+    dfp_read_field_def_chat_tos(RestF, 0, 0, F@_1,
+				NewFValue, F@_3, TrUserData).
+
+d_field_chat_tos_chat(<<1:1, X:7, Rest/binary>>, N, Acc,
+		      F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    d_field_chat_tos_chat(Rest, N + 7, X bsl N + Acc, F@_1,
+			  F@_2, F@_3, TrUserData);
+d_field_chat_tos_chat(<<0:1, X:7, Rest/binary>>, N, Acc,
+		      F@_1, F@_2, Prev, TrUserData) ->
+    {NewFValue, RestF} = begin
+			   Len = X bsl N + Acc,
+			   <<Bs:Len/binary, Rest2/binary>> = Rest,
+			   {id(decode_msg_s_chat(Bs, TrUserData), TrUserData),
+			    Rest2}
+			 end,
+    dfp_read_field_def_chat_tos(RestF, 0, 0, F@_1, F@_2,
+				if Prev == undefined -> NewFValue;
+				   true ->
+				       merge_msg_s_chat(Prev, NewFValue,
+							TrUserData)
+				end,
+				TrUserData).
+
+skip_varint_chat_tos(<<1:1, _:7, Rest/binary>>, Z1, Z2,
+		     F@_1, F@_2, F@_3, TrUserData) ->
+    skip_varint_chat_tos(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			 TrUserData);
+skip_varint_chat_tos(<<0:1, _:7, Rest/binary>>, Z1, Z2,
+		     F@_1, F@_2, F@_3, TrUserData) ->
+    dfp_read_field_def_chat_tos(Rest, Z1, Z2, F@_1, F@_2,
+				F@_3, TrUserData).
+
+skip_length_delimited_chat_tos(<<1:1, X:7,
+				 Rest/binary>>,
+			       N, Acc, F@_1, F@_2, F@_3, TrUserData)
+    when N < 57 ->
+    skip_length_delimited_chat_tos(Rest, N + 7,
+				   X bsl N + Acc, F@_1, F@_2, F@_3, TrUserData);
+skip_length_delimited_chat_tos(<<0:1, X:7,
+				 Rest/binary>>,
+			       N, Acc, F@_1, F@_2, F@_3, TrUserData) ->
+    Length = X bsl N + Acc,
+    <<_:Length/binary, Rest2/binary>> = Rest,
+    dfp_read_field_def_chat_tos(Rest2, 0, 0, F@_1, F@_2,
+				F@_3, TrUserData).
+
+skip_group_chat_tos(Bin, FNum, Z2, F@_1, F@_2, F@_3,
+		    TrUserData) ->
+    {_, Rest} = read_group(Bin, FNum),
+    dfp_read_field_def_chat_tos(Rest, 0, Z2, F@_1, F@_2,
+				F@_3, TrUserData).
+
+skip_32_chat_tos(<<_:32, Rest/binary>>, Z1, Z2, F@_1,
+		 F@_2, F@_3, TrUserData) ->
+    dfp_read_field_def_chat_tos(Rest, Z1, Z2, F@_1, F@_2,
+				F@_3, TrUserData).
+
+skip_64_chat_tos(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
+		 F@_2, F@_3, TrUserData) ->
+    dfp_read_field_def_chat_tos(Rest, Z1, Z2, F@_1, F@_2,
+				F@_3, TrUserData).
+
+decode_msg_chat_toc(Bin, TrUserData) ->
+    dfp_read_field_def_chat_toc(Bin, 0, 0,
+				id(undefined, TrUserData), TrUserData).
+
+dfp_read_field_def_chat_toc(<<8, Rest/binary>>, Z1, Z2,
+			    F@_1, TrUserData) ->
+    d_field_chat_toc_code(Rest, Z1, Z2, F@_1, TrUserData);
+dfp_read_field_def_chat_toc(<<>>, 0, 0, F@_1, _) ->
+    #chat_toc{code = F@_1};
+dfp_read_field_def_chat_toc(Other, Z1, Z2, F@_1,
+			    TrUserData) ->
+    dg_read_field_def_chat_toc(Other, Z1, Z2, F@_1,
+			       TrUserData).
+
+dg_read_field_def_chat_toc(<<1:1, X:7, Rest/binary>>, N,
+			   Acc, F@_1, TrUserData)
+    when N < 32 - 7 ->
+    dg_read_field_def_chat_toc(Rest, N + 7, X bsl N + Acc,
+			       F@_1, TrUserData);
+dg_read_field_def_chat_toc(<<0:1, X:7, Rest/binary>>, N,
+			   Acc, F@_1, TrUserData) ->
+    Key = X bsl N + Acc,
+    case Key of
+      8 ->
+	  d_field_chat_toc_code(Rest, 0, 0, F@_1, TrUserData);
+      _ ->
+	  case Key band 7 of
+	    0 -> skip_varint_chat_toc(Rest, 0, 0, F@_1, TrUserData);
+	    1 -> skip_64_chat_toc(Rest, 0, 0, F@_1, TrUserData);
+	    2 ->
+		skip_length_delimited_chat_toc(Rest, 0, 0, F@_1,
+					       TrUserData);
+	    3 ->
+		skip_group_chat_toc(Rest, Key bsr 3, 0, F@_1,
+				    TrUserData);
+	    5 -> skip_32_chat_toc(Rest, 0, 0, F@_1, TrUserData)
+	  end
+    end;
+dg_read_field_def_chat_toc(<<>>, 0, 0, F@_1, _) ->
+    #chat_toc{code = F@_1}.
+
+d_field_chat_toc_code(<<1:1, X:7, Rest/binary>>, N, Acc,
+		      F@_1, TrUserData)
+    when N < 57 ->
+    d_field_chat_toc_code(Rest, N + 7, X bsl N + Acc, F@_1,
+			  TrUserData);
+d_field_chat_toc_code(<<0:1, X:7, Rest/binary>>, N, Acc,
+		      _, TrUserData) ->
+    {NewFValue, RestF} = {begin
+			    <<Res:32/signed-native>> = <<(X bsl N +
+							    Acc):32/unsigned-native>>,
+			    id(Res, TrUserData)
+			  end,
+			  Rest},
+    dfp_read_field_def_chat_toc(RestF, 0, 0, NewFValue,
+				TrUserData).
+
+skip_varint_chat_toc(<<1:1, _:7, Rest/binary>>, Z1, Z2,
+		     F@_1, TrUserData) ->
+    skip_varint_chat_toc(Rest, Z1, Z2, F@_1, TrUserData);
+skip_varint_chat_toc(<<0:1, _:7, Rest/binary>>, Z1, Z2,
+		     F@_1, TrUserData) ->
+    dfp_read_field_def_chat_toc(Rest, Z1, Z2, F@_1,
+				TrUserData).
+
+skip_length_delimited_chat_toc(<<1:1, X:7,
+				 Rest/binary>>,
+			       N, Acc, F@_1, TrUserData)
+    when N < 57 ->
+    skip_length_delimited_chat_toc(Rest, N + 7,
+				   X bsl N + Acc, F@_1, TrUserData);
+skip_length_delimited_chat_toc(<<0:1, X:7,
+				 Rest/binary>>,
+			       N, Acc, F@_1, TrUserData) ->
+    Length = X bsl N + Acc,
+    <<_:Length/binary, Rest2/binary>> = Rest,
+    dfp_read_field_def_chat_toc(Rest2, 0, 0, F@_1,
+				TrUserData).
+
+skip_group_chat_toc(Bin, FNum, Z2, F@_1, TrUserData) ->
+    {_, Rest} = read_group(Bin, FNum),
+    dfp_read_field_def_chat_toc(Rest, 0, Z2, F@_1,
+				TrUserData).
+
+skip_32_chat_toc(<<_:32, Rest/binary>>, Z1, Z2, F@_1,
+		 TrUserData) ->
+    dfp_read_field_def_chat_toc(Rest, Z1, Z2, F@_1,
+				TrUserData).
+
+skip_64_chat_toc(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
+		 TrUserData) ->
+    dfp_read_field_def_chat_toc(Rest, Z1, Z2, F@_1,
+				TrUserData).
+
 read_group(Bin, FieldNum) ->
     {NumBytes, EndTagLen} = read_gr_b(Bin, 0, 0, 0, 0, FieldNum),
     <<Group:NumBytes/binary, _:EndTagLen/binary, Rest/binary>> = Bin,
@@ -1347,7 +1853,10 @@ merge_msgs(Prev, New, MsgName, Opts) ->
       register_toc ->
 	  merge_msg_register_toc(Prev, New, TrUserData);
       login_tos -> merge_msg_login_tos(Prev, New, TrUserData);
-      login_toc -> merge_msg_login_toc(Prev, New, TrUserData)
+      login_toc -> merge_msg_login_toc(Prev, New, TrUserData);
+      s_chat -> merge_msg_s_chat(Prev, New, TrUserData);
+      chat_tos -> merge_msg_chat_tos(Prev, New, TrUserData);
+      chat_toc -> merge_msg_chat_toc(Prev, New, TrUserData)
     end.
 
 -compile({nowarn_unused_function,merge_msg_msg/3}).
@@ -1442,6 +1951,54 @@ merge_msg_login_toc(#login_toc{code = PFcode,
 		      NFrole == undefined -> PFrole
 		   end}.
 
+-compile({nowarn_unused_function,merge_msg_s_chat/3}).
+merge_msg_s_chat(#s_chat{role_id = PFrole_id,
+			 role_name = PFrole_name, content = PFcontent},
+		 #s_chat{role_id = NFrole_id, role_name = NFrole_name,
+			 content = NFcontent},
+		 _) ->
+    #s_chat{role_id =
+		if NFrole_id =:= undefined -> PFrole_id;
+		   true -> NFrole_id
+		end,
+	    role_name =
+		if NFrole_name =:= undefined -> PFrole_name;
+		   true -> NFrole_name
+		end,
+	    content =
+		if NFcontent =:= undefined -> PFcontent;
+		   true -> NFcontent
+		end}.
+
+-compile({nowarn_unused_function,merge_msg_chat_tos/3}).
+merge_msg_chat_tos(#chat_tos{channel = PFchannel,
+			     target_id = PFtarget_id, chat = PFchat},
+		   #chat_tos{channel = NFchannel, target_id = NFtarget_id,
+			     chat = NFchat},
+		   TrUserData) ->
+    #chat_tos{channel =
+		  if NFchannel =:= undefined -> PFchannel;
+		     true -> NFchannel
+		  end,
+	      target_id =
+		  if NFtarget_id =:= undefined -> PFtarget_id;
+		     true -> NFtarget_id
+		  end,
+	      chat =
+		  if PFchat /= undefined, NFchat /= undefined ->
+			 merge_msg_s_chat(PFchat, NFchat, TrUserData);
+		     PFchat == undefined -> NFchat;
+		     NFchat == undefined -> PFchat
+		  end}.
+
+-compile({nowarn_unused_function,merge_msg_chat_toc/3}).
+merge_msg_chat_toc(#chat_toc{code = PFcode},
+		   #chat_toc{code = NFcode}, _) ->
+    #chat_toc{code =
+		  if NFcode =:= undefined -> PFcode;
+		     true -> NFcode
+		  end}.
+
 
 verify_msg(Msg) when tuple_size(Msg) >= 1 ->
     verify_msg(Msg, element(1, Msg), []);
@@ -1470,6 +2027,9 @@ verify_msg(Msg, MsgName, Opts) ->
 	  v_msg_login_tos(Msg, [MsgName], TrUserData);
       login_toc ->
 	  v_msg_login_toc(Msg, [MsgName], TrUserData);
+      s_chat -> v_msg_s_chat(Msg, [MsgName], TrUserData);
+      chat_tos -> v_msg_chat_tos(Msg, [MsgName], TrUserData);
+      chat_toc -> v_msg_chat_toc(Msg, [MsgName], TrUserData);
       _ -> mk_type_error(not_a_known_message, Msg, [])
     end.
 
@@ -1575,6 +2135,54 @@ v_msg_login_toc(#login_toc{code = F1, role = F2}, Path,
 v_msg_login_toc(X, Path, _TrUserData) ->
     mk_type_error({expected_msg, login_toc}, X, Path).
 
+-compile({nowarn_unused_function,v_msg_s_chat/3}).
+-dialyzer({nowarn_function,v_msg_s_chat/3}).
+v_msg_s_chat(#s_chat{role_id = F1, role_name = F2,
+		     content = F3},
+	     Path, TrUserData) ->
+    if F1 == undefined -> ok;
+       true -> v_type_int32(F1, [role_id | Path], TrUserData)
+    end,
+    if F2 == undefined -> ok;
+       true ->
+	   v_type_string(F2, [role_name | Path], TrUserData)
+    end,
+    if F3 == undefined -> ok;
+       true -> v_type_string(F3, [content | Path], TrUserData)
+    end,
+    ok;
+v_msg_s_chat(X, Path, _TrUserData) ->
+    mk_type_error({expected_msg, s_chat}, X, Path).
+
+-compile({nowarn_unused_function,v_msg_chat_tos/3}).
+-dialyzer({nowarn_function,v_msg_chat_tos/3}).
+v_msg_chat_tos(#chat_tos{channel = F1, target_id = F2,
+			 chat = F3},
+	       Path, TrUserData) ->
+    if F1 == undefined -> ok;
+       true -> v_type_int32(F1, [channel | Path], TrUserData)
+    end,
+    if F2 == undefined -> ok;
+       true -> v_type_int32(F2, [target_id | Path], TrUserData)
+    end,
+    if F3 == undefined -> ok;
+       true -> v_msg_s_chat(F3, [chat | Path], TrUserData)
+    end,
+    ok;
+v_msg_chat_tos(X, Path, _TrUserData) ->
+    mk_type_error({expected_msg, chat_tos}, X, Path).
+
+-compile({nowarn_unused_function,v_msg_chat_toc/3}).
+-dialyzer({nowarn_function,v_msg_chat_toc/3}).
+v_msg_chat_toc(#chat_toc{code = F1}, Path,
+	       TrUserData) ->
+    if F1 == undefined -> ok;
+       true -> v_type_int32(F1, [code | Path], TrUserData)
+    end,
+    ok;
+v_msg_chat_toc(X, Path, _TrUserData) ->
+    mk_type_error({expected_msg, chat_toc}, X, Path).
+
 -compile({nowarn_unused_function,v_type_int32/3}).
 -dialyzer({nowarn_function,v_type_int32/3}).
 v_type_int32(N, _Path, _TrUserData)
@@ -1676,12 +2284,31 @@ get_msg_defs() ->
 	      occurrence = optional, opts = []},
        #field{name = role, fnum = 2, rnum = 3,
 	      type = {msg, s_role}, occurrence = optional,
-	      opts = []}]}].
+	      opts = []}]},
+     {{msg, s_chat},
+      [#field{name = role_id, fnum = 1, rnum = 2,
+	      type = int32, occurrence = optional, opts = []},
+       #field{name = role_name, fnum = 2, rnum = 3,
+	      type = string, occurrence = optional, opts = []},
+       #field{name = content, fnum = 3, rnum = 4,
+	      type = string, occurrence = optional, opts = []}]},
+     {{msg, chat_tos},
+      [#field{name = channel, fnum = 1, rnum = 2,
+	      type = int32, occurrence = optional, opts = []},
+       #field{name = target_id, fnum = 2, rnum = 3,
+	      type = int32, occurrence = optional, opts = []},
+       #field{name = chat, fnum = 3, rnum = 4,
+	      type = {msg, s_chat}, occurrence = optional,
+	      opts = []}]},
+     {{msg, chat_toc},
+      [#field{name = code, fnum = 1, rnum = 2, type = int32,
+	      occurrence = optional, opts = []}]}].
 
 
 get_msg_names() ->
     [msg, ping_tos, pong_toc, s_role, register_tos,
-     register_toc, login_tos, login_toc].
+     register_toc, login_tos, login_toc, s_chat, chat_tos,
+     chat_toc].
 
 
 get_group_names() -> [].
@@ -1689,7 +2316,8 @@ get_group_names() -> [].
 
 get_msg_or_group_names() ->
     [msg, ping_tos, pong_toc, s_role, register_tos,
-     register_toc, login_tos, login_toc].
+     register_toc, login_tos, login_toc, s_chat, chat_tos,
+     chat_toc].
 
 
 get_enum_names() -> [].
@@ -1741,6 +2369,24 @@ find_msg_def(login_toc) ->
      #field{name = role, fnum = 2, rnum = 3,
 	    type = {msg, s_role}, occurrence = optional,
 	    opts = []}];
+find_msg_def(s_chat) ->
+    [#field{name = role_id, fnum = 1, rnum = 2,
+	    type = int32, occurrence = optional, opts = []},
+     #field{name = role_name, fnum = 2, rnum = 3,
+	    type = string, occurrence = optional, opts = []},
+     #field{name = content, fnum = 3, rnum = 4,
+	    type = string, occurrence = optional, opts = []}];
+find_msg_def(chat_tos) ->
+    [#field{name = channel, fnum = 1, rnum = 2,
+	    type = int32, occurrence = optional, opts = []},
+     #field{name = target_id, fnum = 2, rnum = 3,
+	    type = int32, occurrence = optional, opts = []},
+     #field{name = chat, fnum = 3, rnum = 4,
+	    type = {msg, s_chat}, occurrence = optional,
+	    opts = []}];
+find_msg_def(chat_toc) ->
+    [#field{name = code, fnum = 1, rnum = 2, type = int32,
+	    occurrence = optional, opts = []}];
 find_msg_def(_) -> error.
 
 

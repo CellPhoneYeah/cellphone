@@ -1,0 +1,62 @@
+2018-11-01 13:50:14 =CRASH REPORT====
+  crasher:
+    initial call: disk_log:init/2
+    pid: <0.567.0>
+    registered_name: []
+    exception exit: {{{failed,{error,{file_error,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",enoent}}},[{disk_log,reopen,2}]},[{disk_log,do_exit,4,[{file,"disk_log.erl"},{line,1155}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [disk_log_sup,kernel_safe_sup,kernel_sup,<0.45.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.194.0>]
+    dictionary: [{quiet,false}]
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 2612
+  neighbours:
+2018-11-01 13:50:14 =SUPERVISOR REPORT====
+     Supervisor: {local,disk_log_sup}
+     Context:    child_terminated
+     Reason:     {{failed,{error,{file_error,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",enoent}}},[{disk_log,reopen,2}]}
+     Offender:   [{pid,<0.567.0>},{id,disk_log},{mfargs,{disk_log,istart_link,undefined}},{restart_type,temporary},{shutdown,1000},{child_type,worker}]
+
+2018-11-01 13:50:14 =ERROR REPORT====
+Mnesia('cellphone@127.0.0.1'): ** ERROR ** (core dumped to file: "/data/cellphone/MnesiaCore.cellphone@127.0.0.1_1541_51414_840450")
+ ** FATAL ** {error,{"Cannot rename disk_log file",latest_log,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",{log_header,trans_log,"4.3","4.15.4",'cellphone@127.0.0.1',{1541,51414,822812}},{file_error,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",enoent}}}
+2018-11-01 13:50:24 =ERROR REPORT====
+Mnesia('cellphone@127.0.0.1'): ** ERROR ** mnesia_event got unexpected event: {'EXIT',<0.506.0>,killed}
+2018-11-01 13:50:24 =CRASH REPORT====
+  crasher:
+    initial call: gen_event:init_it/6
+    pid: <0.502.0>
+    registered_name: mnesia_event
+    exception exit: {killed,[{gen_event,terminate_server,4,[{file,"gen_event.erl"},{line,354}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [mnesia_sup,<0.500.0>]
+    message_queue_len: 0
+    messages: []
+    links: []
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 26631
+  neighbours:
+2018-11-01 13:50:24 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.499.0>
+    registered_name: []
+    exception exit: {killed,[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.498.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.42.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 11222
+  neighbours:

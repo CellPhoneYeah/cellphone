@@ -1,0 +1,49 @@
+2018-11-01 11:30:37.643 [error] <0.625.0> module:net_misc line:43 {error,100}
+2018-11-01 11:32:13.169 [error] <0.625.0> module:net_misc line:43 {error,100}
+2018-11-01 11:47:19.851 [error] <0.625.0> module:net_misc line:43 {error,100}
+2018-11-01 11:53:51.435 [error] <0.625.0> module:net_misc line:43 {error,100}
+2018-11-01 11:55:50.205 [error] <0.620.0> module:net_misc line:43 {'EXIT',
+                         {badarg,
+                          [{ets,insert,
+                            [ets_name_role_id,{ets_name_role_id,"test",10000}],
+                            []},
+                           {role_server,add_name_role_id,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},
+                             {line,47}]},
+                           {net_login,login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,40}]},
+                           {net_misc,msg_handle,1,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                             {line,38}]},
+                           {websocket_handler,websocket_handle,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                             {line,27}]},
+                           {cowboy_websocket,handler_call,6,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                             {line,466}]},
+                           {cowboy_http,loop,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                             {line,218}]},
+                           {proc_lib,init_p_do_apply,3,
+                            [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 13:43:26.354 [error] <0.614.0> Failed to start Ranch listener cellphone_listener in ranch_tcp:listen([{cacerts,'...'},{key,'...'},{cert,'...'},{port,8089}]) for reason eaddrinuse (address already in use)
+2018-11-01 13:43:26.355 [error] <0.614.0> CRASH REPORT Process <0.614.0> with 0 neighbours exited with reason: {listen_error,cellphone_listener,eaddrinuse} in ranch_acceptors_sup:listen_error/5 line 66
+2018-11-01 13:43:26.355 [error] <0.612.0> Supervisor {<0.612.0>,ranch_listener_sup} had child ranch_acceptors_sup started with ranch_acceptors_sup:start_link(cellphone_listener, ranch_tcp) at undefined exit with reason {listen_error,cellphone_listener,eaddrinuse} in context start_error
+2018-11-01 13:43:26.357 [error] <0.611.0>@net_server:init:58 CRASH REPORT Process <0.611.0> with 0 neighbours crashed with reason: no match of right hand value {error,eaddrinuse} in net_server:init/1 line 58
+2018-11-01 13:43:26.357 [error] <0.610.0>@net_server:init:58 Supervisor network_sup had child net_server started with net_server:start_link() at undefined exit with reason no match of right hand value {error,eaddrinuse} in net_server:init/1 line 58 in context start_error
+2018-11-01 13:43:26.358 [error] <0.565.0> Supervisor cellphone_sup had child network_sup started with network_sup:start_link() at undefined exit with reason {shutdown,{failed_to_start_child,net_server,{{badmatch,{error,eaddrinuse}},[{net_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},{line,58}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}} in context start_error
+2018-11-01 13:43:26.360 [error] <0.563.0> CRASH REPORT Process <0.563.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,network_sup,{shutdown,{failed_to_start_child,net_server,{{badmatch,{error,eaddrinuse}},[{net_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},{line,58}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}}}},{cellphone_app,start,[normal,[]]}} in application_master:init/4 line 138
+2018-11-01 13:50:14.823 [error] <0.567.0> CRASH REPORT Process <0.567.0> with 0 neighbours exited with reason: {failed,{error,{file_error,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",enoent}}} in disk_log:reopen/2 in disk_log:do_exit/4 line 1155
+2018-11-01 13:50:14.835 [error] <0.194.0> Supervisor disk_log_sup had child disk_log started with {disk_log,istart_link,undefined} at <0.567.0> exit with reason {failed,{error,{file_error,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",enoent}}} in disk_log:reopen/2 in context child_terminated
+2018-11-01 13:50:14.846 [error] <0.502.0> Mnesia('cellphone@127.0.0.1'): ** ERROR ** (core dumped to file: "/data/cellphone/MnesiaCore.cellphone@127.0.0.1_1541_51414_840450")
+ ** FATAL ** {error,{"Cannot rename disk_log file",latest_log,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",{log_header,trans_log,"4.3","4.15.4",'cellphone@127.0.0.1',{1541,51414,822812}},{file_error,"/data/cellphone/Mnesia.cellphone@127.0.0.1/PREVIOUS.LOG",enoent}}}
+2018-11-01 13:50:24.841 [error] <0.502.0> Mnesia('cellphone@127.0.0.1'): ** ERROR ** mnesia_event got unexpected event: {'EXIT',<0.506.0>,killed}
+2018-11-01 13:50:24.842 [error] <0.502.0> CRASH REPORT Process mnesia_event with 0 neighbours exited with reason: killed in gen_event:terminate_server/4 line 354
+2018-11-01 13:50:24.843 [error] <0.499.0> CRASH REPORT Process <0.499.0> with 0 neighbours exited with reason: killed in application_master:terminate/2 line 232

@@ -33,7 +33,8 @@ msg_handle(Proto) ->
         ?UNDEF ->
             ?LOG_ERROR("undefined handle proto~n");
         ping ->
-            net_login:set_last_ping_time(lib_tool:now());
+            net_login:set_last_ping_time(lib_tool:now()),
+            ok;
         login ->
             case catch net_login:login(Proto, NetPid) of
                 {ok, Toc} ->
@@ -44,6 +45,12 @@ msg_handle(Proto) ->
                     ok
             end;
         {role, Mod} ->
-            net_login:get_role_pid() ! {c2s, RoleId, NetPid, Mod, Proto},
-            ok
+                    ?LOG_INFO("RoleId ~p", [RoleId]),
+            if
+                is_integer(RoleId) ->
+                    lib_role:register_name(RoleId) ! {c2s, RoleId, NetPid, Mod, Proto},
+                    ok;
+                true ->
+                    ok
+            end
     end.

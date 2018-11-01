@@ -93,3 +93,726 @@
 2018-10-30 11:01:45.162 [info] <0.540.0> module:data_server line:24 node 'cellphone@127.0.0.1'
 2018-10-30 11:01:45.162 [info] <0.541.0> module:data_server line:54 node 'cellphone@127.0.0.1'
 2018-10-30 11:01:45.193 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 13:54:16.019 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 13:54:16.022 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 13:54:16.025 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 13:54:16.031 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 13:54:16.043 [warning] <0.606.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 13:54:16.064 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 13:54:59.576 [info] <0.623.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 13:55:14.950 [info] <0.623.0> module:websocket_handler line:26 receive proto {register_tos,"test","123"}
+2018-11-01 13:55:14.954 [error] <0.623.0> module:net_misc line:43 {'EXIT',
+                         {badarg,
+                          [{ets,insert,
+                            [ets_name_role_id,{ets_name_role_id,"test",10000}],
+                            []},
+                           {role_server,add_name_role_id,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},
+                             {line,47}]},
+                           {net_login,login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,40}]},
+                           {net_misc,msg_handle,1,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                             {line,38}]},
+                           {websocket_handler,websocket_handle,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                             {line,27}]},
+                           {cowboy_websocket,handler_call,6,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                             {line,466}]},
+                           {cowboy_http,loop,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                             {line,218}]},
+                           {proc_lib,init_p_do_apply,3,
+                            [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 13:59:43.125 [info] <0.623.0> module:websocket_handler line:56  check ping
+2018-11-01 14:13:41.876 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 14:13:41.879 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 14:13:41.882 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 14:13:41.888 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 14:13:41.902 [warning] <0.610.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 14:13:41.923 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 14:14:05.689 [info] <0.626.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 14:14:05.692 [info] <0.608.0> module:role_server line:59 start role RoleId {tab_role,10000,"test","123"}
+2018-11-01 14:25:40.522 [info] <0.644.0> module:websocket_handler line:26 receive proto {ping_tos,1541053540}
+2018-11-01 14:25:40.522 [error] <0.644.0> module:websocket_handler line:33 1541053480
+2018-11-01 14:34:10.815 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 14:34:10.818 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 14:34:10.821 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 14:34:10.827 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 14:34:10.842 [warning] <0.606.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 14:34:10.864 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 14:34:27.898 [info] <0.622.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 14:34:27.900 [info] <0.604.0> module:role_server line:59 start role RoleId {tab_role,10000,"test","123"}
+2018-11-01 14:35:17.679 [info] <0.622.0> module:websocket_handler line:26 receive proto {ping_tos,1541054117}
+2018-11-01 14:36:34.820 [info] <0.626.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 14:36:47.353 [info] <0.626.0> module:websocket_handler line:26 receive proto {register_tos,"test1","123"}
+2018-11-01 14:36:56.280 [info] <0.626.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 14:36:56.280 [info] <0.604.0> module:role_server line:59 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 14:36:56.282 [error] <0.626.0> module:net_misc line:44 {'EXIT',
+                            {{badmatch,{error,{already_started,<0.625.0>}}},
+                             [{net_login,do_login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,59}]},
+                              {net_login,login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,49}]},
+                              {net_misc,msg_handle,1,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                   {line,39}]},
+                              {websocket_handler,websocket_handle,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                   {line,27}]},
+                              {cowboy_websocket,handler_call,6,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                   {line,466}]},
+                              {cowboy_http,loop,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                   {line,218}]},
+                              {proc_lib,init_p_do_apply,3,
+                                  [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 14:37:06.488 [info] <0.626.0> module:websocket_handler line:26 receive proto {ping_tos,1541054226}
+2018-11-01 14:39:17.683 [info] <0.622.0> module:websocket_handler line:56  check ping
+2018-11-01 14:41:06.487 [info] <0.626.0> module:websocket_handler line:56  check ping
+2018-11-01 14:44:23.196 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 14:44:23.200 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 14:44:23.202 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 14:44:23.208 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 14:44:23.222 [warning] <0.610.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 14:44:23.243 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 14:44:46.479 [info] <0.626.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 14:44:46.481 [info] <0.608.0> module:role_server line:59 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 14:45:18.993 [info] <0.630.0> module:websocket_handler line:26 receive proto {register_tos,"test","123"}
+2018-11-01 14:45:27.365 [info] <0.630.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 14:45:27.365 [info] <0.608.0> module:role_server line:59 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 14:45:27.366 [error] <0.630.0> module:net_misc line:44 {'EXIT',
+                            {{badmatch,{error,{already_started,<0.629.0>}}},
+                             [{net_login,do_login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,59}]},
+                              {net_login,login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,49}]},
+                              {net_misc,msg_handle,1,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                   {line,39}]},
+                              {websocket_handler,websocket_handle,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                   {line,27}]},
+                              {cowboy_websocket,handler_call,6,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                   {line,466}]},
+                              {cowboy_http,loop,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                   {line,218}]},
+                              {proc_lib,init_p_do_apply,3,
+                                  [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 14:45:29.477 [info] <0.626.0> module:websocket_handler line:26 receive proto {ping_tos,1541054729}
+2018-11-01 14:45:54.776 [info] <0.630.0> module:websocket_handler line:26 receive proto {ping_tos,1541054754}
+2018-11-01 14:49:29.480 [info] <0.626.0> module:websocket_handler line:56  check ping
+2018-11-01 14:49:54.776 [info] <0.630.0> module:websocket_handler line:56  check ping
+2018-11-01 14:51:07.125 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 14:51:07.128 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 14:51:07.130 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 14:51:07.136 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 14:51:07.150 [warning] <0.610.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 14:51:07.172 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 14:51:28.131 [info] <0.626.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 14:51:28.134 [info] <0.608.0> module:role_server line:59 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 14:51:47.546 [info] <0.630.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 14:51:47.546 [info] <0.608.0> module:role_server line:59 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 14:52:15.247 [info] <0.626.0> module:websocket_handler line:26 receive proto {ping_tos,1541055135}
+2018-11-01 14:52:36.705 [info] <0.630.0> module:websocket_handler line:26 receive proto {ping_tos,1541055156}
+2018-11-01 14:56:15.248 [info] <0.626.0> module:websocket_handler line:56  check ping
+2018-11-01 14:56:36.704 [info] <0.630.0> module:websocket_handler line:56  check ping
+2018-11-01 14:59:12.161 [info] <0.626.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,10001,"test",
+                                                 "test123123"}}
+2018-11-01 14:59:12.163 [error] <0.626.0> module:websocket_handler line:33 {'EXIT',
+                                  {badarg,
+                                   [{net_misc,msg_handle,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,48}]},
+                                    {websocket_handler,websocket_handle,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                      {line,27}]},
+                                    {cowboy_websocket,handler_call,6,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                      {line,466}]},
+                                    {cowboy_http,loop,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                      {line,218}]},
+                                    {proc_lib,init_p_do_apply,3,
+                                     [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 15:16:58.758 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 15:16:58.762 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 15:16:58.764 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 15:16:58.770 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 15:16:58.783 [warning] <0.606.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 15:16:58.803 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 15:17:14.291 [info] <0.622.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 15:17:14.293 [info] <0.604.0> module:role_server line:59 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 15:17:59.820 [info] <0.622.0> module:websocket_handler line:26 receive proto {ping_tos,1541056679}
+2018-11-01 15:21:59.820 [info] <0.622.0> module:websocket_handler line:56  check ping
+2018-11-01 15:39:37.654 [info] <0.58.0> SIGTERM received - shutting down
+2018-11-01 15:40:06.752 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 15:40:06.755 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 15:40:06.758 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 15:40:06.763 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 15:40:06.788 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 15:40:06.809 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 15:40:30.977 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 15:40:30.979 [info] <0.631.0> module:role_server line:59 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 15:40:47.934 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 15:40:47.934 [info] <0.631.0> module:role_server line:59 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 15:41:14.918 [info] <0.649.0> module:websocket_handler line:26 receive proto {ping_tos,1541058074}
+2018-11-01 15:41:40.825 [info] <0.653.0> module:websocket_handler line:26 receive proto {ping_tos,1541058100}
+2018-11-01 15:41:55.145 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,10000,"test1",
+                                                 "chat test"}}
+2018-11-01 15:45:14.920 [info] <0.649.0> module:websocket_handler line:56  check ping
+2018-11-01 15:45:40.824 [info] <0.653.0> module:websocket_handler line:56  check ping
+2018-11-01 16:21:07.437 [info] <0.42.0> Application lager started on node nonode@nohost
+2018-11-01 16:21:07.460 [info] <0.42.0> Application cowlib started on node nonode@nohost
+2018-11-01 16:21:07.465 [info] <0.42.0> Application ranch started on node nonode@nohost
+2018-11-01 16:21:07.482 [info] <0.42.0> Application cowboy started on node nonode@nohost
+2018-11-01 16:21:07.489 [error] <0.622.0> CRASH REPORT Process <0.622.0> with 0 neighbours exited with reason: {aborted,{no_exists,[tab_role]}} in mnesia:abort/1 line 351
+2018-11-01 16:21:07.489 [error] <0.613.0> Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at undefined exit with reason {aborted,{no_exists,[tab_role]}} in context start_error
+2018-11-01 16:21:07.491 [error] <0.611.0> CRASH REPORT Process <0.611.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}} in application_master:init/4 line 138
+2018-11-01 16:21:07.492 [info] <0.42.0> Application cellphone exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}}
+2018-11-01 16:21:07.493 [info] <0.42.0> Application cowboy exited with reason: stopped
+2018-11-01 16:21:07.494 [info] <0.42.0> Application ranch exited with reason: stopped
+2018-11-01 16:21:07.494 [info] <0.42.0> Application cowlib exited with reason: stopped
+2018-11-01 16:21:52.213 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 16:21:52.217 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 16:21:52.219 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 16:21:52.225 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 16:21:52.259 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 16:21:52.289 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 16:22:31.772 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 16:22:31.774 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 16:22:50.562 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 16:22:50.562 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 16:22:56.876 [info] <0.649.0> module:websocket_handler line:26 receive proto {ping_tos,1541060576}
+2018-11-01 16:23:14.634 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test caht"}}
+2018-11-01 16:23:41.839 [info] <0.653.0> module:websocket_handler line:26 receive proto {ping_tos,1541060621}
+2018-11-01 16:26:56.877 [info] <0.649.0> module:websocket_handler line:56  check ping
+2018-11-01 16:27:41.838 [info] <0.653.0> module:websocket_handler line:56  check ping
+2018-11-01 16:30:59.300 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test caht"}}
+2018-11-01 16:31:26.492 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test caht"}}
+2018-11-01 16:34:23.167 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test caht"}}
+2018-11-01 16:37:20.526 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test caht"}}
+2018-11-01 16:37:20.526 [info] <0.649.0> module:net_misc line:48 RoleId undefined
+2018-11-01 16:38:37.135 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 16:38:37.139 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 16:38:37.141 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 16:38:37.147 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 16:38:37.179 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 16:38:37.199 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 16:38:51.743 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 16:38:51.745 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 16:39:07.984 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 16:39:07.984 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 16:39:21.023 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test chat"}}
+2018-11-01 16:39:21.023 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:39:21.024 [error] <0.653.0> module:websocket_handler line:33 {'EXIT',
+                                  {badarg,
+                                   [{net_misc,msg_handle,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,51}]},
+                                    {websocket_handler,websocket_handle,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                      {line,27}]},
+                                    {cowboy_websocket,handler_call,6,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                      {line,466}]},
+                                    {cowboy_http,loop,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                      {line,218}]},
+                                    {proc_lib,init_p_do_apply,3,
+                                     [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 16:39:39.839 [info] <0.649.0> module:websocket_handler line:26 receive proto {ping_tos,1541061579}
+2018-11-01 16:39:59.589 [info] <0.653.0> module:websocket_handler line:26 receive proto {ping_tos,1541061599}
+2018-11-01 16:43:26.678 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 16:43:26.682 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 16:43:26.684 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 16:43:26.690 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 16:43:26.714 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 16:43:26.734 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 16:43:54.503 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 16:43:54.506 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 16:44:07.241 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 16:44:07.241 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 16:44:25.121 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 16:44:25.122 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:44:25.124 [info] <0.655.0> module:mod_role_chat line:13 s chat
+2018-11-01 16:44:25.124 [error] <0.655.0>@role_server:handle_info:115 gen_server <0.655.0> terminated with reason: no case clause matching {'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}} in role_server:handle_info/2 line 115
+2018-11-01 16:44:25.136 [error] <0.655.0>@role_server:handle_info:115 CRASH REPORT Process role_10000 with 0 neighbours crashed with reason: no case clause matching {'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}} in role_server:handle_info/2 line 115
+2018-11-01 16:44:25.148 [error] <0.631.0>@role_server:handle_info:115 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10000,"test1","123"}, <0.653.0>) at <0.655.0> exit with reason no case clause matching {'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}} in role_server:handle_info/2 line 115 in context child_terminated
+2018-11-01 16:44:25.150 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 16:44:36.800 [info] <0.649.0> module:websocket_handler line:26 receive proto {ping_tos,1541061876}
+2018-11-01 16:44:59.386 [info] <0.653.0> module:websocket_handler line:26 receive proto {ping_tos,1541061899}
+2018-11-01 16:45:52.000 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 16:45:52.000 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:45:52.000 [info] <0.656.0> module:mod_role_chat line:13 s chat
+2018-11-01 16:45:52.000 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 16:45:52.001 [error] <0.656.0>@role_server:handle_info:115 gen_server <0.656.0> terminated with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:45:52.001 [error] <0.656.0>@role_server:handle_info:115 CRASH REPORT Process role_10000 with 0 neighbours crashed with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:45:52.002 [error] <0.631.0>@role_server:handle_info:115 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10000,"test1","123"}, <0.653.0>) at <0.656.0> exit with reason no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115 in context child_terminated
+2018-11-01 16:45:52.003 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 16:46:07.642 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 16:46:07.642 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:46:07.642 [info] <0.659.0> module:mod_role_chat line:13 s chat
+2018-11-01 16:46:07.642 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 16:46:07.642 [error] <0.659.0>@role_server:handle_info:115 gen_server <0.659.0> terminated with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:46:07.643 [error] <0.659.0>@role_server:handle_info:115 CRASH REPORT Process role_10000 with 0 neighbours crashed with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:46:07.644 [error] <0.631.0>@role_server:handle_info:115 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10000,"test1","123"}, <0.653.0>) at <0.659.0> exit with reason no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115 in context child_terminated
+2018-11-01 16:46:07.645 [info] <0.631.0> module:role_server line:57 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 16:47:41.385 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 16:47:41.385 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:47:41.385 [info] <0.660.0> module:mod_role_chat line:13 s chat
+2018-11-01 16:47:41.385 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 16:47:52.769 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 16:47:52.769 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:47:52.769 [info] <0.660.0> module:mod_role_chat line:13 s chat
+2018-11-01 16:47:52.769 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 16:48:04.082 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 16:48:04.082 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 16:48:04.082 [info] <0.660.0> module:mod_role_chat line:13 s chat
+2018-11-01 16:48:04.082 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 16:48:36.802 [info] <0.649.0> module:websocket_handler line:56  check ping
+2018-11-01 16:48:59.385 [info] <0.653.0> module:websocket_handler line:56  check ping
+2018-11-01 17:00:09.747 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 17:00:09.747 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 17:00:09.747 [info] <0.660.0> module:mod_role_chat line:13 s chat
+2018-11-01 17:00:09.747 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 17:01:11.757 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 17:01:11.757 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 17:01:11.757 [info] <0.660.0> module:mod_role_chat line:13 s chat
+2018-11-01 17:01:11.757 [info] <0.653.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 17:03:58.085 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 17:03:58.085 [info] <0.649.0> module:net_misc line:48 RoleId 10001
+2018-11-01 17:03:58.085 [info] <0.652.0> module:mod_role_chat line:13 s chat
+2018-11-01 17:03:58.085 [info] <0.649.0> module:websocket_handler line:66 Msg {chat_toc,0}
+2018-11-01 17:07:04.798 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:07:04.802 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:07:04.804 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:07:04.810 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:07:04.835 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:07:04.856 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:07:18.110 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:07:18.113 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:07:42.842 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 17:07:42.842 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 17:07:51.936 [info] <0.653.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 chat"}}
+2018-11-01 17:07:51.936 [info] <0.653.0> module:net_misc line:48 RoleId 10000
+2018-11-01 17:07:51.939 [info] <0.655.0> module:role_server line:72 RoleId 10001
+2018-11-01 17:07:51.939 [info] <0.655.0> module:role_server line:72 RoleId 10000
+2018-11-01 17:07:51.939 [error] <0.649.0>@phone:encode_msg:75 CRASH REPORT Process <0.649.0> with 0 neighbours crashed with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:07:51.939 [error] <0.653.0>@phone:encode_msg:75 CRASH REPORT Process <0.653.0> with 0 neighbours crashed with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:07:51.955 [error] <0.649.0>@phone:encode_msg:75 Ranch listener cellphone_listener terminated with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:07:51.956 [error] <0.653.0>@phone:encode_msg:75 Ranch listener cellphone_listener terminated with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:10:13.176 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:10:13.179 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:10:13.182 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:10:13.187 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:10:13.212 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:10:13.233 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:13:04.778 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:13:04.780 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:13:04.782 [error] <0.649.0> module:websocket_handler line:33 {'EXIT',
+                                  {undef,
+                                   [{phone,encode,
+                                     [{login_toc,0,{s_role,10001,"test"}}],
+                                     []},
+                                    {net_misc,encode_msg,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,12}]},
+                                    {net_misc,msg_handle,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,41}]},
+                                    {websocket_handler,websocket_handle,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                      {line,27}]},
+                                    {cowboy_websocket,handler_call,6,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                      {line,466}]},
+                                    {cowboy_http,loop,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                      {line,218}]},
+                                    {proc_lib,init_p_do_apply,3,
+                                     [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:13:13.736 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:13:13.738 [error] <0.649.0> module:net_login line:44 {'EXIT',
+                          {undef,
+                           [{erlang,monitor,[<0.649.0>],[]},
+                            {net_server,stop,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},
+                              {line,82}]},
+                            {net_login,check_login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,59}]},
+                            {net_login,login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,37}]},
+                            {net_misc,msg_handle,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                              {line,39}]},
+                            {websocket_handler,websocket_handle,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                              {line,27}]},
+                            {cowboy_websocket,handler_call,6,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                              {line,466}]},
+                            {cowboy_http,loop,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                              {line,218}]}]}}
+2018-11-01 17:15:56.202 [info] <0.660.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:15:56.204 [error] <0.660.0> module:net_login line:44 {'EXIT',
+                          {badarg,
+                           [{net_server,stop,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},
+                              {line,81}]},
+                            {net_login,check_login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,59}]},
+                            {net_login,login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,37}]},
+                            {net_misc,msg_handle,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                              {line,39}]},
+                            {websocket_handler,websocket_handle,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                              {line,27}]},
+                            {cowboy_websocket,handler_call,6,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                              {line,466}]},
+                            {cowboy_http,loop,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                              {line,218}]},
+                            {proc_lib,init_p_do_apply,3,
+                             [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:16:42.370 [info] <0.660.0> module:websocket_handler line:26 receive proto {ping_tos,1541063802}
+2018-11-01 17:20:48.608 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:20:48.612 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:20:48.614 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:20:48.620 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:20:48.646 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:20:48.669 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:21:02.443 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:21:02.445 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:21:07.667 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:21:10.668 [error] <0.649.0> module:net_server line:87 stop net pid fail
+2018-11-01 17:21:10.668 [error] <0.649.0> Ranch listener cellphone_listener terminated with reason: killed
+2018-11-01 17:24:22.315 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:24:22.318 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:24:22.320 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:24:22.326 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:24:22.350 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:24:22.374 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:24:41.788 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:24:41.791 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:25:03.255 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test chat"}}
+2018-11-01 17:25:03.255 [info] <0.649.0> module:net_misc line:48 RoleId 10001
+2018-11-01 17:25:03.258 [info] <0.652.0> module:role_server line:72 RoleId 10001
+2018-11-01 17:25:03.258 [info] <0.649.0> module:websocket_handler line:84 terminate 10001
+2018-11-01 17:25:03.258 [error] <0.649.0>@phone:encode_msg:75 CRASH REPORT Process <0.649.0> with 0 neighbours crashed with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:25:03.270 [error] <0.649.0>@phone:encode_msg:75 Ranch listener cellphone_listener terminated with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:29:20.243 [info] <0.659.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:29:20.247 [error] <0.659.0> module:net_login line:44 {'EXIT',
+                          {badarg,
+                           [{net_server,stop,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},
+                              {line,81}]},
+                            {net_login,check_login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,59}]},
+                            {net_login,login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,37}]},
+                            {net_misc,msg_handle,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                              {line,39}]},
+                            {websocket_handler,websocket_handle,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                              {line,27}]},
+                            {cowboy_websocket,handler_call,6,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                              {line,466}]},
+                            {cowboy_http,loop,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                              {line,218}]},
+                            {proc_lib,init_p_do_apply,3,
+                             [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:30:04.257 [info] <0.659.0> module:websocket_handler line:26 receive proto {ping_tos,1541064604}
+2018-11-01 17:34:04.256 [info] <0.659.0> module:websocket_handler line:57  check ping
+2018-11-01 17:37:22.697 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:37:22.701 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:37:22.703 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:37:22.708 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:37:22.732 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:37:22.751 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:37:39.138 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:37:39.141 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.396 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:38:01.396 [error] <0.649.0> module:websocket_handler line:45 stop gateway
+2018-11-01 17:38:01.396 [info] <0.649.0> module:websocket_handler line:84 terminate 10001
+2018-11-01 17:38:01.396 [error] <0.652.0> module:role_server line:132 normal
+2018-11-01 17:38:01.396 [error] <0.652.0> gen_server <0.652.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.397 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.397 [error] <0.655.0>@role_server:init:88 CRASH REPORT Process <0.655.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.655.0>) in role_server:init/1 line 88
+2018-11-01 17:38:01.399 [error] <0.653.0> module:net_misc line:44 {'EXIT',
+                         {{badmatch,
+                           {error,
+                            {badarg,
+                             [{erlang,register,[role_10001,<0.655.0>],[]},
+                              {role_server,init,1,
+                               [{file,
+                                 "/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},
+                                {line,88}]},
+                              {gen_server,init_it,2,
+                               [{file,"gen_server.erl"},{line,374}]},
+                              {gen_server,init_it,6,
+                               [{file,"gen_server.erl"},{line,342}]},
+                              {proc_lib,init_p_do_apply,3,
+                               [{file,"proc_lib.erl"},{line,249}]}]}}},
+                          [{net_login,do_login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,49}]},
+                           {net_login,login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,39}]},
+                           {net_misc,msg_handle,1,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                             {line,39}]},
+                           {websocket_handler,websocket_handle,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                             {line,27}]},
+                           {cowboy_websocket,handler_call,6,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                             {line,466}]},
+                           {cowboy_http,loop,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                             {line,218}]},
+                           {proc_lib,init_p_do_apply,3,
+                            [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:38:01.418 [error] <0.652.0>@gen_server:handle_common_reply:755 CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.448 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.652.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.448 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.449 [error] <0.656.0> module:role_server line:132 noproc
+2018-11-01 17:38:01.449 [error] <0.656.0> gen_server <0.656.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.449 [error] <0.656.0>@gen_server:handle_common_reply:755 CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.450 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.656.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.450 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.450 [error] <0.657.0> module:role_server line:132 noproc
+2018-11-01 17:38:01.450 [error] <0.657.0> gen_server <0.657.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.451 [error] <0.657.0>@gen_server:handle_common_reply:755 CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.451 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.657.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.452 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.452 [error] <0.658.0> module:role_server line:132 noproc
+2018-11-01 17:38:01.452 [error] <0.658.0> gen_server <0.658.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.452 [error] <0.658.0>@gen_server:handle_common_reply:755 CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.453 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.658.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.453 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.453 [error] <0.659.0> module:role_server line:132 noproc
+2018-11-01 17:38:01.453 [error] <0.659.0> gen_server <0.659.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.454 [error] <0.659.0>@gen_server:handle_common_reply:755 CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.454 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.659.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.455 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:38:01.455 [error] <0.660.0> module:role_server line:132 noproc
+2018-11-01 17:38:01.455 [error] <0.660.0> gen_server <0.660.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.455 [error] <0.660.0>@gen_server:handle_common_reply:755 CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.456 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.660.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.456 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.660.0> exit with reason reached_max_restart_intensity in context shutdown
+2018-11-01 17:38:01.457 [error] <0.622.0> Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at <0.631.0> exit with reason shutdown in context child_terminated
+2018-11-01 17:38:50.724 [info] <0.653.0> module:websocket_handler line:26 receive proto {ping_tos,1541065130}
+2018-11-01 17:42:50.724 [info] <0.653.0> module:websocket_handler line:57  check ping
+2018-11-01 17:46:30.961 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:46:30.964 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:46:30.967 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:46:30.972 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:46:30.997 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:46:31.019 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:46:47.869 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:46:47.872 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.622 [info] <0.653.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:46:53.622 [error] <0.649.0> module:websocket_handler line:45 stop gateway
+2018-11-01 17:46:53.622 [info] <0.649.0> module:websocket_handler line:84 terminate 10001
+2018-11-01 17:46:53.622 [error] <0.652.0> module:role_server line:133 normal
+2018-11-01 17:46:53.623 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.652.0> exit with reason normal in context child_terminated
+2018-11-01 17:46:53.623 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.623 [error] <0.655.0> module:role_server line:133 noproc
+2018-11-01 17:46:53.624 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.655.0> exit with reason normal in context child_terminated
+2018-11-01 17:46:53.624 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.624 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.624 [error] <0.656.0> module:role_server line:133 noproc
+2018-11-01 17:46:53.625 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.656.0> exit with reason normal in context child_terminated
+2018-11-01 17:46:53.625 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.625 [error] <0.658.0>@role_server:init:88 CRASH REPORT Process <0.658.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88
+2018-11-01 17:46:53.626 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.656.0> exit with reason bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:46:53.626 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.627 [error] <0.659.0>@role_server:init:88 CRASH REPORT Process <0.659.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88
+2018-11-01 17:46:53.627 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.656.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:46:53.627 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:46:53.628 [error] <0.660.0>@role_server:init:88 CRASH REPORT Process <0.660.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88
+2018-11-01 17:46:53.628 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.656.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:46:53.629 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.656.0>} exit with reason reached_max_restart_intensity in context shutdown
+2018-11-01 17:46:53.630 [error] <0.622.0> Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at <0.631.0> exit with reason shutdown in context child_terminated
+2018-11-01 17:47:52.132 [info] <0.653.0> module:websocket_handler line:26 receive proto {ping_tos,1541065672}
+2018-11-01 17:51:52.132 [info] <0.653.0> module:websocket_handler line:57  check ping
+2018-11-01 17:54:13.029 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 17:54:13.032 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 17:54:13.034 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 17:54:13.040 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 17:54:13.065 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 17:54:13.086 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 17:54:31.566 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:54:31.569 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.080 [info] <0.652.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 17:54:42.080 [error] <0.649.0> module:websocket_handler line:45 stop gateway
+2018-11-01 17:54:42.080 [info] <0.649.0> module:websocket_handler line:84 terminate 10001
+2018-11-01 17:54:42.080 [error] <0.654.0> module:role_server line:133 normal
+2018-11-01 17:54:42.081 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.654.0> exit with reason normal in context child_terminated
+2018-11-01 17:54:42.081 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.081 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.081 [error] <0.655.0> module:role_server line:133 noproc
+2018-11-01 17:54:42.082 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.655.0> exit with reason normal in context child_terminated
+2018-11-01 17:54:42.082 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.082 [error] <0.657.0>@role_server:init:88 CRASH REPORT Process <0.657.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.657.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.083 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.655.0> exit with reason bad argument in call to erlang:register(role_10001, <0.657.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.083 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.084 [error] <0.658.0>@role_server:init:88 CRASH REPORT Process <0.658.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.084 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.084 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.085 [error] <0.659.0>@role_server:init:88 CRASH REPORT Process <0.659.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.085 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.086 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 17:54:42.086 [error] <0.660.0>@role_server:init:88 CRASH REPORT Process <0.660.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.086 [error] <0.631.0>@role_server:init:88 Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.087 [error] <0.631.0> Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason reached_max_restart_intensity in context shutdown
+2018-11-01 17:54:42.088 [error] <0.622.0> Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at <0.631.0> exit with reason shutdown in context child_terminated
+2018-11-01 17:55:17.813 [info] <0.652.0> module:websocket_handler line:26 receive proto {ping_tos,1541066117}
+2018-11-01 18:09:57.477 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-01 18:09:57.481 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-01 18:09:57.483 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-01 18:09:57.489 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-01 18:09:57.513 [warning] <0.633.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-01 18:09:57.534 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-01 18:10:14.966 [info] <0.652.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 18:10:14.968 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 18:10:26.455 [info] <0.649.0> module:websocket_handler line:26 receive proto {login_tos,"test","123"}
+2018-11-01 18:10:26.456 [error] <0.652.0> module:websocket_handler line:45 stop gateway
+2018-11-01 18:10:26.456 [info] <0.652.0> module:websocket_handler line:84 terminate 10001
+2018-11-01 18:10:26.456 [error] <0.654.0> module:role_server line:135 normal
+2018-11-01 18:10:26.456 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10001,"test","123"}
+2018-11-01 18:11:03.886 [info] <0.649.0> module:websocket_handler line:26 receive proto {ping_tos,1541067063}
+2018-11-01 18:11:05.359 [info] <0.656.0> module:websocket_handler line:26 receive proto {login_tos,"test1","123"}
+2018-11-01 18:11:05.360 [info] <0.631.0> module:role_server line:56 start role RoleId {tab_role,10000,"test1","123"}
+2018-11-01 18:11:16.362 [info] <0.656.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 test"}}
+2018-11-01 18:11:16.362 [info] <0.656.0> module:net_misc line:48 RoleId 10000
+2018-11-01 18:11:16.364 [info] <0.658.0> module:role_server line:72 RoleId 10001
+2018-11-01 18:11:16.364 [info] <0.658.0> module:role_server line:72 RoleId 10000
+2018-11-01 18:11:33.824 [info] <0.649.0> module:websocket_handler line:26 receive proto {chat_tos,undefined,undefined,
+                                                {s_chat,undefined,undefined,
+                                                 "test1 test"}}
+2018-11-01 18:11:33.824 [info] <0.649.0> module:net_misc line:48 RoleId 10001
+2018-11-01 18:11:33.824 [info] <0.655.0> module:role_server line:72 RoleId 10001
+2018-11-01 18:11:33.824 [info] <0.655.0> module:role_server line:72 RoleId 10000
+2018-11-01 18:11:38.924 [info] <0.656.0> module:websocket_handler line:26 receive proto {ping_tos,1541067098}
+2018-11-01 18:15:03.888 [info] <0.649.0> module:websocket_handler line:57  check ping

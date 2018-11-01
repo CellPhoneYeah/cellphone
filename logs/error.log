@@ -8,3 +8,374 @@
 2018-10-30 11:01:15.205 [error] <0.539.0>Supervisor data_sup had child data_server started with data_server:start_link() at undefined exit with reason call to undefined function mneisa:system_info(extra_db_nodes) in context start_error
 2018-10-30 11:01:15.208 [error] <0.538.0>Supervisor cellphone_sup had child data_sup started with data_sup:start_link() at undefined exit with reason {shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,...}]}]}}} in context start_error
 2018-10-30 11:01:15.210 [error] <0.536.0>CRASH REPORT Process <0.536.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,data_sup,{shutdown,{failed_to_start_child,data_server,{undef,[{mneisa,system_info,[extra_db_nodes],[]},{data_server,do_init,0,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,63}]},{data_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/data/data_server.erl"},{line,32}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,...}]}}}}},...} in application_master:init/4 line 138
+2018-11-01 13:55:14.954 [error] <0.623.0>module:net_misc line:43 {'EXIT',
+                         {badarg,
+                          [{ets,insert,
+                            [ets_name_role_id,{ets_name_role_id,"test",10000}],
+                            []},
+                           {role_server,add_name_role_id,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},
+                             {line,47}]},
+                           {net_login,login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,40}]},
+                           {net_misc,msg_handle,1,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                             {line,38}]},
+                           {websocket_handler,websocket_handle,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                             {line,27}]},
+                           {cowboy_websocket,handler_call,6,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                             {line,466}]},
+                           {cowboy_http,loop,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                             {line,218}]},
+                           {proc_lib,init_p_do_apply,3,
+                            [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 14:25:40.522 [error] <0.644.0>module:websocket_handler line:33 1541053480
+2018-11-01 14:36:56.282 [error] <0.626.0>module:net_misc line:44 {'EXIT',
+                            {{badmatch,{error,{already_started,<0.625.0>}}},
+                             [{net_login,do_login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,59}]},
+                              {net_login,login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,49}]},
+                              {net_misc,msg_handle,1,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                   {line,39}]},
+                              {websocket_handler,websocket_handle,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                   {line,27}]},
+                              {cowboy_websocket,handler_call,6,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                   {line,466}]},
+                              {cowboy_http,loop,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                   {line,218}]},
+                              {proc_lib,init_p_do_apply,3,
+                                  [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 14:45:27.366 [error] <0.630.0>module:net_misc line:44 {'EXIT',
+                            {{badmatch,{error,{already_started,<0.629.0>}}},
+                             [{net_login,do_login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,59}]},
+                              {net_login,login,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                                   {line,49}]},
+                              {net_misc,msg_handle,1,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                   {line,39}]},
+                              {websocket_handler,websocket_handle,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                   {line,27}]},
+                              {cowboy_websocket,handler_call,6,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                   {line,466}]},
+                              {cowboy_http,loop,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                   {line,218}]},
+                              {proc_lib,init_p_do_apply,3,
+                                  [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 14:59:12.163 [error] <0.626.0>module:websocket_handler line:33 {'EXIT',
+                                  {badarg,
+                                   [{net_misc,msg_handle,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,48}]},
+                                    {websocket_handler,websocket_handle,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                      {line,27}]},
+                                    {cowboy_websocket,handler_call,6,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                      {line,466}]},
+                                    {cowboy_http,loop,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                      {line,218}]},
+                                    {proc_lib,init_p_do_apply,3,
+                                     [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 16:21:07.489 [error] <0.622.0>CRASH REPORT Process <0.622.0> with 0 neighbours exited with reason: {aborted,{no_exists,[tab_role]}} in mnesia:abort/1 line 351
+2018-11-01 16:21:07.489 [error] <0.613.0>Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at undefined exit with reason {aborted,{no_exists,[tab_role]}} in context start_error
+2018-11-01 16:21:07.491 [error] <0.611.0>CRASH REPORT Process <0.611.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,role_sup,{aborted,{no_exists,[tab_role]}}}},{cellphone_app,start,[normal,[]]}} in application_master:init/4 line 138
+2018-11-01 16:39:21.024 [error] <0.653.0>module:websocket_handler line:33 {'EXIT',
+                                  {badarg,
+                                   [{net_misc,msg_handle,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,51}]},
+                                    {websocket_handler,websocket_handle,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                      {line,27}]},
+                                    {cowboy_websocket,handler_call,6,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                      {line,466}]},
+                                    {cowboy_http,loop,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                      {line,218}]},
+                                    {proc_lib,init_p_do_apply,3,
+                                     [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 16:44:25.124 [error] <0.655.0>gen_server <0.655.0> terminated with reason: no case clause matching {'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}} in role_server:handle_info/2 line 115
+2018-11-01 16:44:25.136 [error] <0.655.0>CRASH REPORT Process role_10000 with 0 neighbours crashed with reason: no case clause matching {'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}} in role_server:handle_info/2 line 115
+2018-11-01 16:44:25.148 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10000,"test1","123"}, <0.653.0>) at <0.655.0> exit with reason no case clause matching {'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}} in role_server:handle_info/2 line 115 in context child_terminated
+2018-11-01 16:45:52.001 [error] <0.656.0>gen_server <0.656.0> terminated with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:45:52.001 [error] <0.656.0>CRASH REPORT Process role_10000 with 0 neighbours crashed with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:45:52.002 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10000,"test1","123"}, <0.653.0>) at <0.656.0> exit with reason no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115 in context child_terminated
+2018-11-01 16:46:07.642 [error] <0.659.0>gen_server <0.659.0> terminated with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:46:07.643 [error] <0.659.0>CRASH REPORT Process role_10000 with 0 neighbours crashed with reason: no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115
+2018-11-01 16:46:07.644 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10000,"test1","123"}, <0.653.0>) at <0.659.0> exit with reason no case clause matching {toc,{chat_toc,0}} in role_server:handle_info/2 line 115 in context child_terminated
+2018-11-01 17:07:51.939 [error] <0.649.0>CRASH REPORT Process <0.649.0> with 0 neighbours crashed with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:07:51.939 [error] <0.653.0>CRASH REPORT Process <0.653.0> with 0 neighbours crashed with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:07:51.955 [error] <0.649.0>Ranch listener cellphone_listener terminated with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:07:51.956 [error] <0.653.0>Ranch listener cellphone_listener terminated with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:13:04.782 [error] <0.649.0>module:websocket_handler line:33 {'EXIT',
+                                  {undef,
+                                   [{phone,encode,
+                                     [{login_toc,0,{s_role,10001,"test"}}],
+                                     []},
+                                    {net_misc,encode_msg,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,12}]},
+                                    {net_misc,msg_handle,1,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                                      {line,41}]},
+                                    {websocket_handler,websocket_handle,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                      {line,27}]},
+                                    {cowboy_websocket,handler_call,6,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                      {line,466}]},
+                                    {cowboy_http,loop,2,
+                                     [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                      {line,218}]},
+                                    {proc_lib,init_p_do_apply,3,
+                                     [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:13:13.738 [error] <0.649.0>module:net_login line:44 {'EXIT',
+                          {undef,
+                           [{erlang,monitor,[<0.649.0>],[]},
+                            {net_server,stop,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},
+                              {line,82}]},
+                            {net_login,check_login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,59}]},
+                            {net_login,login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,37}]},
+                            {net_misc,msg_handle,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                              {line,39}]},
+                            {websocket_handler,websocket_handle,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                              {line,27}]},
+                            {cowboy_websocket,handler_call,6,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                              {line,466}]},
+                            {cowboy_http,loop,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                              {line,218}]}]}}
+2018-11-01 17:15:56.204 [error] <0.660.0>module:net_login line:44 {'EXIT',
+                          {badarg,
+                           [{net_server,stop,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},
+                              {line,81}]},
+                            {net_login,check_login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,59}]},
+                            {net_login,login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,37}]},
+                            {net_misc,msg_handle,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                              {line,39}]},
+                            {websocket_handler,websocket_handle,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                              {line,27}]},
+                            {cowboy_websocket,handler_call,6,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                              {line,466}]},
+                            {cowboy_http,loop,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                              {line,218}]},
+                            {proc_lib,init_p_do_apply,3,
+                             [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:21:10.668 [error] <0.649.0>module:net_server line:87 stop net pid fail
+2018-11-01 17:21:10.668 [error] <0.649.0>Ranch listener cellphone_listener terminated with reason: killed
+2018-11-01 17:25:03.258 [error] <0.649.0>CRASH REPORT Process <0.649.0> with 0 neighbours crashed with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:25:03.270 [error] <0.649.0>Ranch listener cellphone_listener terminated with reason: no case clause matching mod_role_chat in phone:encode_msg/3 line 75
+2018-11-01 17:29:20.247 [error] <0.659.0>module:net_login line:44 {'EXIT',
+                          {badarg,
+                           [{net_server,stop,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_server.erl"},
+                              {line,81}]},
+                            {net_login,check_login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,59}]},
+                            {net_login,login,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                              {line,37}]},
+                            {net_misc,msg_handle,1,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                              {line,39}]},
+                            {websocket_handler,websocket_handle,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                              {line,27}]},
+                            {cowboy_websocket,handler_call,6,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                              {line,466}]},
+                            {cowboy_http,loop,2,
+                             [{file,
+                               "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                              {line,218}]},
+                            {proc_lib,init_p_do_apply,3,
+                             [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:38:01.396 [error] <0.649.0>module:websocket_handler line:45 stop gateway
+2018-11-01 17:38:01.396 [error] <0.652.0>module:role_server line:132 normal
+2018-11-01 17:38:01.396 [error] <0.652.0>gen_server <0.652.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.397 [error] <0.655.0>CRASH REPORT Process <0.655.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.655.0>) in role_server:init/1 line 88
+2018-11-01 17:38:01.399 [error] <0.653.0>module:net_misc line:44 {'EXIT',
+                         {{badmatch,
+                           {error,
+                            {badarg,
+                             [{erlang,register,[role_10001,<0.655.0>],[]},
+                              {role_server,init,1,
+                               [{file,
+                                 "/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},
+                                {line,88}]},
+                              {gen_server,init_it,2,
+                               [{file,"gen_server.erl"},{line,374}]},
+                              {gen_server,init_it,6,
+                               [{file,"gen_server.erl"},{line,342}]},
+                              {proc_lib,init_p_do_apply,3,
+                               [{file,"proc_lib.erl"},{line,249}]}]}}},
+                          [{net_login,do_login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,49}]},
+                           {net_login,login,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_login.erl"},
+                             {line,39}]},
+                           {net_misc,msg_handle,1,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},
+                             {line,39}]},
+                           {websocket_handler,websocket_handle,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                             {line,27}]},
+                           {cowboy_websocket,handler_call,6,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                             {line,466}]},
+                           {cowboy_http,loop,2,
+                            [{file,
+                              "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                             {line,218}]},
+                           {proc_lib,init_p_do_apply,3,
+                            [{file,"proc_lib.erl"},{line,249}]}]}}
+2018-11-01 17:38:01.418 [error] <0.652.0>CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.448 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.652.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.449 [error] <0.656.0>module:role_server line:132 noproc
+2018-11-01 17:38:01.449 [error] <0.656.0>gen_server <0.656.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.449 [error] <0.656.0>CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.450 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.656.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.450 [error] <0.657.0>module:role_server line:132 noproc
+2018-11-01 17:38:01.450 [error] <0.657.0>gen_server <0.657.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.451 [error] <0.657.0>CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.451 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.657.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.452 [error] <0.658.0>module:role_server line:132 noproc
+2018-11-01 17:38:01.452 [error] <0.658.0>gen_server <0.658.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.452 [error] <0.658.0>CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.453 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.658.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.453 [error] <0.659.0>module:role_server line:132 noproc
+2018-11-01 17:38:01.453 [error] <0.659.0>gen_server <0.659.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.454 [error] <0.659.0>CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.454 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.659.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.455 [error] <0.660.0>module:role_server line:132 noproc
+2018-11-01 17:38:01.455 [error] <0.660.0>gen_server <0.660.0> terminated with reason: bad return value: {stop,[]}
+2018-11-01 17:38:01.455 [error] <0.660.0>CRASH REPORT Process role_10001 with 0 neighbours exited with reason: bad return value: {stop,[]} in gen_server:handle_common_reply/8 line 755
+2018-11-01 17:38:01.456 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.660.0> exit with reason bad return value: {stop,[]} in context child_terminated
+2018-11-01 17:38:01.456 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.660.0> exit with reason reached_max_restart_intensity in context shutdown
+2018-11-01 17:38:01.457 [error] <0.622.0>Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at <0.631.0> exit with reason shutdown in context child_terminated
+2018-11-01 17:46:53.622 [error] <0.649.0>module:websocket_handler line:45 stop gateway
+2018-11-01 17:46:53.622 [error] <0.652.0>module:role_server line:133 normal
+2018-11-01 17:46:53.623 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.652.0> exit with reason normal in context child_terminated
+2018-11-01 17:46:53.623 [error] <0.655.0>module:role_server line:133 noproc
+2018-11-01 17:46:53.624 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.655.0> exit with reason normal in context child_terminated
+2018-11-01 17:46:53.624 [error] <0.656.0>module:role_server line:133 noproc
+2018-11-01 17:46:53.625 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.656.0> exit with reason normal in context child_terminated
+2018-11-01 17:46:53.625 [error] <0.658.0>CRASH REPORT Process <0.658.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88
+2018-11-01 17:46:53.626 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.656.0> exit with reason bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:46:53.627 [error] <0.659.0>CRASH REPORT Process <0.659.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88
+2018-11-01 17:46:53.627 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.656.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:46:53.628 [error] <0.660.0>CRASH REPORT Process <0.660.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88
+2018-11-01 17:46:53.628 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.656.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:46:53.629 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.656.0>} exit with reason reached_max_restart_intensity in context shutdown
+2018-11-01 17:46:53.630 [error] <0.622.0>Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at <0.631.0> exit with reason shutdown in context child_terminated
+2018-11-01 17:54:42.080 [error] <0.649.0>module:websocket_handler line:45 stop gateway
+2018-11-01 17:54:42.080 [error] <0.654.0>module:role_server line:133 normal
+2018-11-01 17:54:42.081 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.654.0> exit with reason normal in context child_terminated
+2018-11-01 17:54:42.081 [error] <0.655.0>module:role_server line:133 noproc
+2018-11-01 17:54:42.082 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.655.0> exit with reason normal in context child_terminated
+2018-11-01 17:54:42.082 [error] <0.657.0>CRASH REPORT Process <0.657.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.657.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.083 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at <0.655.0> exit with reason bad argument in call to erlang:register(role_10001, <0.657.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.084 [error] <0.658.0>CRASH REPORT Process <0.658.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.084 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.658.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.085 [error] <0.659.0>CRASH REPORT Process <0.659.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.085 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.659.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.086 [error] <0.660.0>CRASH REPORT Process <0.660.0> with 0 neighbours crashed with reason: bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88
+2018-11-01 17:54:42.086 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason bad argument in call to erlang:register(role_10001, <0.660.0>) in role_server:init/1 line 88 in context start_error
+2018-11-01 17:54:42.087 [error] <0.631.0>Supervisor role_sup had child role_server started with role_server:start_link({tab_role,10001,"test","123"}, <0.649.0>) at {restarting,<0.655.0>} exit with reason reached_max_restart_intensity in context shutdown
+2018-11-01 17:54:42.088 [error] <0.622.0>Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at <0.631.0> exit with reason shutdown in context child_terminated
+2018-11-01 18:10:26.456 [error] <0.652.0>module:websocket_handler line:45 stop gateway
+2018-11-01 18:10:26.456 [error] <0.654.0>module:role_server line:135 normal

@@ -107,3 +107,567 @@
     stack_size: 27
     reductions: 245
   neighbours:
+2018-11-01 16:44:25 =ERROR REPORT====
+** Generic server <0.655.0> terminating 
+** Last message in was {c2s,10000,<0.653.0>,mod_role_chat,{chat_tos,undefined,undefined,{s_chat,undefined,undefined,"test1 chat"}}}
+** When Server state == []
+** Reason for termination == 
+** {{case_clause,{'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-01 16:44:25 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.655.0>
+    registered_name: role_10000
+    exception error: {{case_clause,{'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.653.0>},{{mod_role,role},{tab_role,10000,"test1","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 65216
+  neighbours:
+2018-11-01 16:44:25 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {{case_clause,{'EXIT',{{badmatch,{toc,{chat_toc,0}}},[{role_server,unicast,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,81}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.655.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10000,"test1","123"},<0.653.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 16:45:52 =ERROR REPORT====
+** Generic server <0.656.0> terminating 
+** Last message in was {c2s,10000,<0.653.0>,mod_role_chat,{chat_tos,undefined,undefined,{s_chat,undefined,undefined,"test1 chat"}}}
+** When Server state == []
+** Reason for termination == 
+** {{case_clause,{toc,{chat_toc,0}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-01 16:45:52 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.656.0>
+    registered_name: role_10000
+    exception error: {{case_clause,{toc,{chat_toc,0}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.653.0>},{{mod_role,role},{tab_role,10000,"test1","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 26476
+  neighbours:
+2018-11-01 16:45:52 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {{case_clause,{toc,{chat_toc,0}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.656.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10000,"test1","123"},<0.653.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 16:46:07 =ERROR REPORT====
+** Generic server <0.659.0> terminating 
+** Last message in was {c2s,10000,<0.653.0>,mod_role_chat,{chat_tos,undefined,undefined,{s_chat,undefined,undefined,"test1 chat"}}}
+** When Server state == []
+** Reason for termination == 
+** {{case_clause,{toc,{chat_toc,0}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-01 16:46:07 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.659.0>
+    registered_name: role_10000
+    exception error: {{case_clause,{toc,{chat_toc,0}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.653.0>},{{mod_role,role},{tab_role,10000,"test1","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 26385
+  neighbours:
+2018-11-01 16:46:07 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {{case_clause,{toc,{chat_toc,0}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,115}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.659.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10000,"test1","123"},<0.653.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:07:51 =CRASH REPORT====
+  crasher:
+    initial call: cowboy_clear:connection_process/5
+    pid: <0.649.0>
+    registered_name: []
+    exception error: {{case_clause,mod_role_chat},[{phone,encode_msg,3,[{file,"/data/cellphone/_build/default/lib/cellphone/src/proto/phone.erl"},{line,75}]},{net_misc,encode_msg,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},{line,12}]},{websocket_handler,websocket_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},{line,66}]},{cowboy_websocket,handler_call,6,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},{line,466}]},{cowboy_http,loop,2,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},{line,218}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.635.0>,<0.634.0>,ranch_sup,<0.611.0>]
+    message_queue_len: 0
+    messages: []
+    links: [#Port<0.34>,<0.635.0>]
+    dictionary: [{last_ping_time,1541063227},{role_id,10001}]
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 4788
+  neighbours:
+2018-11-01 17:07:51 =CRASH REPORT====
+  crasher:
+    initial call: cowboy_clear:connection_process/5
+    pid: <0.653.0>
+    registered_name: []
+    exception error: {{case_clause,mod_role_chat},[{phone,encode_msg,3,[{file,"/data/cellphone/_build/default/lib/cellphone/src/proto/phone.erl"},{line,75}]},{net_misc,encode_msg,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},{line,12}]},{websocket_handler,websocket_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},{line,66}]},{cowboy_websocket,handler_call,6,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},{line,466}]},{cowboy_http,loop,2,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},{line,218}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.635.0>,<0.634.0>,ranch_sup,<0.611.0>]
+    message_queue_len: 1
+    messages: [{toc,{chat_toc,0}}]
+    links: [#Port<0.35>,<0.635.0>]
+    dictionary: [{last_ping_time,1541063249},{role_id,10000}]
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 11788
+  neighbours:
+2018-11-01 17:07:51 =ERROR REPORT====
+Ranch listener cellphone_listener had connection process started with cowboy_clear:start_link/4 at <0.649.0> exit with reason: {{case_clause,mod_role_chat},[{phone,encode_msg,3,[{file,"/data/cellphone/_build/default/lib/cellphone/src/proto/phone.erl"},{line,75}]},{net_misc,encode_msg,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},{line,12}]},{websocket_handler,websocket_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},{line,66}]},{cowboy_websocket,handler_call,6,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},{line,466}]},{cowboy_http,loop,2,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},{line,218}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-01 17:07:51 =ERROR REPORT====
+Ranch listener cellphone_listener had connection process started with cowboy_clear:start_link/4 at <0.653.0> exit with reason: {{case_clause,mod_role_chat},[{phone,encode_msg,3,[{file,"/data/cellphone/_build/default/lib/cellphone/src/proto/phone.erl"},{line,75}]},{net_misc,encode_msg,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},{line,12}]},{websocket_handler,websocket_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},{line,66}]},{cowboy_websocket,handler_call,6,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},{line,466}]},{cowboy_http,loop,2,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},{line,218}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-01 17:21:10 =ERROR REPORT====
+Ranch listener cellphone_listener had connection process started with cowboy_clear:start_link/4 at <0.649.0> exit with reason: killed
+2018-11-01 17:25:03 =CRASH REPORT====
+  crasher:
+    initial call: cowboy_clear:connection_process/5
+    pid: <0.649.0>
+    registered_name: []
+    exception error: {{case_clause,mod_role_chat},[{phone,encode_msg,3,[{file,"/data/cellphone/_build/default/lib/cellphone/src/proto/phone.erl"},{line,75}]},{net_misc,encode_msg,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},{line,12}]},{websocket_handler,websocket_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},{line,67}]},{cowboy_websocket,handler_call,6,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},{line,466}]},{cowboy_http,loop,2,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},{line,218}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.635.0>,<0.634.0>,ranch_sup,<0.611.0>]
+    message_queue_len: 1
+    messages: [{toc,{chat_toc,0}}]
+    links: [#Port<0.34>,<0.635.0>]
+    dictionary: [{last_ping_time,1541064271},{role_id,10001}]
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 12879
+  neighbours:
+2018-11-01 17:25:03 =ERROR REPORT====
+Ranch listener cellphone_listener had connection process started with cowboy_clear:start_link/4 at <0.649.0> exit with reason: {{case_clause,mod_role_chat},[{phone,encode_msg,3,[{file,"/data/cellphone/_build/default/lib/cellphone/src/proto/phone.erl"},{line,75}]},{net_misc,encode_msg,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/net_misc.erl"},{line,12}]},{websocket_handler,websocket_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},{line,67}]},{cowboy_websocket,handler_call,6,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},{line,466}]},{cowboy_http,loop,2,[{file,"/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},{line,218}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-01 17:38:01 =ERROR REPORT====
+** Generic server <0.652.0> terminating 
+** Last message in was {'DOWN',#Ref<0.2181534410.3163553793.6030>,process,<0.649.0>,normal}
+** When Server state == []
+** Reason for termination == 
+** {bad_return_value,{stop,[]}}
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.655.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.655.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.653.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 233
+  neighbours:
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.652.0>
+    registered_name: role_10001
+    exception exit: {{bad_return_value,{stop,[]}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,755}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>},{{mod_role,role},{tab_role,10001,"test","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 7444
+  neighbours:
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {bad_return_value,{stop,[]}}
+     Offender:   [{pid,<0.652.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =ERROR REPORT====
+** Generic server <0.656.0> terminating 
+** Last message in was {'DOWN',#Ref<0.2181534410.3163553793.6095>,process,<0.649.0>,noproc}
+** When Server state == []
+** Reason for termination == 
+** {bad_return_value,{stop,[]}}
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.656.0>
+    registered_name: role_10001
+    exception exit: {{bad_return_value,{stop,[]}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,755}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>},{{mod_role,role},{tab_role,10001,"test","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 7359
+  neighbours:
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {bad_return_value,{stop,[]}}
+     Offender:   [{pid,<0.656.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =ERROR REPORT====
+** Generic server <0.657.0> terminating 
+** Last message in was {'DOWN',#Ref<0.2181534410.3163553793.6105>,process,<0.649.0>,noproc}
+** When Server state == []
+** Reason for termination == 
+** {bad_return_value,{stop,[]}}
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.657.0>
+    registered_name: role_10001
+    exception exit: {{bad_return_value,{stop,[]}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,755}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>},{{mod_role,role},{tab_role,10001,"test","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 7359
+  neighbours:
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {bad_return_value,{stop,[]}}
+     Offender:   [{pid,<0.657.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =ERROR REPORT====
+** Generic server <0.658.0> terminating 
+** Last message in was {'DOWN',#Ref<0.2181534410.3163553793.6116>,process,<0.649.0>,noproc}
+** When Server state == []
+** Reason for termination == 
+** {bad_return_value,{stop,[]}}
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.658.0>
+    registered_name: role_10001
+    exception exit: {{bad_return_value,{stop,[]}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,755}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>},{{mod_role,role},{tab_role,10001,"test","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 7359
+  neighbours:
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {bad_return_value,{stop,[]}}
+     Offender:   [{pid,<0.658.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =ERROR REPORT====
+** Generic server <0.659.0> terminating 
+** Last message in was {'DOWN',#Ref<0.2181534410.3163553793.6126>,process,<0.649.0>,noproc}
+** When Server state == []
+** Reason for termination == 
+** {bad_return_value,{stop,[]}}
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.659.0>
+    registered_name: role_10001
+    exception exit: {{bad_return_value,{stop,[]}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,755}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>},{{mod_role,role},{tab_role,10001,"test","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 7359
+  neighbours:
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {bad_return_value,{stop,[]}}
+     Offender:   [{pid,<0.659.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =ERROR REPORT====
+** Generic server <0.660.0> terminating 
+** Last message in was {'DOWN',#Ref<0.2181534410.3163553793.6136>,process,<0.649.0>,noproc}
+** When Server state == []
+** Reason for termination == 
+** {bad_return_value,{stop,[]}}
+2018-11-01 17:38:01 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.660.0>
+    registered_name: role_10001
+    exception exit: {{bad_return_value,{stop,[]}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,755}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>},{{mod_role,role},{tab_role,10001,"test","123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 7359
+  neighbours:
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {bad_return_value,{stop,[]}}
+     Offender:   [{pid,<0.660.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    shutdown
+     Reason:     reached_max_restart_intensity
+     Offender:   [{pid,<0.660.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:38:01 =SUPERVISOR REPORT====
+     Supervisor: {local,cellphone_sup}
+     Context:    child_terminated
+     Reason:     shutdown
+     Offender:   [{pid,<0.631.0>},{id,role_sup},{mfargs,{role_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.652.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.655.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.656.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.658.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.658.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 233
+  neighbours:
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.658.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.656.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.659.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.659.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 216
+  neighbours:
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.659.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,{restarting,<0.656.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.660.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.660.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 216
+  neighbours:
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.660.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,{restarting,<0.656.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    shutdown
+     Reason:     reached_max_restart_intensity
+     Offender:   [{pid,{restarting,<0.656.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:46:53 =SUPERVISOR REPORT====
+     Supervisor: {local,cellphone_sup}
+     Context:    child_terminated
+     Reason:     shutdown
+     Offender:   [{pid,<0.631.0>},{id,role_sup},{mfargs,{role_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.654.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.655.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.657.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.657.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 233
+  neighbours:
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.657.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.655.0>},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.658.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.658.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 216
+  neighbours:
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.658.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,{restarting,<0.655.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.659.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.659.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 216
+  neighbours:
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.659.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,{restarting,<0.655.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.660.0>
+    registered_name: []
+    exception error: bad argument: [{erlang,register,[role_10001,<0.660.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [role_sup,cellphone_sup,<0.621.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.631.0>]
+    dictionary: [{net_pid,<0.649.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 216
+  neighbours:
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    start_error
+     Reason:     {badarg,[{erlang,register,[role_10001,<0.660.0>],[]},{role_server,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,88}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,{restarting,<0.655.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    shutdown
+     Reason:     reached_max_restart_intensity
+     Offender:   [{pid,{restarting,<0.655.0>}},{id,role_server},{mfargs,{role_server,start_link,[{tab_role,10001,"test","123"},<0.649.0>]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2018-11-01 17:54:42 =SUPERVISOR REPORT====
+     Supervisor: {local,cellphone_sup}
+     Context:    child_terminated
+     Reason:     shutdown
+     Offender:   [{pid,<0.631.0>},{id,role_sup},{mfargs,{role_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+

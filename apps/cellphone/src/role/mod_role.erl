@@ -7,6 +7,11 @@
             handle_tos/3
         ]).
 
+-export([
+        get_role/0,
+        set_role/1
+        ]).
+
 %%% ======
 %%% API
 %%% ======
@@ -16,6 +21,14 @@ add_new_role(RoleId, RoleName, Psd) ->
                  name = RoleName,
                  password = Psd},
     lib_data:dirty_write(?TAB_ROLE, NewRole).
+
+set_role(Role) ->
+    erlang:put({?MODULE, role}, Role).
+
+get_role() ->
+    erlang:get({?MODULE, role}).
+
+
 
 %%% ======
 %%% call back

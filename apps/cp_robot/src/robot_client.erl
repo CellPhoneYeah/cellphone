@@ -19,9 +19,9 @@
         ]).
 
 -export([
-         register_role/2,
-         login/2,
-         start_ping/0,
+         regi/1,
+         logi/1,
+         chat/1,
          send_proto/1,
          test/0
         ]).
@@ -32,13 +32,16 @@
 start_link(Args) ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, Args, []).
 
-register_role(RoleName, Psd)
-  when is_list(RoleName) andalso is_list(Psd) ->
-    Proto = #register_tos{role_name = RoleName, psd = Psd},
+regi(RoleName) when is_list(RoleName) ->
+    Proto = #register_tos{role_name = RoleName, psd = "123"},
     gen_server:cast(?MODULE, Proto).
 
-login(RoleName, Psd) ->
-    Proto = #login_tos{role_name  = RoleName, psd = Psd},
+logi(RoleName) ->
+    Proto = #login_tos{role_name  = RoleName, psd = "123"},
+    gen_server:cast(?MODULE, Proto).
+
+chat(Content) ->
+    Proto = #chat_tos{chat = #s_chat{content = Content}},
     gen_server:cast(?MODULE, Proto).
 
 send_proto(Proto) ->
@@ -46,9 +49,6 @@ send_proto(Proto) ->
 
 test() ->
     gen_server:cast(?MODULE, test).
-
-start_ping() ->
-    gen_server:cast(?MODULE, start_ping).
 %%% =====
 %%% callback
 %%% =====
@@ -88,10 +88,6 @@ handle_call(Req, _From, State) ->
             {noreply, State}
     end.
 
-do_handle_info(ping, State) ->
-    ?PRINT("ping"),
-    start_ping(State),
-    {ok, State};
 do_handle_info(timeout, State) ->
     ?PRINT("timeout"),
     Socket = hand_shake(),
@@ -100,6 +96,7 @@ do_handle_info(timeout, State) ->
     case gen_tcp:recv(Socket, 0) of
         {ok, _Ret} ->
             ok = inet:setopts(Socket, [{active, true}]),
+            start_ping(),
             {ok, State#state{socket = Socket}};
         Error ->
             ?THROW(Error)
@@ -112,16 +109,17 @@ do_handle_info({tcp_closed, _Socket}, State) ->
 do_handle_info({tcp_error, _Socket, Reason}, State) ->
     ?PRINT("tcp error ~p", [Reason]),
     {stop, tcp_error, State};
+do_handle_info(ping, State) ->
+    Tos = #ping_tos{time = lib_tool:now()},
+    client_handler:send_tos(State, Tos),
+    {ok, State};
 do_handle_info(Other, State) ->
     ?PRINT("unknown message ~p~n", [Other]),
     {ok, State}.
 
-do_handle_cast(test, State) ->
-    client_handler:send_tos(State, #ping_tos{time = lib_tool:now()}),
-    {ok, State};
-do_handle_cast(start_ping, State) ->
-    start_ping(State),
-    {ok, State};
+do_handle_cast(#login_tos{role_name = RoleName} = Proto, State) ->
+    client_handler:send_tos(State, Proto),
+    {ok, State#state{name = RoleName}};
 do_handle_cast(Proto, State) ->
     ok = client_handler:send_tos(State, Proto),
     {ok, State}.
@@ -147,10 +145,8 @@ handle_toc(State, ResBin) ->
             {ok, State}
     end.
 
-start_ping(#state{socket = Socket}) ->
-    erlang:send_after(?MIN_SECOND * 1000, self(), ping),
-    Tos = #ping_tos{time = lib_tool:now()},
-    client_handler:send_tos(Socket, Tos).
+start_ping() ->
+    erlang:send_after(?MIN_SECOND * 1000, self(), ping).
 
 hand_shake() ->
     Args = robot_config:get_connect_args(),

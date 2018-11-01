@@ -25,6 +25,7 @@
 
 -export([
         add_role_netpid/2,
+        del_role_netpid/1,
         get_role_netpid/1
         ]).
 
@@ -72,16 +73,20 @@ get_role_netpid(RoleId) ->
             NetPid
     end.
 
+del_role_netpid(RoleId) ->
+    ets:delete(?ETS_NETPID, RoleId).
+
 stop(RoleId) ->
     NetPid = get_role_netpid(RoleId),
     NetPid ! stop,
-    erlang:monitor(NetPid),
+    erlang:monitor(process, NetPid),
     receive
         {'DOWN', _, process, _, _} ->
             ok
     after 3000 ->
               ?LOG_ERROR("stop net pid fail"),
               del_role_netpid(RoleId),
+              role_server:del_online_role(RoleId),
               exit(NetPid, kill)
     end.
 
@@ -106,5 +111,3 @@ code_change(_OldVsn, State, _Extra) ->
 %%% =====
 %%% internal
 %%% =====
-del_role_netpid(RoleId) ->
-    ets:delete(?ETS_NETPID, RoleId).
