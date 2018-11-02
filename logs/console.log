@@ -821,3 +821,144 @@
 2018-11-01 18:21:55.200 [error] <0.655.0> module:role_server line:135 normal
 2018-11-01 18:21:57.038 [info] <0.656.0> module:websocket_handler line:84 terminate 10000
 2018-11-01 18:21:57.038 [error] <0.658.0> module:role_server line:135 normal
+2018-11-02 16:31:17.950 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:31:17.961 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:31:17.967 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:31:17.992 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:31:18.018 [warning] <0.632.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 16:31:18.057 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 16:32:16.677 [info] <0.648.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:32:16.679 [info] <0.630.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-02 16:32:16.681 [error] <0.648.0>@websocket_handler:websocket_handle:32 CRASH REPORT Process <0.648.0> with 0 neighbours crashed with reason: no case clause matching {ok,<<11,10,9,108,111,103,105,110,95,116,111,99,8,0,18,9,8,145,78,18,4,116,101,115,116>>} in websocket_handler:websocket_handle/2 line 32
+2018-11-02 16:32:16.693 [error] <0.648.0>@websocket_handler:websocket_handle:32 Ranch listener cellphone_listener terminated with reason: no case clause matching {ok,<<11,10,9,108,111,103,105,110,95,116,111,99,8,0,18,9,8,145,78,18,4,116,101,115,116>>} in websocket_handler:websocket_handle/2 line 32
+2018-11-02 16:32:16.694 [error] <0.651.0> module:role_server line:148 {{case_clause,
+                                 {ok,<<11,10,9,108,111,103,105,110,95,116,
+                                       111,99,8,0,18,9,8,145,78,18,4,116,101,
+                                       115,116>>}},
+                             [{websocket_handler,websocket_handle,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cellphone/src/net/websocket_handler.erl"},
+                                   {line,32}]},
+                              {cowboy_websocket,handler_call,6,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                   {line,466}]},
+                              {cowboy_http,loop,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                   {line,218}]},
+                              {proc_lib,init_p_do_apply,3,
+                                  [{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-02 16:39:57.692 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:39:57.695 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:39:57.698 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:39:57.704 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:39:57.729 [warning] <0.632.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 16:39:57.750 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 16:40:14.749 [info] <0.648.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:40:14.752 [info] <0.630.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-02 16:40:14.753 [info] <0.648.0> module:websocket_handler line:38 {ok,<<11,10,9,108,111,103,105,110,95,116,111,
+                                       99,8,0,18,9,8,145,78,18,4,116,101,115,
+                                       116>>}
+2018-11-02 16:40:14.753 [error] <0.648.0>@cowboy_websocket:handler_call:464 CRASH REPORT Process <0.648.0> with 0 neighbours crashed with reason: no try clause matching ok in cowboy_websocket:handler_call/6 line 464
+2018-11-02 16:40:14.762 [error] <0.648.0>@cowboy_websocket:handler_call:464 Ranch listener cellphone_listener terminated with reason: no try clause matching ok in cowboy_websocket:handler_call/6 line 464
+2018-11-02 16:40:14.763 [error] <0.651.0> module:role_server line:148 {{try_clause,ok},
+                             [{cowboy_websocket,handler_call,6,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_websocket.erl"},
+                                   {line,464}]},
+                              {cowboy_http,loop,2,
+                                  [{file,
+                                       "/data/cellphone/_build/default/lib/cowboy/src/cowboy_http.erl"},
+                                   {line,218}]},
+                              {proc_lib,init_p_do_apply,3,
+                                  [{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-02 16:42:46.271 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:42:46.274 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:42:46.277 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:42:46.283 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:42:46.309 [warning] <0.632.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 16:42:46.330 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 16:42:58.079 [info] <0.648.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:42:58.081 [info] <0.630.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-02 16:42:58.083 [info] <0.648.0> module:websocket_handler line:38 {ok,<<11,10,9,108,111,103,105,110,95,116,111,
+                                       99,8,0,18,9,8,145,78,18,4,116,101,115,
+                                       116>>}
+2018-11-02 16:43:38.954 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:43:38.958 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:43:38.961 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:43:38.967 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:43:38.992 [warning] <0.632.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 16:43:39.014 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 16:43:51.525 [info] <0.648.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:43:51.528 [info] <0.630.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-02 16:44:41.063 [info] <0.648.0> module:websocket_handler line:31 proto {ping_tos,1541148281}
+2018-11-02 16:44:53.216 [info] <0.648.0> module:websocket_handler line:31 proto {chat_tos,undefined,undefined,
+                                        {s_chat,undefined,undefined,
+                                         "good test",undefined}}
+2018-11-02 16:44:53.216 [info] <0.648.0> module:net_misc line:54 RoleId 10001
+2018-11-02 16:44:53.221 [error] <0.651.0>@role_server:handle_info:127 gen_server <0.651.0> terminated with reason: no case clause matching {'EXIT',{undef,[{mod_role,get_role,[],[]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,13}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,...},...]}} in role_server:handle_info/2 line 127
+2018-11-02 16:44:53.237 [error] <0.651.0>@role_server:handle_info:127 CRASH REPORT Process role_10001 with 0 neighbours crashed with reason: no case clause matching {'EXIT',{undef,[{mod_role,get_role,[],[]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,13}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,...},...]}} in role_server:handle_info/2 line 127
+2018-11-02 16:44:53.255 [error] <0.630.0>@role_server:handle_info:127 Supervisor role_sup had child role_server started with {role_server,start_link,undefined} at <0.651.0> exit with reason no case clause matching {'EXIT',{undef,[{mod_role,get_role,[],[]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,13}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,...},...]}} in role_server:handle_info/2 line 127 in context child_terminated
+2018-11-02 16:45:39.103 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:45:39.107 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:45:39.109 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:45:39.115 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:45:39.140 [warning] <0.632.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 16:45:39.160 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 16:45:59.152 [info] <0.648.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:45:59.154 [info] <0.630.0> module:role_server line:57 start role RoleId {tab_role,10001,"test","123"}
+2018-11-02 16:46:13.592 [info] <0.648.0> module:websocket_handler line:31 proto {chat_tos,undefined,undefined,
+                                        {s_chat,undefined,undefined,
+                                         "test chat",undefined}}
+2018-11-02 16:46:13.592 [info] <0.648.0> module:net_misc line:54 RoleId 10001
+2018-11-02 16:46:13.595 [info] <0.651.0> module:role_server line:80 RoleId 10001
+2018-11-02 16:46:49.960 [info] <0.648.0> module:websocket_handler line:31 proto {ping_tos,1541148409}
+2018-11-02 16:50:49.963 [info] <0.648.0> module:websocket_handler line:61  check ping
+2018-11-02 16:50:59.156 [error] <0.651.0>@role_server:handle_info:127 gen_server <0.651.0> terminated with reason: no case clause matching {'EXIT',{undef,[{mod_role_chat,get_data,[],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,162}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,...},...]}} in role_server:handle_info/2 line 127
+2018-11-02 16:50:59.168 [error] <0.651.0>@role_server:handle_info:127 CRASH REPORT Process role_10001 with 0 neighbours crashed with reason: no case clause matching {'EXIT',{undef,[{mod_role_chat,get_data,[],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,162}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,...},...]}} in role_server:handle_info/2 line 127
+2018-11-02 16:50:59.183 [error] <0.630.0>@role_server:handle_info:127 Supervisor role_sup had child role_server started with {role_server,start_link,undefined} at <0.651.0> exit with reason no case clause matching {'EXIT',{undef,[{mod_role_chat,get_data,[],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,162}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,...},...]}} in role_server:handle_info/2 line 127 in context child_terminated
+2018-11-02 16:55:28.584 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:28.588 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:28.590 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:28.596 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:28.614 [error] <0.647.0>@role_sup:init_name_role_id:56 CRASH REPORT Process <0.647.0> with 0 neighbours crashed with reason: no match of right hand value {tab_role,10001,"test","123"} in role_sup:init_name_role_id/1 line 56
+2018-11-02 16:55:28.615 [error] <0.640.0>@role_sup:init_name_role_id:56 Supervisor cellphone_sup had child role_sup started with role_sup:start_link() at undefined exit with reason no match of right hand value {tab_role,10001,"test","123"} in role_sup:init_name_role_id/1 line 56 in context start_error
+2018-11-02 16:55:28.618 [error] <0.638.0> CRASH REPORT Process <0.638.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,role_sup,{{badmatch,{tab_role,10001,"test","123"}},[{role_sup,init_name_role_id,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,56}]},{role_sup,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,41}]},{supervisor,init,1,[{file,"supervisor.erl"},{line,295}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,...}]}}},...} in application_master:init/4 line 138
+2018-11-02 16:55:28.635 [info] <0.42.0> Application cellphone exited with reason: {{shutdown,{failed_to_start_child,role_sup,{{badmatch,{tab_role,10001,"test","123"}},[{role_sup,init_name_role_id,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,56}]},{role_sup,init,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_sup.erl"},{line,41}]},{supervisor,init,1,[{file,"supervisor.erl"},{line,295}]},{gen_server,init_it,2,[{file,"gen_server.erl"},{line,374}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,342}]},{proc_lib,...}]}}},...}
+2018-11-02 16:55:28.636 [info] <0.42.0> Application cowboy exited with reason: stopped
+2018-11-02 16:55:28.637 [info] <0.42.0> Application ranch exited with reason: stopped
+2018-11-02 16:55:28.637 [info] <0.42.0> Application cowlib exited with reason: stopped
+2018-11-02 16:55:58.030 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:58.059 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:58.062 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:58.067 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 16:55:58.260 [warning] <0.626.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 16:55:58.287 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 16:56:26.988 [info] <0.642.0> module:websocket_handler line:31 proto {register_tos,"test","123"}
+2018-11-02 16:56:40.788 [info] <0.642.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:56:40.788 [info] <0.624.0> module:role_server line:57 start role RoleId {tab_role,10001,"test",0,"123"}
+2018-11-02 16:56:54.847 [info] <0.642.0> module:websocket_handler line:31 proto {chat_tos,undefined,undefined,
+                                        {s_chat,undefined,undefined,
+                                         "test chat",undefined,undefined}}
+2018-11-02 16:56:54.847 [info] <0.642.0> module:net_misc line:54 RoleId 10001
+2018-11-02 16:56:54.850 [info] <0.645.0> module:role_server line:80 RoleId 10001
+2018-11-02 16:57:07.299 [info] <0.642.0> module:websocket_handler line:31 proto {ping_tos,1541149027}
+2018-11-02 16:57:51.983 [error] <0.645.0> module:role_server line:148 normal
+2018-11-02 16:58:30.398 [info] <0.649.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 16:58:30.398 [info] <0.624.0> module:role_server line:57 start role RoleId {tab_role,10001,"test",0,"123"}
+2018-11-02 16:59:23.722 [info] <0.649.0> module:websocket_handler line:31 proto {ping_tos,1541149163}
+2018-11-02 17:03:23.722 [info] <0.649.0> module:websocket_handler line:61  check ping
+2018-11-02 17:03:30.399 [error] <0.651.0>@role_server:handle_info:127 gen_server <0.651.0> terminated with reason: no case clause matching {'EXIT',{undef,[{erlang,function_exported_exported,[mod_role,get_data,0],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,167}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"g..."},...]},...]}} in role_server:handle_info/2 line 127
+2018-11-02 17:03:30.412 [error] <0.651.0>@role_server:handle_info:127 CRASH REPORT Process role_10001 with 0 neighbours crashed with reason: no case clause matching {'EXIT',{undef,[{erlang,function_exported_exported,[mod_role,get_data,0],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,167}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"g..."},...]},...]}} in role_server:handle_info/2 line 127
+2018-11-02 17:03:30.429 [error] <0.624.0>@role_server:handle_info:127 Supervisor role_sup had child role_server started with {role_server,start_link,undefined} at <0.651.0> exit with reason no case clause matching {'EXIT',{undef,[{erlang,function_exported_exported,[mod_role,get_data,0],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,167}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"g..."},...]},...]}} in role_server:handle_info/2 line 127 in context child_terminated
+2018-11-02 17:35:41.153 [info] <0.42.0> Application lager started on node 'cellphone@127.0.0.1'
+2018-11-02 17:35:41.156 [info] <0.42.0> Application cowlib started on node 'cellphone@127.0.0.1'
+2018-11-02 17:35:41.159 [info] <0.42.0> Application ranch started on node 'cellphone@127.0.0.1'
+2018-11-02 17:35:41.165 [info] <0.42.0> Application cowboy started on node 'cellphone@127.0.0.1'
+2018-11-02 17:35:41.190 [warning] <0.630.0> Setting Ranch options together with socket options is deprecated. Please use the new map syntax that allows specifying socket options separately from other options.
+2018-11-02 17:35:41.213 [info] <0.42.0> Application cellphone started on node 'cellphone@127.0.0.1'
+2018-11-02 17:35:51.615 [info] <0.646.0> module:websocket_handler line:31 proto {login_tos,"test","123"}
+2018-11-02 17:35:51.618 [info] <0.628.0> module:role_server line:57 start role RoleId {tab_role,10001,"test",0,"123"}
+2018-11-02 17:36:44.059 [info] <0.646.0> module:websocket_handler line:31 proto {ping_tos,1541151404}
+2018-11-02 17:40:44.061 [info] <0.646.0> module:websocket_handler line:61  check ping

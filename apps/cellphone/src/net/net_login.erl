@@ -52,7 +52,7 @@ do_login(#tab_role{id = RoleId} = Role, NetPid) ->
     net_server:add_role_netpid(RoleId, NetPid).
 
 check_login(RoleId, Psd) ->
-    case lib_role:get_role(RoleId) of
+    case lib_role:get_role_in_db(RoleId) of
         [#tab_role{id = RoleId, password = Psd} = Role] ->
             if
                 RoleId =/= ?UNDEF ->

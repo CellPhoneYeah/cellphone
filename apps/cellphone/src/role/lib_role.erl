@@ -3,9 +3,6 @@
 -include("global.hrl").
 
 -export([
-         role_register/3,
-         role_login/2,
-         role_send_msg/2,
          register_name/1,
          pid/1
         ]).
@@ -21,24 +18,31 @@
 
 -export([
         send_proto/2,
-        get_role/1
+        get_role_in_db/1
         ]).
 
+%%% ======
+%%% API
+%%% ======
+%% 获取用户进程pid(注册名)
 pid(RoleId) ->
     RegisterName = register_name(RoleId),
-    case is_online(RegisterName) of
-        true ->
+    case whereis(RegisterName) of
+        _Pid when is_pid(_Pid) ->
             RegisterName;
-        false ->
+        _ ->
             ?UNDEF
     end.
 
-get_role(RoleId) ->
+%% 从数据库获取用户数据
+get_role_in_db(RoleId) ->
     lib_data:dirty_read(?TAB_ROLE, RoleId).
 
+%% 获取所有在线用户id
 get_all() ->
     ets:match(?ETS_ROLE, {'$1', '_'}).
 
+%% 判断用户进程是否存在
 is_online(RoleId) when is_integer(RoleId) ->
     RegisterName = register_name(RoleId),
     is_online(RegisterName);
@@ -50,35 +54,11 @@ is_online(RegisterName) when is_atom(RegisterName) ->
             true
     end.
 
+%% 获取用户进程注册名
 register_name(RoleId) ->
     list_to_atom("role_" ++ integer_to_list(RoleId)).
 
-role_register(RoleId, RoleName, Password) ->
-    case role_server:get_role_id_by_name(RoleName) of
-        [] ->
-            lib_data:dirty_write(?TAB_ROLE, #tab_role{id = RoleId, name = RoleName, password = Password}),
-            ok;
-        _ ->
-            has_used
-    end.
-
-role_login(Name, Password) ->
-    case role_server:get_role_id_by_name(Name) of
-        [] ->
-            not_found;
-        [RoleId] ->
-            [#tab_role{password = PSW}] = lib_data:dirty_read(?TAB_ROLE, RoleId),
-            if PSW =:= Password ->
-                   NetPid = self(),
-                   role_sup:start_child(RoleId, NetPid);
-               true ->
-                   password_wrong
-            end
-    end.
-
-role_send_msg(Name, Msg) ->
-    [RolePid ! {get_msg, Name, Msg} || RolePid <- role_server:all_roles()].
-
+%% 检查用户名是否已经被占用
 is_registered(RoleName) ->
     case role_server:get_role_id_by_name(RoleName) of
         ?UNDEF ->
@@ -87,11 +67,11 @@ is_registered(RoleName) ->
             true
     end.
 
+%% 发送协议到用户进程
 send_proto(RoleId, Proto) ->
-    case is_online(RoleId) of
-        true->
-            RolePid = whereis(register_name(RoleId)),
+    case pid(RoleId) of
+        RolePid when is_pid(RolePid) ->
             RolePid ! {binary, Proto};
-        false ->
-            ?UNDEF
+        ?UNDEF ->
+            ok
     end.

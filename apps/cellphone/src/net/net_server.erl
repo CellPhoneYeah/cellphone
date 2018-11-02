@@ -55,9 +55,10 @@ init([]) ->
               }
              ],
 
+    Port = lib_config:listen_port(),
     Dispatch = cowboy_router:compile(Router),
     {ok, _} = cowboy:start_clear(cellphone_listener,
-                                 [{port, 8089}, {max_connections, 10240}, {num_acceptors, 10}],
+                                 [{port, Port}, {max_connections, 10240}, {num_acceptors, 10}],
                                 #{env => #{dispatch => Dispatch}}
                                 ),
     {ok, #state{}}.

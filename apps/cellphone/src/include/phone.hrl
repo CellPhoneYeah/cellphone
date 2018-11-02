@@ -73,7 +73,9 @@
 -record(s_chat,
         {role_id                :: integer() | undefined, % = 1, 32 bits
          role_name              :: iolist() | undefined, % = 2
-         content                :: iolist() | undefined % = 3
+         content                :: iolist() | undefined, % = 3
+         time                   :: integer() | undefined, % = 4, 32 bits
+         picture                :: integer() | undefined % = 5, 32 bits
         }).
 -endif.
 

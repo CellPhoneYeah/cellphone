@@ -243,7 +243,7 @@ encode_msg_s_chat(Msg, TrUserData) ->
 
 
 encode_msg_s_chat(#s_chat{role_id = F1, role_name = F2,
-			  content = F3},
+			  content = F3, time = F4, picture = F5},
 		  Bin, TrUserData) ->
     B1 = if F1 == undefined -> Bin;
 	    true ->
@@ -259,11 +259,25 @@ encode_msg_s_chat(#s_chat{role_id = F1, role_name = F2,
 		  e_type_string(TrF2, <<B1/binary, 18>>, TrUserData)
 		end
 	 end,
-    if F3 == undefined -> B2;
+    B3 = if F3 == undefined -> B2;
+	    true ->
+		begin
+		  TrF3 = id(F3, TrUserData),
+		  e_type_string(TrF3, <<B2/binary, 26>>, TrUserData)
+		end
+	 end,
+    B4 = if F4 == undefined -> B3;
+	    true ->
+		begin
+		  TrF4 = id(F4, TrUserData),
+		  e_type_int32(TrF4, <<B3/binary, 32>>, TrUserData)
+		end
+	 end,
+    if F5 == undefined -> B4;
        true ->
 	   begin
-	     TrF3 = id(F3, TrUserData),
-	     e_type_string(TrF3, <<B2/binary, 26>>, TrUserData)
+	     TrF5 = id(F5, TrUserData),
+	     e_type_int32(TrF5, <<B4/binary, 40>>, TrUserData)
 	   end
     end.
 
@@ -1366,77 +1380,94 @@ decode_msg_s_chat(Bin, TrUserData) ->
     dfp_read_field_def_s_chat(Bin, 0, 0,
 			      id(undefined, TrUserData),
 			      id(undefined, TrUserData),
+			      id(undefined, TrUserData),
+			      id(undefined, TrUserData),
 			      id(undefined, TrUserData), TrUserData).
 
 dfp_read_field_def_s_chat(<<8, Rest/binary>>, Z1, Z2,
-			  F@_1, F@_2, F@_3, TrUserData) ->
+			  F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     d_field_s_chat_role_id(Rest, Z1, Z2, F@_1, F@_2, F@_3,
-			   TrUserData);
+			   F@_4, F@_5, TrUserData);
 dfp_read_field_def_s_chat(<<18, Rest/binary>>, Z1, Z2,
-			  F@_1, F@_2, F@_3, TrUserData) ->
+			  F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     d_field_s_chat_role_name(Rest, Z1, Z2, F@_1, F@_2, F@_3,
-			     TrUserData);
+			     F@_4, F@_5, TrUserData);
 dfp_read_field_def_s_chat(<<26, Rest/binary>>, Z1, Z2,
-			  F@_1, F@_2, F@_3, TrUserData) ->
+			  F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     d_field_s_chat_content(Rest, Z1, Z2, F@_1, F@_2, F@_3,
-			   TrUserData);
+			   F@_4, F@_5, TrUserData);
+dfp_read_field_def_s_chat(<<32, Rest/binary>>, Z1, Z2,
+			  F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
+    d_field_s_chat_time(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			F@_4, F@_5, TrUserData);
+dfp_read_field_def_s_chat(<<40, Rest/binary>>, Z1, Z2,
+			  F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
+    d_field_s_chat_picture(Rest, Z1, Z2, F@_1, F@_2, F@_3,
+			   F@_4, F@_5, TrUserData);
 dfp_read_field_def_s_chat(<<>>, 0, 0, F@_1, F@_2, F@_3,
-			  _) ->
+			  F@_4, F@_5, _) ->
     #s_chat{role_id = F@_1, role_name = F@_2,
-	    content = F@_3};
+	    content = F@_3, time = F@_4, picture = F@_5};
 dfp_read_field_def_s_chat(Other, Z1, Z2, F@_1, F@_2,
-			  F@_3, TrUserData) ->
+			  F@_3, F@_4, F@_5, TrUserData) ->
     dg_read_field_def_s_chat(Other, Z1, Z2, F@_1, F@_2,
-			     F@_3, TrUserData).
+			     F@_3, F@_4, F@_5, TrUserData).
 
 dg_read_field_def_s_chat(<<1:1, X:7, Rest/binary>>, N,
-			 Acc, F@_1, F@_2, F@_3, TrUserData)
+			 Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
     when N < 32 - 7 ->
     dg_read_field_def_s_chat(Rest, N + 7, X bsl N + Acc,
-			     F@_1, F@_2, F@_3, TrUserData);
+			     F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData);
 dg_read_field_def_s_chat(<<0:1, X:7, Rest/binary>>, N,
-			 Acc, F@_1, F@_2, F@_3, TrUserData) ->
+			 Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     Key = X bsl N + Acc,
     case Key of
       8 ->
 	  d_field_s_chat_role_id(Rest, 0, 0, F@_1, F@_2, F@_3,
-				 TrUserData);
+				 F@_4, F@_5, TrUserData);
       18 ->
 	  d_field_s_chat_role_name(Rest, 0, 0, F@_1, F@_2, F@_3,
-				   TrUserData);
+				   F@_4, F@_5, TrUserData);
       26 ->
 	  d_field_s_chat_content(Rest, 0, 0, F@_1, F@_2, F@_3,
-				 TrUserData);
+				 F@_4, F@_5, TrUserData);
+      32 ->
+	  d_field_s_chat_time(Rest, 0, 0, F@_1, F@_2, F@_3, F@_4,
+			      F@_5, TrUserData);
+      40 ->
+	  d_field_s_chat_picture(Rest, 0, 0, F@_1, F@_2, F@_3,
+				 F@_4, F@_5, TrUserData);
       _ ->
 	  case Key band 7 of
 	    0 ->
-		skip_varint_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3,
-				   TrUserData);
+		skip_varint_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3, F@_4,
+				   F@_5, TrUserData);
 	    1 ->
-		skip_64_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3,
+		skip_64_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3, F@_4, F@_5,
 			       TrUserData);
 	    2 ->
 		skip_length_delimited_s_chat(Rest, 0, 0, F@_1, F@_2,
-					     F@_3, TrUserData);
+					     F@_3, F@_4, F@_5, TrUserData);
 	    3 ->
 		skip_group_s_chat(Rest, Key bsr 3, 0, F@_1, F@_2, F@_3,
-				  TrUserData);
+				  F@_4, F@_5, TrUserData);
 	    5 ->
-		skip_32_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3, TrUserData)
+		skip_32_s_chat(Rest, 0, 0, F@_1, F@_2, F@_3, F@_4, F@_5,
+			       TrUserData)
 	  end
     end;
 dg_read_field_def_s_chat(<<>>, 0, 0, F@_1, F@_2, F@_3,
-			 _) ->
+			 F@_4, F@_5, _) ->
     #s_chat{role_id = F@_1, role_name = F@_2,
-	    content = F@_3}.
+	    content = F@_3, time = F@_4, picture = F@_5}.
 
 d_field_s_chat_role_id(<<1:1, X:7, Rest/binary>>, N,
-		       Acc, F@_1, F@_2, F@_3, TrUserData)
+		       Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
     when N < 57 ->
     d_field_s_chat_role_id(Rest, N + 7, X bsl N + Acc, F@_1,
-			   F@_2, F@_3, TrUserData);
+			   F@_2, F@_3, F@_4, F@_5, TrUserData);
 d_field_s_chat_role_id(<<0:1, X:7, Rest/binary>>, N,
-		       Acc, _, F@_2, F@_3, TrUserData) ->
+		       Acc, _, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     {NewFValue, RestF} = {begin
 			    <<Res:32/signed-native>> = <<(X bsl N +
 							    Acc):32/unsigned-native>>,
@@ -1444,15 +1475,15 @@ d_field_s_chat_role_id(<<0:1, X:7, Rest/binary>>, N,
 			  end,
 			  Rest},
     dfp_read_field_def_s_chat(RestF, 0, 0, NewFValue, F@_2,
-			      F@_3, TrUserData).
+			      F@_3, F@_4, F@_5, TrUserData).
 
 d_field_s_chat_role_name(<<1:1, X:7, Rest/binary>>, N,
-			 Acc, F@_1, F@_2, F@_3, TrUserData)
+			 Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
     when N < 57 ->
     d_field_s_chat_role_name(Rest, N + 7, X bsl N + Acc,
-			     F@_1, F@_2, F@_3, TrUserData);
+			     F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData);
 d_field_s_chat_role_name(<<0:1, X:7, Rest/binary>>, N,
-			 Acc, F@_1, _, F@_3, TrUserData) ->
+			 Acc, F@_1, _, F@_3, F@_4, F@_5, TrUserData) ->
     {NewFValue, RestF} = begin
 			   Len = X bsl N + Acc,
 			   <<Utf8:Len/binary, Rest2/binary>> = Rest,
@@ -1461,15 +1492,15 @@ d_field_s_chat_role_name(<<0:1, X:7, Rest/binary>>, N,
 			    Rest2}
 			 end,
     dfp_read_field_def_s_chat(RestF, 0, 0, F@_1, NewFValue,
-			      F@_3, TrUserData).
+			      F@_3, F@_4, F@_5, TrUserData).
 
 d_field_s_chat_content(<<1:1, X:7, Rest/binary>>, N,
-		       Acc, F@_1, F@_2, F@_3, TrUserData)
+		       Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
     when N < 57 ->
     d_field_s_chat_content(Rest, N + 7, X bsl N + Acc, F@_1,
-			   F@_2, F@_3, TrUserData);
+			   F@_2, F@_3, F@_4, F@_5, TrUserData);
 d_field_s_chat_content(<<0:1, X:7, Rest/binary>>, N,
-		       Acc, F@_1, F@_2, _, TrUserData) ->
+		       Acc, F@_1, F@_2, _, F@_4, F@_5, TrUserData) ->
     {NewFValue, RestF} = begin
 			   Len = X bsl N + Acc,
 			   <<Utf8:Len/binary, Rest2/binary>> = Rest,
@@ -1478,44 +1509,77 @@ d_field_s_chat_content(<<0:1, X:7, Rest/binary>>, N,
 			    Rest2}
 			 end,
     dfp_read_field_def_s_chat(RestF, 0, 0, F@_1, F@_2,
-			      NewFValue, TrUserData).
+			      NewFValue, F@_4, F@_5, TrUserData).
+
+d_field_s_chat_time(<<1:1, X:7, Rest/binary>>, N, Acc,
+		    F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
+    when N < 57 ->
+    d_field_s_chat_time(Rest, N + 7, X bsl N + Acc, F@_1,
+			F@_2, F@_3, F@_4, F@_5, TrUserData);
+d_field_s_chat_time(<<0:1, X:7, Rest/binary>>, N, Acc,
+		    F@_1, F@_2, F@_3, _, F@_5, TrUserData) ->
+    {NewFValue, RestF} = {begin
+			    <<Res:32/signed-native>> = <<(X bsl N +
+							    Acc):32/unsigned-native>>,
+			    id(Res, TrUserData)
+			  end,
+			  Rest},
+    dfp_read_field_def_s_chat(RestF, 0, 0, F@_1, F@_2, F@_3,
+			      NewFValue, F@_5, TrUserData).
+
+d_field_s_chat_picture(<<1:1, X:7, Rest/binary>>, N,
+		       Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
+    when N < 57 ->
+    d_field_s_chat_picture(Rest, N + 7, X bsl N + Acc, F@_1,
+			   F@_2, F@_3, F@_4, F@_5, TrUserData);
+d_field_s_chat_picture(<<0:1, X:7, Rest/binary>>, N,
+		       Acc, F@_1, F@_2, F@_3, F@_4, _, TrUserData) ->
+    {NewFValue, RestF} = {begin
+			    <<Res:32/signed-native>> = <<(X bsl N +
+							    Acc):32/unsigned-native>>,
+			    id(Res, TrUserData)
+			  end,
+			  Rest},
+    dfp_read_field_def_s_chat(RestF, 0, 0, F@_1, F@_2, F@_3,
+			      F@_4, NewFValue, TrUserData).
 
 skip_varint_s_chat(<<1:1, _:7, Rest/binary>>, Z1, Z2,
-		   F@_1, F@_2, F@_3, TrUserData) ->
-    skip_varint_s_chat(Rest, Z1, Z2, F@_1, F@_2, F@_3,
-		       TrUserData);
+		   F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
+    skip_varint_s_chat(Rest, Z1, Z2, F@_1, F@_2, F@_3, F@_4,
+		       F@_5, TrUserData);
 skip_varint_s_chat(<<0:1, _:7, Rest/binary>>, Z1, Z2,
-		   F@_1, F@_2, F@_3, TrUserData) ->
+		   F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     dfp_read_field_def_s_chat(Rest, Z1, Z2, F@_1, F@_2,
-			      F@_3, TrUserData).
+			      F@_3, F@_4, F@_5, TrUserData).
 
 skip_length_delimited_s_chat(<<1:1, X:7, Rest/binary>>,
-			     N, Acc, F@_1, F@_2, F@_3, TrUserData)
+			     N, Acc, F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData)
     when N < 57 ->
     skip_length_delimited_s_chat(Rest, N + 7, X bsl N + Acc,
-				 F@_1, F@_2, F@_3, TrUserData);
+				 F@_1, F@_2, F@_3, F@_4, F@_5, TrUserData);
 skip_length_delimited_s_chat(<<0:1, X:7, Rest/binary>>,
-			     N, Acc, F@_1, F@_2, F@_3, TrUserData) ->
+			     N, Acc, F@_1, F@_2, F@_3, F@_4, F@_5,
+			     TrUserData) ->
     Length = X bsl N + Acc,
     <<_:Length/binary, Rest2/binary>> = Rest,
     dfp_read_field_def_s_chat(Rest2, 0, 0, F@_1, F@_2, F@_3,
-			      TrUserData).
+			      F@_4, F@_5, TrUserData).
 
-skip_group_s_chat(Bin, FNum, Z2, F@_1, F@_2, F@_3,
-		  TrUserData) ->
+skip_group_s_chat(Bin, FNum, Z2, F@_1, F@_2, F@_3, F@_4,
+		  F@_5, TrUserData) ->
     {_, Rest} = read_group(Bin, FNum),
     dfp_read_field_def_s_chat(Rest, 0, Z2, F@_1, F@_2, F@_3,
-			      TrUserData).
+			      F@_4, F@_5, TrUserData).
 
 skip_32_s_chat(<<_:32, Rest/binary>>, Z1, Z2, F@_1,
-	       F@_2, F@_3, TrUserData) ->
+	       F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     dfp_read_field_def_s_chat(Rest, Z1, Z2, F@_1, F@_2,
-			      F@_3, TrUserData).
+			      F@_3, F@_4, F@_5, TrUserData).
 
 skip_64_s_chat(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
-	       F@_2, F@_3, TrUserData) ->
+	       F@_2, F@_3, F@_4, F@_5, TrUserData) ->
     dfp_read_field_def_s_chat(Rest, Z1, Z2, F@_1, F@_2,
-			      F@_3, TrUserData).
+			      F@_3, F@_4, F@_5, TrUserData).
 
 decode_msg_chat_tos(Bin, TrUserData) ->
     dfp_read_field_def_chat_tos(Bin, 0, 0,
@@ -1953,9 +2017,11 @@ merge_msg_login_toc(#login_toc{code = PFcode,
 
 -compile({nowarn_unused_function,merge_msg_s_chat/3}).
 merge_msg_s_chat(#s_chat{role_id = PFrole_id,
-			 role_name = PFrole_name, content = PFcontent},
+			 role_name = PFrole_name, content = PFcontent,
+			 time = PFtime, picture = PFpicture},
 		 #s_chat{role_id = NFrole_id, role_name = NFrole_name,
-			 content = NFcontent},
+			 content = NFcontent, time = NFtime,
+			 picture = NFpicture},
 		 _) ->
     #s_chat{role_id =
 		if NFrole_id =:= undefined -> PFrole_id;
@@ -1968,6 +2034,14 @@ merge_msg_s_chat(#s_chat{role_id = PFrole_id,
 	    content =
 		if NFcontent =:= undefined -> PFcontent;
 		   true -> NFcontent
+		end,
+	    time =
+		if NFtime =:= undefined -> PFtime;
+		   true -> NFtime
+		end,
+	    picture =
+		if NFpicture =:= undefined -> PFpicture;
+		   true -> NFpicture
 		end}.
 
 -compile({nowarn_unused_function,merge_msg_chat_tos/3}).
@@ -2138,7 +2212,7 @@ v_msg_login_toc(X, Path, _TrUserData) ->
 -compile({nowarn_unused_function,v_msg_s_chat/3}).
 -dialyzer({nowarn_function,v_msg_s_chat/3}).
 v_msg_s_chat(#s_chat{role_id = F1, role_name = F2,
-		     content = F3},
+		     content = F3, time = F4, picture = F5},
 	     Path, TrUserData) ->
     if F1 == undefined -> ok;
        true -> v_type_int32(F1, [role_id | Path], TrUserData)
@@ -2149,6 +2223,12 @@ v_msg_s_chat(#s_chat{role_id = F1, role_name = F2,
     end,
     if F3 == undefined -> ok;
        true -> v_type_string(F3, [content | Path], TrUserData)
+    end,
+    if F4 == undefined -> ok;
+       true -> v_type_int32(F4, [time | Path], TrUserData)
+    end,
+    if F5 == undefined -> ok;
+       true -> v_type_int32(F5, [picture | Path], TrUserData)
     end,
     ok;
 v_msg_s_chat(X, Path, _TrUserData) ->
@@ -2291,7 +2371,11 @@ get_msg_defs() ->
        #field{name = role_name, fnum = 2, rnum = 3,
 	      type = string, occurrence = optional, opts = []},
        #field{name = content, fnum = 3, rnum = 4,
-	      type = string, occurrence = optional, opts = []}]},
+	      type = string, occurrence = optional, opts = []},
+       #field{name = time, fnum = 4, rnum = 5, type = int32,
+	      occurrence = optional, opts = []},
+       #field{name = picture, fnum = 5, rnum = 6, type = int32,
+	      occurrence = optional, opts = []}]},
      {{msg, chat_tos},
       [#field{name = channel, fnum = 1, rnum = 2,
 	      type = int32, occurrence = optional, opts = []},
@@ -2375,7 +2459,11 @@ find_msg_def(s_chat) ->
      #field{name = role_name, fnum = 2, rnum = 3,
 	    type = string, occurrence = optional, opts = []},
      #field{name = content, fnum = 3, rnum = 4,
-	    type = string, occurrence = optional, opts = []}];
+	    type = string, occurrence = optional, opts = []},
+     #field{name = time, fnum = 4, rnum = 5, type = int32,
+	    occurrence = optional, opts = []},
+     #field{name = picture, fnum = 5, rnum = 6, type = int32,
+	    occurrence = optional, opts = []}];
 find_msg_def(chat_tos) ->
     [#field{name = channel, fnum = 1, rnum = 2,
 	    type = int32, occurrence = optional, opts = []},

@@ -70,6 +70,7 @@ do_init() ->
 
     wait_for_tables().
 
+%% 检查路径是否合法
 is_dir_exists() ->
     Dir = mnesia:system_info(directory) ++ "/",
     case filelib:ensure_dir(Dir) of
@@ -79,13 +80,16 @@ is_dir_exists() ->
             false
     end.
 
+%% 获取实际使用的目录，确保已经启动
 has_created_mnesia() ->
     mnesia:system_info(use_dir).
 
+%% 确保启动了mnesia数据库进程
 ensure_start_mnesia() ->
     application:start(mnesia, permanent),
     mnesia:change_table_copy_type(schema, node(), disc_copies).
 
+%% 确保所有表都被创建
 ensure_tables_created() ->
     [begin
          case mnesia:create_table(TabName, [{disc_copies, [node()]}, {type, set}, {attributes, Fields}]) of
@@ -96,10 +100,12 @@ ensure_tables_created() ->
              Reason ->
                  ?THROW(Reason)
          end
-     end || {TabName, _RecordName, Fields} <- get_all_tables()].
+     end || {TabName, _RecordName, Fields, _Mod} <- get_all_tables()].
 
+%% 等待表格初始化
 wait_for_tables() ->
     mnesia:wait_for_tables(mnesia:system_info(local_tables), infinity).
 
+%% 获取所有表格
 get_all_tables() ->
     ?ALL_TABLES.

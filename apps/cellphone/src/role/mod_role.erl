@@ -8,8 +8,8 @@
         ]).
 
 -export([
-        get_role/0,
-        set_role/1
+        get_data/0,
+        set_data/1
         ]).
 
 %%% ======
@@ -22,10 +22,10 @@ add_new_role(RoleId, RoleName, Psd) ->
                  password = Psd},
     lib_data:dirty_write(?TAB_ROLE, NewRole).
 
-set_role(Role) ->
+set_data(Role) ->
     erlang:put({?MODULE, role}, Role).
 
-get_role() ->
+get_data() ->
     erlang:get({?MODULE, role}).
 
 

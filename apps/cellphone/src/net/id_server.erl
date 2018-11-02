@@ -24,7 +24,7 @@
         ]).
 
 -export([
-        get_max_id/1
+         get_max_id/1
         ]).
 
 -define(MAX_ID, max_id).
@@ -78,10 +78,10 @@ set_max_id(Type, MaxId) ->
 
 init_role_id() ->
     AllRoleIds = lib_data:dirty_all_keys(?TAB_ROLE),
-    case AllRoleIds of
-        [] ->
-            MaxId = ?DEFAULT_ROLE_ID;
-        _ ->
-            MaxId = lists:max(AllRoleIds)
-    end,
+    MaxId = case AllRoleIds of
+                [] ->
+                    ?DEFAULT_ROLE_ID;
+                _ ->
+                    lists:max(AllRoleIds)
+            end,
     set_max_id(?TAB_ROLE, MaxId).

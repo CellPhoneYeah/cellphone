@@ -29,6 +29,7 @@
         ]).
 
 -define(NET_PID, net_pid).
+-define(DUMPER, dumper).
 
 %%% =====
 %%% API
@@ -60,24 +61,34 @@ all_online_role() ->
     First = ets:first(?ETS_ROLE),
     get_online_role(First, []).
 
+get_online_role(?EOT, AllOnlineRole) ->
+    AllOnlineRole;
+get_online_role(Key, AllOnlineRole) ->
+    [OnlineRole] = ets:lookup(?ETS_ROLE, Key),
+    get_online_role(ets:next(?ETS_ROLE, Key), [OnlineRole | AllOnlineRole]).
+
 get_net_pid() ->
     erlang:get(?NET_PID).
 
-cast_all(Msg) ->
+cast_all(Toc) ->
     First = ets:first(?ETS_ROLE),
-    cast_all(First, Msg).
-cast_all(?EOT, _Msg) ->
+    {ok, Bin} = net_misc:encode_msg(Toc),
+    cast_all(First, Bin).
+cast_all(?EOT, _Bin) ->
     ok;
-cast_all(RoleId, Msg) ->
+cast_all(RoleId, Bin) ->
     ?LOG_INFO("RoleId ~p", [RoleId]),
-    unicast(RoleId, Msg),
-    cast_all(ets:next(?ETS_ROLE, RoleId), Msg).
+    unicast(RoleId, Bin),
+    cast_all(ets:next(?ETS_ROLE, RoleId), Bin).
 
-unicast(NetPid, Msg) when is_pid(NetPid) -> % 发到网关进程
-    NetPid ! {toc, Msg};
-unicast(RoleId, Msg) when is_integer(RoleId)->
+unicast(RoleId, Toc) when is_integer(RoleId)->
     NetPid = net_server:get_role_netpid(RoleId),
-    NetPid ! {toc, Msg}.
+    unicast(NetPid, Toc);
+unicast(NetPid, Toc) when is_tuple(Toc) ->
+    {ok, Bin} = net_misc:encode_msg(Toc),
+    unicast(NetPid, Bin);
+unicast(NetPid, Bin) when is_binary(Bin) ->
+    NetPid ! {toc, Bin}.
 
 %%% =====
 %%% call back
@@ -86,9 +97,9 @@ init([#tab_role{id = RoleId} = Role, NetPid]) ->
     erlang:monitor(process, NetPid), % 监控网关进程，网关进程死了，玩家进程也死掉{'DOWN', _, _, _, Reason}
     set_net_pid(NetPid),
     RegisterName = lib_role:register_name(RoleId),
-    % erlang:unregister(RegisterName),
     erlang:register(RegisterName, self()),
-    mod_role:set_role(Role),
+    mod_role:set_data(Role),
+    start_dumper(),
     {ok, []}.
 
 handle_call(Request, _From, State) ->
@@ -104,11 +115,13 @@ handle_call(Request, _From, State) ->
 handle_cast(Request, State) ->
     case catch do_handle_cast(Request) of
         ok ->
-            ok;
+            {noreply, State};
+        stop ->
+            {stop, normal, State};
         {error, Error} ->
-            ?LOG_ERROR("~p", [Error])
-    end,
-    {noreply, State}.
+            ?LOG_ERROR("~p", [Error]),
+            {noreply, State}
+    end.
 
 handle_info(Request, State) ->
     case catch do_handle_info(Request) of
@@ -140,20 +153,33 @@ do_handle_info({c2s, RoleId, NetPid, Mod, Proto}) ->
 do_handle_info({s2s, {Mod, Proto}}) ->
     Mod:handle_s2s(Proto),
     ok;
+do_handle_info(?DUMPER) ->
+    [begin
+         case erlang:function_exported(Mod, get_data, 0) of
+             true ->
+                 Data = Mod:get_data(),
+                 lib_data:dirty_write(Tab, Data);
+             false ->
+                 ok
+         end
+     end
+     ||
+     {Tab, _, _, Mod} <- ?ALL_TABLES],
+    ok;
 do_handle_info(Other) ->
-    ?LOG_ERROR("unknown request ~p", [Other]).
+    ?LOG_ERROR("unknown request ~p", [Other]),
+    ok.
 
+do_handle_cast(stop) ->
+    stop;
 do_handle_cast(Other) ->
     ?LOG_ERROR("unknown request ~p", [Other]).
 
 do_handle_call(Other) ->
     ?LOG_ERROR("unknown request ~p", [Other]).
 
-get_online_role(?EOT, AllOnlineRole) ->
-    AllOnlineRole;
-get_online_role(Key, AllOnlineRole) ->
-    [OnlineRole] = ets:lookup(?ETS_ROLE, Key),
-    get_online_role(ets:next(?ETS_ROLE, Key), [OnlineRole | AllOnlineRole]).
-
 set_net_pid(NetPid) ->
     erlang:put(?NET_PID, NetPid).
+
+start_dumper() ->
+    erlang:send_after(?MIN_SECOND * 1000 * 5, self(), ?DUMPER).
