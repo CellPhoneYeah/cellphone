@@ -819,3 +819,90 @@ Ranch listener cellphone_listener had connection process started with cowboy_cle
      Reason:     {{case_clause,{'EXIT',{undef,[{erlang,function_exported_exported,[mod_role,get_data,0],[]},{role_server,'-do_handle_info/1-lc$^0/1-0-',1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,158}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,167}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
      Offender:   [{pid,<0.651.0>},{id,role_server},{mfargs,{role_server,start_link,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
 
+2018-11-02 22:31:15 =ERROR REPORT====
+** Generic server <0.678.0> terminating 
+** Last message in was {c2s,10001,<0.675.0>,mod_role_chat,{chat_tos,undefined,undefined,{s_chat,undefined,undefined,"test chat",undefined,undefined}}}
+** When Server state == []
+** Reason for termination == 
+** {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-02 22:31:15 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.678.0>
+    registered_name: role_10001
+    exception error: {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.649.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.657.0>]
+    dictionary: [{{mod_role,role},{tab_role,10001,"test",0,"123"}},{net_pid,<0.675.0>}]
+    trap_exit: false
+    status: running
+    heap_size: 6772
+    stack_size: 27
+    reductions: 98409
+  neighbours:
+2018-11-02 22:31:15 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.678.0>},{id,role_server},{mfargs,{role_server,start_link,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2018-11-03 11:34:10 =ERROR REPORT====
+** Generic server <0.700.0> terminating 
+** Last message in was {c2s,10001,<0.695.0>,mod_role_chat,{chat_tos,undefined,undefined,{s_chat,10001,"robot_1","random to talk something 5",undefined,undefined}}}
+** When Server state == []
+** Reason for termination == 
+** {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-03 11:34:10 =ERROR REPORT====
+** Generic server <0.701.0> terminating 
+** Last message in was {c2s,10002,<0.696.0>,mod_role_chat,{chat_tos,undefined,undefined,{s_chat,10002,"robot_2","random to talk something 8",undefined,undefined}}}
+** When Server state == []
+** Reason for termination == 
+** {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2018-11-03 11:34:10 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.700.0>
+    registered_name: role_10001
+    exception error: {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.668.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.676.0>]
+    dictionary: [{net_pid,<0.695.0>},{{mod_role,role},{tab_role,10001,"robot_1",0,"123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 101288
+  neighbours:
+2018-11-03 11:34:10 =CRASH REPORT====
+  crasher:
+    initial call: role_server:init/1
+    pid: <0.701.0>
+    registered_name: role_10002
+    exception error: {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [role_sup,cellphone_sup,<0.668.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.676.0>]
+    dictionary: [{net_pid,<0.696.0>},{{mod_role,role},{tab_role,10002,"robot_2",0,"123"}}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 101273
+  neighbours:
+2018-11-03 11:34:10 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.700.0>},{id,role_server},{mfargs,{role_server,start_link,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2018-11-03 11:34:10 =SUPERVISOR REPORT====
+     Supervisor: {local,role_sup}
+     Context:    child_terminated
+     Reason:     {{case_clause,{'EXIT',{badarg,[{erlang,length,[undefined],[]},{chat_server,add_chat_records,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/chat_server.erl"},{line,31}]},{mod_role_chat,handle_s_chat,5,[{file,"/data/cellphone/_build/default/lib/cellphone/src/chat/mod_role_chat.erl"},{line,16}]},{role_server,do_handle_info,1,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,151}]},{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}}},[{role_server,handle_info,2,[{file,"/data/cellphone/_build/default/lib/cellphone/src/role/role_server.erl"},{line,127}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.701.0>},{id,role_server},{mfargs,{role_server,start_link,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+

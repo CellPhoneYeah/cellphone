@@ -1,6 +1,7 @@
--module(cellphone_sup).
+-module(chat_sup).
 
 -behaviour(supervisor).
+-include("global.hrl").
 
 %% API
 -export([start_link/0]).
@@ -9,7 +10,7 @@
 -export([init/1]).
 
 %% Helper macro for declaring children of supervisor
--define(CHILD(I, Type), {I, {I, start_link, []}, permanent, 5000, Type, [I]}).
+-define(CHILD(I, Type), {I, {I, start_link, []}, temporary, 5000, Type, [I]}).
 
 %% ===================================================================
 %% API functions
@@ -23,9 +24,5 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    Data = ?CHILD(data_sup, supervisor),
-    Role = ?CHILD(role_sup, supervisor),
-    Net = ?CHILD(network_sup, supervisor),
-    Chat = ?CHILD(chat_sup, supervisor),
-    {ok, { {one_for_one, 5, 10}, [Data, Role, Net, Chat]} }.
-
+    ChatServer = ?CHILD(chat_server, worker),
+    {ok, { {simple_one_for_one, 5, 10}, [ChatServer]} }.

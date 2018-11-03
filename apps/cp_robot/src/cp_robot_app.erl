@@ -18,7 +18,7 @@
 start() ->
     case application:start(cp_robot) of
         ok ->
-            cp_robot_sup:start_robot(1);
+            cp_robot_sup:start_robot(10);
         Error ->
             ?PRINT("start fail ~p~n", [Error])
     end.

@@ -25,12 +25,12 @@ set_role_id(RoleId) ->
     erlang:put(?ROLE_ID, RoleId).
 
 login(#register_tos{role_name = RoleName, psd = Psd}, _NetPid) ->
-    case check_register(RoleName, Psd) of
+    case catch check_register(RoleName, Psd) of
         {ok, RoleId}->
             do_register(RoleId, RoleName, Psd),
             {ok, #register_toc{code = ?E_OK, role = #s_role{role_id = RoleId, role_name = RoleName}}};
         {error, Code} ->
-            {fail, #register_toc{code = Code}}
+            {ok, #register_toc{code = Code}}
     end;
 login(#login_tos{role_name = RoleName, psd = Psd}, NetPid) ->
     RoleId = role_server:get_role_id_by_name(RoleName),
@@ -76,7 +76,7 @@ check_login(RoleId, Psd) ->
 check_register(RoleName, _Psd) ->
     case lib_role:is_registered(RoleName) of
         false ->
-            RoleId = id_server:get_max_id(?ETS_ROLE) + 1,
+            RoleId = id_server:get_max_id(?TAB_ROLE) + 1,
             {ok, RoleId};
         true ->
             ?THROW(?E_REGISTER_NAME_HAS_BEEN_USED)

@@ -40,21 +40,26 @@ start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 init([]) ->
-    ?ETS_ID_MANAGE = ets:new(?ETS_ID_MANAGE, [set, named_table]),
+    ?ETS_ID_MANAGE = ets:new(?ETS_ID_MANAGE, [set, named_table, protected, {keypos, 1}]),
     init_role_id(),
+    ?LOG_INFO("id_server started"),
     {ok, #state{}}.
 
 get_max_id(Type) ->
-    case ets:lookup(?ETS_ID_MANAGE, {Type, ?MAX_ID}) of
-        [] ->
-            ?DEFAULT_ID;
-        [MaxId] ->
-            MaxId
-    end.
+    gen_server:call(?MODULE, {get_max_id, Type}).
 
 %%% =====
 %%% call back
 %%% =====
+handle_call({get_max_id, Type}, _From, State) ->
+    MaxId = case ets:lookup(?ETS_ID_MANAGE, {Type, ?MAX_ID}) of
+        [] ->
+            ?DEFAULT_ID;
+        [{_, Id}] ->
+            set_max_id(Type, Id + 1),
+            Id
+    end,
+    {reply, MaxId, State};
 handle_call(_Request, _From, State) ->
     {reply, ok, State}.
 

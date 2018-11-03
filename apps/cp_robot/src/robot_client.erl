@@ -19,42 +19,38 @@
         ]).
 
 -export([
-         regi/1,
-         logi/1,
-         chat/1,
-         send_proto/1,
-         test/0
+         chat/2,
+         send_proto/2,
+         start_chat/1
         ]).
+
+-define(CHAT_TIMER, chat_timer).
 
 %%% =====
 %%% API
 %%% =====
 start_link(Args) ->
-    gen_server:start_link({local, ?MODULE}, ?MODULE, Args, []).
+    gen_server:start_link(?MODULE, Args, []).
 
-regi(RoleName) when is_list(RoleName) ->
-    Proto = #register_tos{role_name = RoleName, psd = "123"},
-    gen_server:cast(?MODULE, Proto).
+chat(Num, Content) ->
+    gen_server:cast(register_name(Num), {chat, Content}).
 
-logi(RoleName) ->
-    Proto = #login_tos{role_name  = RoleName, psd = "123"},
-    gen_server:cast(?MODULE, Proto).
+send_proto(Num, Proto) ->
+    gen_server:cast(register_name(Num), {send_proto, Proto}).
 
-chat(Content) ->
-    Proto = #chat_tos{chat = #s_chat{content = Content}},
-    gen_server:cast(?MODULE, Proto).
+start_chat(Num) ->
+    Rand = rand:uniform(20),
+    Content = io_lib:format("random to talk something ~p", [Rand]),
+    erlang:send_after(Rand * 1000, register_name(Num), {chat, Content}).
 
-send_proto(Proto) ->
-    gen_server:cast(?MODULE, Proto).
-
-test() ->
-    gen_server:cast(?MODULE, test).
 %%% =====
 %%% callback
 %%% =====
 init(Num) ->
     erlang:process_flag(trap_exit, true),
-    {ok, #state{num = Num}, 1000}.
+    RoleName = register_name(Num),
+    register(RoleName, self()),
+    {ok, #state{num = Num, name = atom_to_list(RoleName), psd = "123"}, 1000}.
 
 handle_info('EXIT', State) ->
     {stop, normal, State};
@@ -70,7 +66,6 @@ handle_info(Req, State) ->
     end.
 
 handle_cast(Req, State) ->
-    ?PRINT("Req ~p", [Req]),
     case catch do_handle_cast(Req, State) of
         {ok, NewState} ->
             {noreply, NewState};
@@ -88,16 +83,18 @@ handle_call(Req, _From, State) ->
             {noreply, State}
     end.
 
-do_handle_info(timeout, State) ->
-    ?PRINT("timeout"),
+do_handle_info(timeout, #state{name = RoleName} = State) ->
     Socket = hand_shake(),
     Header = robot_config:connect_header(),
     gen_tcp:send(Socket, Header),
     case gen_tcp:recv(Socket, 0) of
         {ok, _Ret} ->
             ok = inet:setopts(Socket, [{active, true}]),
+            Tos = #register_tos{role_name = RoleName, psd = "123"},
+            NewState = State#state{socket = Socket},
+            client_handler:send_tos(NewState, Tos), % 尝试注册
             start_ping(),
-            {ok, State#state{socket = Socket}};
+            {ok, NewState};
         Error ->
             ?THROW(Error)
     end;
@@ -110,16 +107,34 @@ do_handle_info({tcp_error, _Socket, Reason}, State) ->
     ?PRINT("tcp error ~p", [Reason]),
     {stop, tcp_error, State};
 do_handle_info(ping, State) ->
-    Tos = #ping_tos{time = lib_tool:now()},
+    Tos = #ping_tos{},
     client_handler:send_tos(State, Tos),
     {ok, State};
+do_handle_info({chat, Content}, #state{id = RoleId, name = RoleName} = State) ->
+    Rand = rand:uniform(20),
+    NextContent = io_lib:format("random to talk something ~p", [Rand]),
+    erlang:send_after(Rand * 1000, self(), {chat, NextContent}),
+    case RoleId of
+        undefined ->
+            ?PRINT("not login");
+        _ ->
+            Proto = #chat_tos{chat = #s_chat{role_id = RoleId, role_name = RoleName, content = Content}},
+            client_handler:send_tos(State, Proto)
+    end,
+    {ok, State};
+
 do_handle_info(Other, State) ->
     ?PRINT("unknown message ~p~n", [Other]),
     {ok, State}.
 
-do_handle_cast(#login_tos{role_name = RoleName} = Proto, State) ->
+do_handle_cast(login_role, #state{name = RoleName, psd = Psd} = State) ->
+    Proto = #login_tos{role_name = RoleName, psd = Psd},
     client_handler:send_tos(State, Proto),
-    {ok, State#state{name = RoleName}};
+    {ok, State};
+do_handle_cast(register_role, #state{name = RoleName, psd = Psd} = State) ->
+    Proto = #register_tos{role_name = RoleName, psd = Psd},
+    client_handler:send_tos(State, Proto),
+    {ok, State};
 do_handle_cast(Proto, State) ->
     ok = client_handler:send_tos(State, Proto),
     {ok, State}.
@@ -154,3 +169,6 @@ hand_shake() ->
     Host = robot_config:get_host(),
     {ok, Socket} = gen_tcp:connect(Host, Port, Args),
     Socket.
+
+register_name(Num) ->
+    list_to_atom("robot_" ++ integer_to_list(Num)).

@@ -54,7 +54,6 @@ get_role_id_by_name(RoleName) ->
     end.
 
 start_link(Role, NetPid) ->
-    ?LOG_INFO("start role RoleId ~p~n", [Role]),
     gen_server:start_link(?MODULE, [Role, NetPid], []).
 
 all_online_role() ->
@@ -77,7 +76,6 @@ cast_all(Toc) ->
 cast_all(?EOT, _Bin) ->
     ok;
 cast_all(RoleId, Bin) ->
-    ?LOG_INFO("RoleId ~p", [RoleId]),
     unicast(RoleId, Bin),
     cast_all(ets:next(?ETS_ROLE, RoleId), Bin).
 
@@ -144,8 +142,8 @@ code_change(_OldVsn, State, _Extra) ->
 %%% internal
 %%% =====
 %% 网关停止引起用户进程停止
-do_handle_info({'DOWN', _, _, _, Reason}) ->
-    ?LOG_ERROR("~p", [Reason]),
+do_handle_info({'DOWN', _, _, _, _Reason}) ->
+    % ?LOG_ERROR("~p", [_Reason]),
     stop;
 do_handle_info({c2s, RoleId, NetPid, Mod, Proto}) ->
     Mod:handle_c2s(RoleId, NetPid, Proto),

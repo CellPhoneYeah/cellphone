@@ -61,6 +61,7 @@ init([]) ->
                                  [{port, Port}, {max_connections, 10240}, {num_acceptors, 10}],
                                 #{env => #{dispatch => Dispatch}}
                                 ),
+    ?LOG_INFO("net_server started"),
     {ok, #state{}}.
 
 add_role_netpid(RoleId, NetPid) ->

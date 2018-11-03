@@ -1,4 +1,4 @@
 _build/
 .eunit/
 cellphone_data/
-logs
+logs/

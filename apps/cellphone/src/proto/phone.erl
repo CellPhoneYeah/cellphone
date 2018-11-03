@@ -112,19 +112,7 @@ encode_msg_msg(#msg{name = F1}, Bin, TrUserData) ->
 	   end
     end.
 
-encode_msg_ping_tos(Msg, TrUserData) ->
-    encode_msg_ping_tos(Msg, <<>>, TrUserData).
-
-
-encode_msg_ping_tos(#ping_tos{time = F1}, Bin,
-		    TrUserData) ->
-    if F1 == undefined -> Bin;
-       true ->
-	   begin
-	     TrF1 = id(F1, TrUserData),
-	     e_type_int32(TrF1, <<Bin/binary, 8>>, TrUserData)
-	   end
-    end.
+encode_msg_ping_tos(_Msg, _TrUserData) -> <<>>.
 
 encode_msg_pong_toc(_Msg, _TrUserData) -> <<>>.
 
@@ -566,98 +554,65 @@ skip_64_msg(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
     dfp_read_field_def_msg(Rest, Z1, Z2, F@_1, TrUserData).
 
 decode_msg_ping_tos(Bin, TrUserData) ->
-    dfp_read_field_def_ping_tos(Bin, 0, 0,
-				id(undefined, TrUserData), TrUserData).
+    dfp_read_field_def_ping_tos(Bin, 0, 0, TrUserData).
 
-dfp_read_field_def_ping_tos(<<8, Rest/binary>>, Z1, Z2,
-			    F@_1, TrUserData) ->
-    d_field_ping_tos_time(Rest, Z1, Z2, F@_1, TrUserData);
-dfp_read_field_def_ping_tos(<<>>, 0, 0, F@_1, _) ->
-    #ping_tos{time = F@_1};
-dfp_read_field_def_ping_tos(Other, Z1, Z2, F@_1,
+dfp_read_field_def_ping_tos(<<>>, 0, 0, _) ->
+    #ping_tos{};
+dfp_read_field_def_ping_tos(Other, Z1, Z2,
 			    TrUserData) ->
-    dg_read_field_def_ping_tos(Other, Z1, Z2, F@_1,
-			       TrUserData).
+    dg_read_field_def_ping_tos(Other, Z1, Z2, TrUserData).
 
 dg_read_field_def_ping_tos(<<1:1, X:7, Rest/binary>>, N,
-			   Acc, F@_1, TrUserData)
+			   Acc, TrUserData)
     when N < 32 - 7 ->
     dg_read_field_def_ping_tos(Rest, N + 7, X bsl N + Acc,
-			       F@_1, TrUserData);
+			       TrUserData);
 dg_read_field_def_ping_tos(<<0:1, X:7, Rest/binary>>, N,
-			   Acc, F@_1, TrUserData) ->
+			   Acc, TrUserData) ->
     Key = X bsl N + Acc,
-    case Key of
-      8 ->
-	  d_field_ping_tos_time(Rest, 0, 0, F@_1, TrUserData);
-      _ ->
-	  case Key band 7 of
-	    0 -> skip_varint_ping_tos(Rest, 0, 0, F@_1, TrUserData);
-	    1 -> skip_64_ping_tos(Rest, 0, 0, F@_1, TrUserData);
-	    2 ->
-		skip_length_delimited_ping_tos(Rest, 0, 0, F@_1,
-					       TrUserData);
-	    3 ->
-		skip_group_ping_tos(Rest, Key bsr 3, 0, F@_1,
-				    TrUserData);
-	    5 -> skip_32_ping_tos(Rest, 0, 0, F@_1, TrUserData)
-	  end
+    case Key band 7 of
+      0 -> skip_varint_ping_tos(Rest, 0, 0, TrUserData);
+      1 -> skip_64_ping_tos(Rest, 0, 0, TrUserData);
+      2 ->
+	  skip_length_delimited_ping_tos(Rest, 0, 0, TrUserData);
+      3 ->
+	  skip_group_ping_tos(Rest, Key bsr 3, 0, TrUserData);
+      5 -> skip_32_ping_tos(Rest, 0, 0, TrUserData)
     end;
-dg_read_field_def_ping_tos(<<>>, 0, 0, F@_1, _) ->
-    #ping_tos{time = F@_1}.
-
-d_field_ping_tos_time(<<1:1, X:7, Rest/binary>>, N, Acc,
-		      F@_1, TrUserData)
-    when N < 57 ->
-    d_field_ping_tos_time(Rest, N + 7, X bsl N + Acc, F@_1,
-			  TrUserData);
-d_field_ping_tos_time(<<0:1, X:7, Rest/binary>>, N, Acc,
-		      _, TrUserData) ->
-    {NewFValue, RestF} = {begin
-			    <<Res:32/signed-native>> = <<(X bsl N +
-							    Acc):32/unsigned-native>>,
-			    id(Res, TrUserData)
-			  end,
-			  Rest},
-    dfp_read_field_def_ping_tos(RestF, 0, 0, NewFValue,
-				TrUserData).
+dg_read_field_def_ping_tos(<<>>, 0, 0, _) ->
+    #ping_tos{}.
 
 skip_varint_ping_tos(<<1:1, _:7, Rest/binary>>, Z1, Z2,
-		     F@_1, TrUserData) ->
-    skip_varint_ping_tos(Rest, Z1, Z2, F@_1, TrUserData);
+		     TrUserData) ->
+    skip_varint_ping_tos(Rest, Z1, Z2, TrUserData);
 skip_varint_ping_tos(<<0:1, _:7, Rest/binary>>, Z1, Z2,
-		     F@_1, TrUserData) ->
-    dfp_read_field_def_ping_tos(Rest, Z1, Z2, F@_1,
-				TrUserData).
+		     TrUserData) ->
+    dfp_read_field_def_ping_tos(Rest, Z1, Z2, TrUserData).
 
 skip_length_delimited_ping_tos(<<1:1, X:7,
 				 Rest/binary>>,
-			       N, Acc, F@_1, TrUserData)
+			       N, Acc, TrUserData)
     when N < 57 ->
     skip_length_delimited_ping_tos(Rest, N + 7,
-				   X bsl N + Acc, F@_1, TrUserData);
+				   X bsl N + Acc, TrUserData);
 skip_length_delimited_ping_tos(<<0:1, X:7,
 				 Rest/binary>>,
-			       N, Acc, F@_1, TrUserData) ->
+			       N, Acc, TrUserData) ->
     Length = X bsl N + Acc,
     <<_:Length/binary, Rest2/binary>> = Rest,
-    dfp_read_field_def_ping_tos(Rest2, 0, 0, F@_1,
-				TrUserData).
+    dfp_read_field_def_ping_tos(Rest2, 0, 0, TrUserData).
 
-skip_group_ping_tos(Bin, FNum, Z2, F@_1, TrUserData) ->
+skip_group_ping_tos(Bin, FNum, Z2, TrUserData) ->
     {_, Rest} = read_group(Bin, FNum),
-    dfp_read_field_def_ping_tos(Rest, 0, Z2, F@_1,
-				TrUserData).
+    dfp_read_field_def_ping_tos(Rest, 0, Z2, TrUserData).
 
-skip_32_ping_tos(<<_:32, Rest/binary>>, Z1, Z2, F@_1,
+skip_32_ping_tos(<<_:32, Rest/binary>>, Z1, Z2,
 		 TrUserData) ->
-    dfp_read_field_def_ping_tos(Rest, Z1, Z2, F@_1,
-				TrUserData).
+    dfp_read_field_def_ping_tos(Rest, Z1, Z2, TrUserData).
 
-skip_64_ping_tos(<<_:64, Rest/binary>>, Z1, Z2, F@_1,
+skip_64_ping_tos(<<_:64, Rest/binary>>, Z1, Z2,
 		 TrUserData) ->
-    dfp_read_field_def_ping_tos(Rest, Z1, Z2, F@_1,
-				TrUserData).
+    dfp_read_field_def_ping_tos(Rest, Z1, Z2, TrUserData).
 
 decode_msg_pong_toc(Bin, TrUserData) ->
     dfp_read_field_def_pong_toc(Bin, 0, 0, TrUserData).
@@ -1932,12 +1887,7 @@ merge_msg_msg(#msg{name = PFname}, #msg{name = NFname},
 	     end}.
 
 -compile({nowarn_unused_function,merge_msg_ping_tos/3}).
-merge_msg_ping_tos(#ping_tos{time = PFtime},
-		   #ping_tos{time = NFtime}, _) ->
-    #ping_tos{time =
-		  if NFtime =:= undefined -> PFtime;
-		     true -> NFtime
-		  end}.
+merge_msg_ping_tos(_Prev, New, _TrUserData) -> New.
 
 -compile({nowarn_unused_function,merge_msg_pong_toc/3}).
 merge_msg_pong_toc(_Prev, New, _TrUserData) -> New.
@@ -2120,12 +2070,7 @@ v_msg_msg(X, Path, _TrUserData) ->
 
 -compile({nowarn_unused_function,v_msg_ping_tos/3}).
 -dialyzer({nowarn_function,v_msg_ping_tos/3}).
-v_msg_ping_tos(#ping_tos{time = F1}, Path,
-	       TrUserData) ->
-    if F1 == undefined -> ok;
-       true -> v_type_int32(F1, [time | Path], TrUserData)
-    end,
-    ok;
+v_msg_ping_tos(#ping_tos{}, _Path, _) -> ok;
 v_msg_ping_tos(X, Path, _TrUserData) ->
     mk_type_error({expected_msg, ping_tos}, X, Path).
 
@@ -2334,10 +2279,7 @@ get_msg_defs() ->
     [{{msg, msg},
       [#field{name = name, fnum = 1, rnum = 2, type = string,
 	      occurrence = optional, opts = []}]},
-     {{msg, ping_tos},
-      [#field{name = time, fnum = 1, rnum = 2, type = int32,
-	      occurrence = optional, opts = []}]},
-     {{msg, pong_toc}, []},
+     {{msg, ping_tos}, []}, {{msg, pong_toc}, []},
      {{msg, s_role},
       [#field{name = role_id, fnum = 1, rnum = 2,
 	      type = int32, occurrence = optional, opts = []},
@@ -2422,9 +2364,7 @@ fetch_enum_def(EnumName) ->
 find_msg_def(msg) ->
     [#field{name = name, fnum = 1, rnum = 2, type = string,
 	    occurrence = optional, opts = []}];
-find_msg_def(ping_tos) ->
-    [#field{name = time, fnum = 1, rnum = 2, type = int32,
-	    occurrence = optional, opts = []}];
+find_msg_def(ping_tos) -> [];
 find_msg_def(pong_toc) -> [];
 find_msg_def(s_role) ->
     [#field{name = role_id, fnum = 1, rnum = 2,

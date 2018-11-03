@@ -27,24 +27,13 @@
 %%% API
 %%% ========
 add_chat_records(Record) ->
-    Records = get_chat_records(),
-    Len = length(Records),
-    NewRecords = 
-    if
-        ?CHAT_RECORDS_MAX_NUM > Len ->
-            RevRecords = lists:reverse(Records),
-            [_Last | Left] = RevRecords,
-            [Record | lists:reverse(Left)];
-        true ->
-            [Record | Records]
-    end,
-    set_chat_records(NewRecords).
+    gen_server:cast(?MODULE, {add_chat_records, Record}).
 
 set_chat_records(Records) ->
-    erlang:put({?MODULE, ?CHAT_RECORDS}, Records).
+    gen_server:cast(?MODULE, {set_chat_records, Records}).
 
 get_chat_records() ->
-    erlang:get({?MODULE, ?CHAT_RECORDS}).
+    gen_server:call(?MODULE, get_chat_records).
 
 %%% ====
 %%% call back
@@ -98,10 +87,28 @@ code_change(_OldVsn, State, _Extra) ->
 %%% ========
 %%% internal
 %%% ========
+do_handle_call(get_chat_records) ->
+    {ok, erlang:get({?MODULE, ?CHAT_RECORDS})};
 do_handle_call(_Request) ->
     ?LOG_INFO("unknown request ~p", [_Request]),
     {ok, ok}.
 
+do_handle_cast({add_chat_records, Record}) ->
+    Records = get_chat_records(),
+    Len = length(Records),
+    NewRecords = 
+    if
+        ?CHAT_RECORDS_MAX_NUM > Len ->
+            RevRecords = lists:reverse(Records),
+            [_Last | Left] = RevRecords,
+            [Record | lists:reverse(Left)];
+        true ->
+            [Record | Records]
+    end,
+    set_chat_records(NewRecords),
+    ok;
+do_handle_cast({set_chat_records, Records}) ->
+    erlang:put({?MODULE, ?CHAT_RECORDS}, Records);
 do_handle_cast(_Request) ->
     ?LOG_INFO("unknown request ~p", [_Request]),
     ok.

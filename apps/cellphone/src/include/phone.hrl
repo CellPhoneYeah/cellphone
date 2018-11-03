@@ -17,7 +17,7 @@
 -ifndef('PING_TOS_PB_H').
 -define('PING_TOS_PB_H', true).
 -record(ping_tos,
-        {time                   :: integer() | undefined % = 1, 32 bits
+        {
         }).
 -endif.
 

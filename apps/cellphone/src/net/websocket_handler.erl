@@ -28,7 +28,6 @@ websocket_init(State) ->
 websocket_handle({binary, Bin}, State) ->
     case catch net_misc:decode_msg(Bin) of
         {ok, Proto} ->
-            ?LOG_INFO("proto ~p", [Proto]),
             case catch net_misc:msg_handle(Proto) of
                 {ok, RetBin} ->
                     {reply, {binary, RetBin}, State};
@@ -40,16 +39,15 @@ websocket_handle({binary, Bin}, State) ->
             {ok, State}
     end;
 websocket_handle(Data, State) ->
-    ?LOG_INFO("unexpected data ~p~n", [Data]),
+    ?LOG_ERROR("unexpected data ~p~n", [Data]),
     {ok, State}.
 
 %% 服务端内部停止网关
 websocket_info(stop, State) ->
-    ?LOG_ERROR("stop gateway"),
+    ?LOG_INFO("stop"),
     {stop, State};
 %% 服务端内部的请求
 websocket_info({binary, Proto}, State) ->
-    ?LOG_INFO("proto", [Proto]),
     case net_misc:msg_handle(Proto) of
         {ok, Bin} ->
             {reply, {binary, Bin}, State};
@@ -58,7 +56,6 @@ websocket_info({binary, Proto}, State) ->
     end;
 %% 检查客户端是否已经断了
 websocket_info(?PING_CHECKER, State) ->
-    ?LOG_INFO(" check ping"),
     Interval = lib_tool:now() - net_login:get_last_ping_time(),
     MaxInterval = 5 * ?MIN_SECOND,
     if

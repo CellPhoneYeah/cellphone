@@ -4,7 +4,6 @@ message msg {
 }
 // 推送心跳
 message ping_tos {
-    optional int32      time        = 1; // 时间戳
 }
 // 回应心跳
 message pong_toc {
@@ -15,12 +14,12 @@ message s_role {
     optional string     role_name   = 2; // 用户名
 }
 // 注册
-message register_tos{
+message register_tos {
     optional string     role_name   = 1; // 名字
     optional string     psd         = 2; // 密码
 }
 // 注册回应
-message register_toc{
+message register_toc {
     optional int32      code        = 1; // 错误码
     optional s_role     role        = 2; // 角色信息
 }

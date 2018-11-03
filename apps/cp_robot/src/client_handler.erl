@@ -10,6 +10,7 @@
 handle_toc(State, Bin) ->
     case robot_packet:decode(State, Bin) of
         stop ->
+            ?PRINT("stop"),
             stop;
         {next, Dec, Rest} ->
             NewState =
@@ -17,7 +18,6 @@ handle_toc(State, Bin) ->
                 Dec == ?UNDEF ->
                     State;
                 true ->
-                    ?PRINT("Toc ~p", [Dec]),
                     {ok, State1} = do_handle_toc(State, Dec),
                     State1
             end,
@@ -28,6 +28,16 @@ handle_toc(State, Bin) ->
 
 do_handle_toc(State, #pong_toc{}) ->
     {ok, State};
+do_handle_toc(#state{name = RoleName, psd = Psd} = State, #register_toc{code = Code, role = SRole}) ->
+    NewState = case Code of
+                   0 ->
+                       State#state{id = SRole#s_role.role_id};
+                   _ ->
+                       State
+               end,
+    Tos = #login_tos{role_name = RoleName, psd = Psd},
+    client_handler:send_tos(NewState, Tos),
+    {ok, NewState};
 do_handle_toc(State, #login_toc{code = Code, role = SRole}) ->
     NewState = case Code of
                    ?E_OK ->
@@ -35,28 +45,28 @@ do_handle_toc(State, #login_toc{code = Code, role = SRole}) ->
                           role_id = RoleId,
                           role_name = Name
                          } = SRole,
+                       #state{num = Num} = State,
+                       robot_client:start_chat(Num),
                        State#state{name = Name, id = RoleId};
                    ?E_LOGIN_ROLE_NAME_NOT_REGISTERED -> % 未注册
                        State;
                    ?E_LOGIN_ROLE_NOT_FOUND ->
                        State;
                    ?E_LOGIN_PASSWORD_NOT_MATCH ->
+                       State;
+                   Error ->
+                       ?PRINT("~p", [Error]),
                        State
                end,
     {ok, NewState};
-do_handle_toc(State, #register_toc{code = Code}) ->
-    NewState = case Code of
-                   ?E_OK ->
-                       State;
-                   ?E_REGISTER_NAME_HAS_BEEN_USED ->
-                       ?PRINT("name has been used~n"),
-                       State;
-                   _ ->
-                       State
-               end,
-    {ok, NewState};
-do_handle_toc(State, #s_chat{role_id = SenderId, role_name = SenderName, content = Content}) ->
-    ?PRINT("~p ~p:~p", [SenderId, SenderName, Content]),
+do_handle_toc(State, #s_chat{role_id = _SenderId, role_name = _SenderName, content = _Content}) ->
+    if
+        _SenderId == State#state.id ->
+            %io:format("~p ~p:~p~n", [SenderId, SenderName, Content]);
+            ok;
+        true ->
+            ok
+    end,
     {ok, State};
 do_handle_toc(State, _Toc) ->
     {ok, State}.

@@ -51,7 +51,6 @@ msg_handle(Proto) ->
                     ok
             end;
         {role, Mod} ->
-            ?LOG_INFO("RoleId ~p", [RoleId]),
             if
                 is_integer(RoleId) ->
                     lib_role:register_name(RoleId) ! {c2s, RoleId, NetPid, Mod, Proto},

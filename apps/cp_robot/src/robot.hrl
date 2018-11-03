@@ -6,5 +6,6 @@
           num,  % 编号
           id,   % id
           name, % 名字
+          psd = "123", % 密码
           socket    % socket
          }).

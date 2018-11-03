@@ -26,8 +26,11 @@
 start_link() ->
     supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
+start_robot(1) ->
+    supervisor:start_child(?SERVER, [1]);
 start_robot(Num) ->
-    supervisor:start_child(?SERVER, [Num]).
+    supervisor:start_child(?SERVER, [Num]),
+    start_robot(Num -1).
 
 %%====================================================================
 %% Supervisor callbacks
